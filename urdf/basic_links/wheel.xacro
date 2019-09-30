@@ -1,0 +1,33 @@
+<robot name="wheel" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:property name="wheel_width" value="0.02" />
+    <xacro:property name="wheel_radius" value="0.04" />
+
+    <xacro:macro name="agribot_wheel" params="name">
+        <link name="${name}">
+          <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+            </geometry>
+            <material name="blue"/>
+          </visual>
+
+          <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+              <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+            </geometry>
+          </collision>
+
+          <inertial>
+            <origin xyz="0 0 0" />
+            <mass value="0.01" />
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+                     iyy="0.001" iyz="0.0"
+                     izz="0.001" />
+          </inertial>
+        </link>
+    </xacro:macro>
+
+</robot>

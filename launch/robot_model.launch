@@ -1,0 +1,6 @@
+<launch>
+
+  <include file="$(find agribot_description)/launch/robot_state_publisher.xml"/>
+
+
+</launch>
