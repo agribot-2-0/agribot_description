@@ -2,6 +2,8 @@
 
   <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find agribot_description)/urdf/agribot.urdf.xacro'" />
 
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model robot" />
+
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
     <param name="publish_frequency" type="double" value="50.0" />
   </node>

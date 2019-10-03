@@ -2,17 +2,17 @@
 <robot name="agribot_sim" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <gazebo>
-    <plugin name="agribot_base_controller" filename="libgazebo_ros_diff_drive.so">
-      <commandTopic>cmd_vel</commandTopic>
-      <odometryTopic>odom</odometryTopic>
-      <odometryFrame>odom</odometryFrame>
+    <plugin name="agribot_cart_controller_front" filename="libgazebo_ros_diff_drive.so">
+      <commandTopic>cmd_vel_front</commandTopic>
+      <odometryTopic>odom_front</odometryTopic>
+      <odometryFrame>odom_front</odometryFrame>
       <robotBaseFrame>base_footprint</robotBaseFrame>
       <publishWheelTF>false</publishWheelTF>
       <publishWheelJointState>true</publishWheelJointState>
       <legacyMode>false</legacyMode>
       <updateRate>100</updateRate>
-      <leftJoint>wheel_left_joint</leftJoint>
-      <rightJoint>wheel_right_joint</rightJoint>
+      <leftJoint>front_left_wheel_joint</leftJoint>
+      <rightJoint>front_right_wheel_joint</rightJoint>
       <wheelSeparation>0.287</wheelSeparation>
       <wheelDiameter>0.066</wheelDiameter>
       <wheelAcceleration>1</wheelAcceleration>
@@ -20,12 +20,31 @@
     </plugin>
   </gazebo>
 
-  <gazebo reference="base_link">
-      <material>Gazebo/Red</material>
+  <gazebo>
+    <plugin name="agribot_cart_controller_back" filename="libgazebo_ros_diff_drive.so">
+      <commandTopic>cmd_vel_back</commandTopic>
+      <odometryTopic>odom_back</odometryTopic>
+      <odometryFrame>odom_back</odometryFrame>
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+      <publishWheelTF>false</publishWheelTF>
+      <publishWheelJointState>true</publishWheelJointState>
+      <legacyMode>false</legacyMode>
+      <updateRate>100</updateRate>
+      <leftJoint>back_left_wheel_joint</leftJoint>
+      <rightJoint>back_right_wheel_joint</rightJoint>
+      <wheelSeparation>0.287</wheelSeparation>
+      <wheelDiameter>0.066</wheelDiameter>
+      <wheelAcceleration>1</wheelAcceleration>
+      <wheelTorque>10</wheelTorque>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="chassis_link">
+      <material>Gazebo/Green</material>
   </gazebo>
 
 
-  <gazebo reference="wheel_left_link">
+  <gazebo reference="front_left_wheel_link">
     <mu1>10</mu1>
     <mu2>10</mu2>
     <kp>500000.0</kp>
@@ -36,7 +55,7 @@
     <material>Gazebo/Gray</material>
   </gazebo>
 
-  <gazebo reference="wheel_right_link">
+  <gazebo reference="front_right_wheel_link">
     <mu1>10</mu1>
     <mu2>10</mu2>
     <kp>500000.0</kp>
@@ -47,13 +66,25 @@
     <material>Gazebo/Gray</material>
   </gazebo>
 
-  <gazebo reference="caster_back">
-    <mu1>0.0</mu1>
-    <mu2>0.0</mu2>
-    <kp>1000000.0</kp>
-    <kd>100.0</kd>
+  <gazebo reference="back_left_wheel_link">
+    <mu1>10</mu1>
+    <mu2>10</mu2>
+    <kp>500000.0</kp>
+    <kd>10.0</kd>
     <minDepth>0.001</minDepth>
-    <maxVel>1.0</maxVel>
+    <maxVel>0.1</maxVel>
+    <fdir1>1 0 0</fdir1>
+    <material>Gazebo/Gray</material>
+  </gazebo>
+
+  <gazebo reference="back_right_wheel_link">
+    <mu1>10</mu1>
+    <mu2>10</mu2>
+    <kp>500000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.1</maxVel>
+    <fdir1>1 0 0</fdir1>
     <material>Gazebo/Gray</material>
   </gazebo>
 

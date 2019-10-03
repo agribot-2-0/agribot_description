@@ -2,44 +2,74 @@
 <robot name="agribot" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename="$(find agribot_description)/urdf/common_properties.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/agribot.gazebo"/>
-  <xacro:include filename="$(find agribot_description)/urdf/basic_links/base.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/basic_links/cart.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/wheel.xacro"/>
-  <xacro:include filename="$(find agribot_description)/urdf/basic_links/caster.xacro"/>
 
   <link name="base_footprint"/>
 
-  <joint name="base_joint" type="fixed">
+  <joint name="chassis_joint" type="fixed">
     <parent link="base_footprint"/>
-    <child link="base_link" />
-    <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0"/>
+    <child link="chassis_link" />
+    <origin xyz="0 0 ${3*wheel_radius+chassis_heigth/2}" rpy="0 0 0"/>
   </joint>
 
-  <xacro:agribot_base name="base_link" />
+  <xacro:agribot_chassis name="chassis_link" />
 
-  <joint name="wheel_left_joint" type="continuous">
-    <parent link="base_link"/>
-    <child link="wheel_left_link"/>
-    <origin xyz="${(base_lenght/2)-wheel_radius} ${(base_width+wheel_width)/2} 0.0" rpy="${-M_PI/2} 0 0"/>
-    <axis xyz="0 0 1"/>
-  </joint>
+      <joint name="front_cart_joint" type="continuous">
+        <parent link="chassis_link"/>
+        <child link="front_cart_link"/>
+        <origin xyz="${(chassis_length/2)-cart_lenght/2} 0.0 ${-3*wheel_radius}" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+      </joint>
 
-  <xacro:agribot_wheel name="wheel_left_link" />
+      <xacro:agribot_cart name="front_cart_link" />
 
-  <joint name="wheel_right_joint" type="continuous">
-    <parent link="base_link"/>
-    <child link="wheel_right_link"/>
-    <origin xyz="${(base_lenght/2)-wheel_radius} ${-(base_width+wheel_width)/2} 0.0" rpy="${-M_PI/2} 0 0"/>
-    <axis xyz="0 0 1"/>
-  </joint>
+          <joint name="front_left_wheel_joint" type="continuous">
+              <parent link="front_cart_link"/>
+              <child link="front_left_wheel_link"/>
+              <origin xyz="0.0 ${(chassis_width+wheel_width)/2} ${-wheel_radius}" rpy="${-M_PI/2} 0 0"/>
+              <axis xyz="0 0 1"/>
+            </joint>
 
-  <xacro:agribot_wheel name="wheel_right_link" />
+            <xacro:agribot_wheel name="front_left_wheel_link" />
 
-  <joint name="caster_back_right_joint" type="fixed">
-    <parent link="base_link"/>
-    <child link="caster_back"/>
-    <origin xyz="${caster_lenght-(base_lenght/2)} 0.0 ${-(base_height+caster_height)/2}" rpy="0.0 0.0 0.0"/>
-  </joint>
+            <joint name="front_right_wheel_joint" type="continuous">
+              <parent link="front_cart_link"/>
+              <child link="front_right_wheel_link"/>
+              <origin xyz="0.0 ${-(chassis_width+wheel_width)/2} ${-wheel_radius}" rpy="${-M_PI/2} 0 0"/>
+              <axis xyz="0 0 1"/>
+            </joint>
 
-  <xacro:agribot_caster name="caster_back" />
+            <xacro:agribot_wheel name="front_right_wheel_link" />      
+
+      <joint name="back_cart_joint" type="continuous">
+        <parent link="chassis_link"/>
+        <child link="back_cart_link"/>
+        <origin xyz="${-(chassis_length/2)+cart_lenght/2} 0.0 ${-3*wheel_radius}" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+      </joint>
+
+      <xacro:agribot_cart name="back_cart_link" />
+
+          <joint name="back_left_wheel_joint" type="continuous">
+              <parent link="back_cart_link"/>
+              <child link="back_left_wheel_link"/>
+              <origin xyz="0.0 ${(chassis_width+wheel_width)/2} ${-wheel_radius}" rpy="${-M_PI/2} 0 0"/>
+              <axis xyz="0 0 1"/>
+            </joint>
+
+            <xacro:agribot_wheel name="back_left_wheel_link" />
+
+            <joint name="back_right_wheel_joint" type="continuous">
+              <parent link="back_cart_link"/>
+              <child link="back_right_wheel_link"/>
+              <origin xyz="0.0 ${-(chassis_width+wheel_width)/2} ${-wheel_radius}" rpy="${-M_PI/2} 0 0"/>
+              <axis xyz="0 0 1"/>
+            </joint>
+
+            <xacro:agribot_wheel name="back_right_wheel_link" />      
+
+
+ 
 
 </robot>
