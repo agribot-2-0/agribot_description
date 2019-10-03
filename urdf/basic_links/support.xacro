@@ -1,0 +1,37 @@
+<robot name="support" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find agribot_description)/urdf/basic_links/chassis.xacro"/>
+    <xacro:include filename="$(find agribot_description)/urdf/basic_links/wheel.xacro"/>
+
+    <xacro:property name="support_length" value="${chassis_width*2}" />
+    <xacro:property name="support_width" value="${wheel_width}" />
+    <xacro:property name="support_height" value="${wheel_radius*0.5}" />
+
+    <xacro:macro name="agribot_support" params="name">
+        <link name="${name}">
+          <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+            <geometry>
+               <box size="${support_length} ${support_width} ${support_height}" />
+            </geometry>
+            <material name="blue"/>
+          </visual>
+
+          <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+            <geometry>
+              <box size="${support_length} ${support_width} ${support_height}"/>
+            </geometry>
+          </collision>
+
+          <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+            <mass value="1"/>
+            <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+                     iyy="0.01" iyz="0.0"
+                     izz="0.01" />
+          </inertial>
+        </link>
+    </xacro:macro>
+
+</robot>
