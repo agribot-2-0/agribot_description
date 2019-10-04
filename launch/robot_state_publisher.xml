@@ -4,8 +4,12 @@
 
   <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model robot" />
 
-  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
-    <param name="publish_frequency" type="double" value="50.0" />
+  <rosparam file="$(find agribot_description)/config/config.yaml" command="load"/>
+  
+  <node name="controller_spawner" pkg ="controller_manager" type="spawner" ns="/agribot_model" args="FLW_velocity_controller FRW_velocity_controller BLW_velocity_controller BRW_velocity_controller joint_state_controller --shutdown-timeout 3"/>
+    
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+       <remap from="joint_state" to="/agribot_model/joint_states" />
   </node>
 
 </launch>

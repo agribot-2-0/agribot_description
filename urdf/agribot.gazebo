@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot name="agribot_sim" xmlns:xacro="http://ros.org/wiki/xacro">
-
+<!--
   <gazebo>
     <plugin name="agribot_cart_controller_front" filename="libgazebo_ros_diff_drive.so">
       <commandTopic>cmd_vel_front</commandTopic>
@@ -38,7 +38,7 @@
       <wheelTorque>10</wheelTorque>
     </plugin>
   </gazebo>
-
+-->
   <gazebo reference="chassis_link">
       <material>Gazebo/Green</material>
   </gazebo>
@@ -47,7 +47,7 @@
   <gazebo reference="front_left_wheel_link">
     <mu1>10</mu1>
     <mu2>10</mu2>
-    <kp>500000.0</kp>
+    <kp>1000000.0</kp>
     <kd>10.0</kd>
     <minDepth>0.001</minDepth>
     <maxVel>0.1</maxVel>
@@ -58,7 +58,7 @@
   <gazebo reference="front_right_wheel_link">
     <mu1>10</mu1>
     <mu2>10</mu2>
-    <kp>500000.0</kp>
+    <kp>1000000.0</kp>
     <kd>10.0</kd>
     <minDepth>0.001</minDepth>
     <maxVel>0.1</maxVel>
@@ -69,7 +69,7 @@
   <gazebo reference="back_left_wheel_link">
     <mu1>10</mu1>
     <mu2>10</mu2>
-    <kp>500000.0</kp>
+    <kp>1000000.0</kp>
     <kd>10.0</kd>
     <minDepth>0.001</minDepth>
     <maxVel>0.1</maxVel>
@@ -80,14 +80,13 @@
   <gazebo reference="back_right_wheel_link">
     <mu1>10</mu1>
     <mu2>10</mu2>
-    <kp>500000.0</kp>
+    <kp>1000000.0</kp>
     <kd>10.0</kd>
     <minDepth>0.001</minDepth>
     <maxVel>0.1</maxVel>
     <fdir1>1 0 0</fdir1>
     <material>Gazebo/Gray</material>
   </gazebo>
-
 
   <gazebo reference="front_cart_link">
     <material>Gazebo/White</material>
@@ -112,6 +111,59 @@
   </gazebo>
 
   
+
+  <transmission name="front_left_wheel_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_left_wheel_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_left_wheel_motor">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+           
+  <transmission name="front_right_wheel_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_right_wheel_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_right_wheel_motor">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>  
+
+  <transmission name="back_left_wheel_joint">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="back_left_wheel_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="back_left_wheel_motor">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>  
+
+  <transmission name="back_right_wheel_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="back_right_wheel_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="back_right_wheel_motor">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>       
+    
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/agribot_model</robotNamespace>
+    </plugin>
+  </gazebo>
+  
+
+
   <!-- <gazebo>
     <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
       <alwaysOn>true</alwaysOn>
