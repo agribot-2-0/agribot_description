@@ -10,6 +10,8 @@ project(agribot_description)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
+  robot_state_publisher
+  xacro
 )
 
 ## System dependencies are found with CMake's conventions
