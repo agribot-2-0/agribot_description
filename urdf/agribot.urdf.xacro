@@ -72,4 +72,11 @@
 
   <xacro:agribot_wheel name="back_right_wheel_link" />
 
+  <gazebo>
+    <plugin name="agribot_controller" filename="libgazebo_ros_agribot.so">
+      <wheelSeparation> ${chassis_width+wheel_width} </wheelSeparation>
+      <wheelRadius> ${wheel_radius} </wheelRadius>
+    </plugin>
+  </gazebo>
+
 </robot>
