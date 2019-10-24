@@ -5,7 +5,6 @@
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/cart.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/wheel.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/support.xacro"/>
-
   <link name="base_footprint"/>
 
   <joint name="chassis_joint" type="fixed">

@@ -1,12 +1,9 @@
 <robot name="support" xmlns:xacro="http://ros.org/wiki/xacro">
-
     <xacro:include filename="$(find agribot_description)/urdf/basic_links/chassis.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_links/wheel.xacro"/>
-
     <xacro:property name="support_length" value="${chassis_width*2}" />
     <xacro:property name="support_width" value="${wheel_width}" />
     <xacro:property name="support_height" value="${wheel_radius*0.99}" />
-
     <xacro:macro name="agribot_support" params="name">
         <link name="${name}">
           <visual>

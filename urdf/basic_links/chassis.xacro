@@ -1,5 +1,4 @@
 <robot name="chassis" xmlns:xacro="http://ros.org/wiki/xacro">
-
     <!-- <xacro:property name="chassis_length" value="1" />
     <xacro:property name="chassis_width" value="0.2" />
     <xacro:property name="chassis_height" value="0.2" /> -->
