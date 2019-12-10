@@ -79,6 +79,12 @@
     </plugin>
   </gazebo>
 
+  <gazebo>
+    <plugin name="inclinometer_controller" filename="libgazebo_inclinometer.so">
+      <inclinometerLink>"base_footprint"</inclinometerLink>
+    </plugin>
+  </gazebo>
+
   <link name="imu_link"/>
 
   <joint name="imu_joint" type="fixed">
