@@ -75,7 +75,82 @@
     <plugin name="agribot_controller" filename="libgazebo_ros_agribot.so">
       <wheelSeparation> ${chassis_width+wheel_width} </wheelSeparation>
       <wheelRadius> ${wheel_radius} </wheelRadius>
+      <chasisLength>${chassis_length-2*wheel_radius}</chasisLength>
     </plugin>
   </gazebo>
+
+  <link name="imu_link"/>
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="chassis_link"/>
+    <child link="imu_link" />
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <gazebo>  
+    <plugin name="imu_cotroller" filename="libhector_gazebo_ros_imu.so">
+      <updateRate>10</updateRate>
+      <robotNamespace>agribot</robotNamespace>
+      <bodyName>imu_link</bodyName>
+      <frameId>imu_link</frameId>
+      <topicName>imu</topicName>
+      <rpyOffset>0 0 0</rpyOffset>
+      <xyzOffset>0 0 0</xyzOffset>
+      <gaussianNoise>0.00000001</gaussianNoise>
+      <accelDrift>0.00000001 0.00000001 0.00000001</accelDrift>
+      <accelDriftFrequency>0.00000001 0.00000001 0.00000001</accelDriftFrequency>
+      <accelGaussianNoise>0.00000001 0.00000001 0.00000001</accelGaussianNoise>
+      <rateDrift>0.0 0.0 0.0</rateDrift>
+      <rateDriftFrequency>0.0 0.0 0.0</rateDriftFrequency>
+      <rateGaussianNoise>0.0 0.0 0.0</rateGaussianNoise>
+      <headingDrift>0.0 0.0 0.0</headingDrift>
+      <headingDriftFrequency>0.0 0.0 0.0</headingDriftFrequency>
+      <headingGaussianNoise>0.0 0.0 0.0</headingGaussianNoise>
+    </plugin>
+  </gazebo> 
+
+  <link name="gps_link"/>
+
+  <joint name="gps_joint" type="fixed">
+    <parent link="chassis_link"/>
+    <child link="gps_link" />
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <gazebo>  
+    <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
+      <updateRate>10.0</updateRate>
+      <robotNamespace>agribot</robotNamespace>
+      <bodyName>gps_link</bodyName>
+      <frameId>gps_link</frameId>
+      <topicName>fix</topicName>
+      <velocityTopicName>fix_velocity</velocityTopicName>
+      <drift>5.0 5.0 5.0</drift>
+      <gaussianNoise>0.1 0.1 0.1</gaussianNoise>
+      <velocityDrift>0 0 0</velocityDrift>
+      <velocityGaussianNoise>0.1 0.1 0.1</velocityGaussianNoise>
+    </plugin>
+  </gazebo> 
+
+  <link name="magnetic_link"/>
+
+  <joint name="magnetic_joint" type="fixed">
+    <parent link="chassis_link"/>
+    <child link="magnetic_link" />
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <gazebo>  
+    <plugin name="magnetic_controller" filename="libhector_gazebo_ros_magnetic.so">
+      <updateRate>10.0</updateRate>
+      <robotNamespace>agribot</robotNamespace>
+      <bodyName>magnetic_link</bodyName>
+      <topicName>magnetic_field</topicName>
+      <drift>5.0 5.0 5.0</drift>
+      <gaussianNoise>0.1 0.1 0.1</gaussianNoise>
+      <velocityDrift>0 0 0</velocityDrift>
+      <velocityGaussianNoise>0.1 0.1 0.1</velocityGaussianNoise>
+    </plugin>
+  </gazebo> 
 
 </robot>
