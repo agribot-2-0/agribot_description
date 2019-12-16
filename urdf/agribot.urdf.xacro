@@ -96,7 +96,7 @@
   <gazebo>  
     <plugin name="imu_cotroller" filename="libhector_gazebo_ros_imu.so">
       <updateRate>10</updateRate>
-      <robotNamespace>agribot</robotNamespace>
+      <robotNamespace>simulation</robotNamespace>
       <bodyName>imu_link</bodyName>
       <frameId>imu_link</frameId>
       <topicName>imu</topicName>
@@ -126,7 +126,7 @@
   <gazebo>  
     <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
       <updateRate>10.0</updateRate>
-      <robotNamespace>agribot</robotNamespace>
+      <robotNamespace>simulation</robotNamespace>
       <bodyName>gps_link</bodyName>
       <frameId>gps_link</frameId>
       <topicName>fix</topicName>
@@ -149,7 +149,7 @@
   <gazebo>  
     <plugin name="magnetic_controller" filename="libhector_gazebo_ros_magnetic.so">
       <updateRate>10.0</updateRate>
-      <robotNamespace>agribot</robotNamespace>
+      <robotNamespace>simulation</robotNamespace>
       <bodyName>magnetic_link</bodyName>
       <topicName>magnetic_field</topicName>
       <drift>5.0 5.0 5.0</drift>
