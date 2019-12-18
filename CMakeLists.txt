@@ -12,6 +12,8 @@ find_package(catkin REQUIRED COMPONENTS
   joint_state_publisher
   rviz
   xacro
+  roscpp
+  tf
 )
 
 ################################################
@@ -43,13 +45,39 @@ catkin_package(
 ###########
 ## Build ##
 ###########
+include_directories(include
+  ${Boost_INCLUDE_DIRS}
+  ${catkin_INCLUDE_DIRS}
+  ${GAZEBO_INCLUDE_DIRS}
+  ${agribot_common_SOURCE_DIR}/include
+)
 
+link_directories(
+  ${GAZEBO_LIBRARY_DIRS}
+  ${PROJECT_SOURCE_DIR}
+)
+
+add_executable(joint_state_publisher
+  src/JointStatePublisher_node.cpp
+)
+
+target_link_libraries(joint_state_publisher
+  ${GAZEBO_LIBRARIES}
+  ${catkin_LIBRARIES}
+  ${Boost_LIBRARIES}
+)
 
 #############
 ## Install ##
 #############
-
+install(TARGETS
+  joint_state_publisher
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+)
 
 #############
 ## Testing ##
 #############
+
+add_dependencies(kinematics_control ${catkin_EXPORTED_TARGETS})
