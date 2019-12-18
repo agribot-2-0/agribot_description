@@ -18,7 +18,7 @@
   <joint name="front_cart_joint" type="revolute">
     <parent link="chassis_link"/>
     <child link="front_cart_link"/>
-    <limit lower="${-M_PI/4}" upper="${M_PI/4}" effort="1000.0" velocity="1000.0"/>
+    <limit lower="${-45*M_PI/180}" upper="${45*M_PI/180}" effort="1000.0" velocity="1000.0"/>
     <origin xyz="${(chassis_length/2)-cart_lenght/2} 0.0 ${(chassis_height+cart_height)/(-2)}" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
@@ -46,7 +46,7 @@
   <joint name="back_cart_joint" type="revolute">
     <parent link="chassis_link"/>
     <child link="back_cart_link"/>
-    <limit lower="${-M_PI/4}" upper="${M_PI/4}"  effort="1000.0" velocity="1000.0"/>
+    <limit lower="${-45*M_PI/180}" upper="${45*M_PI/180}"  effort="1000.0" velocity="1000.0"/>
     <origin xyz="${-(chassis_length/2)+cart_lenght/2} 0.0 ${(chassis_height+cart_height)/(-2)}" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
@@ -79,9 +79,23 @@
     </plugin>
   </gazebo>
 
+  <link name="inclinometer_link"/>
+
+  <joint name="inclinometer_joint" type="fixed">
+    <parent link="chassis_link"/>
+    <child link="inclinometer_link" />
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
   <gazebo>
     <plugin name="inclinometer_controller" filename="libgazebo_inclinometer.so">
-      <inclinometerLink>"base_footprint"</inclinometerLink>
+      <inclinometerLink>"inclinometer_link"</inclinometerLink>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="heading_controller" filename="libgazebo_heading.so">
+      <headingLink>"gps_link"</headingLink>
     </plugin>
   </gazebo>
 
@@ -94,9 +108,9 @@
   </joint>
 
   <gazebo>  
-    <plugin name="imu_cotroller" filename="libhector_gazebo_ros_imu.so">
+    <plugin name="imu_cotroller" filename="libgazebo_imu.so">
       <updateRate>10</updateRate>
-      <robotNamespace>simulation</robotNamespace>
+      <robotNamespace>agribot</robotNamespace>
       <bodyName>imu_link</bodyName>
       <frameId>imu_link</frameId>
       <topicName>imu</topicName>
@@ -124,9 +138,9 @@
   </joint>
 
   <gazebo>  
-    <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
+    <plugin name="gps_controller" filename="libgazebo_gps.so">
       <updateRate>10.0</updateRate>
-      <robotNamespace>simulation</robotNamespace>
+      <robotNamespace>agribot</robotNamespace>
       <bodyName>gps_link</bodyName>
       <frameId>gps_link</frameId>
       <topicName>fix</topicName>
@@ -147,9 +161,9 @@
   </joint>
 
   <gazebo>  
-    <plugin name="magnetic_controller" filename="libhector_gazebo_ros_magnetic.so">
+    <plugin name="magnetic_controller" filename="libgazebo_magnetic.so">
       <updateRate>10.0</updateRate>
-      <robotNamespace>simulation</robotNamespace>
+      <robotNamespace>agribot</robotNamespace>
       <bodyName>magnetic_link</bodyName>
       <topicName>magnetic_field</topicName>
       <drift>5.0 5.0 5.0</drift>
