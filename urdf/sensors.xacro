@@ -64,7 +64,7 @@
         <robotNamespace>agribot</robotNamespace>
         <bodyName>gps_link</bodyName>
         <frameId>gps_link</frameId>
-        <topicName>fix</topicName>
+        <topicName>gnss</topicName>
         <velocityTopicName>fix_velocity</velocityTopicName>
         <drift>5.0 5.0 5.0</drift>
         <gaussianNoise>0.1 0.1 0.1</gaussianNoise>
