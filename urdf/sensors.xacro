@@ -10,13 +10,27 @@
 
     <gazebo>
         <plugin name="inclinometer_controller" filename="libgazebo_inclinometer.so">
-        <inclinometerLink>"inclinometer_link"</inclinometerLink>
+        <updateRate>10.0</updateRate>
+        <robotNamespace>agribot</robotNamespace>
+        <bodyName>inclinometer_link</bodyName>
+        <frameId>inclinometer_link</frameId>
+        <topicName>inclinometer</topicName>
+        <Drift>10.0000000 10.0000000 10.0000000</Drift>
+        <DriftFrequency>10.0000000 10.0000000 10.0000000</DriftFrequency>
+        <GaussianNoise>10.0000000 10.0000000 10.0000000</GaussianNoise>
         </plugin>
     </gazebo>
 
     <gazebo>
         <plugin name="heading_controller" filename="libgazebo_heading.so">
-        <headingLink>"gps_link"</headingLink>
+        <updateRate>10.0</updateRate>
+        <robotNamespace>agribot</robotNamespace>
+        <bodyName>gps_link</bodyName>
+        <frameId>gps_link</frameId>
+        <topicName>heading</topicName>
+        <Drift>10.0000000 10.0000000 10.0000000</Drift>
+        <DriftFrequency>10.0000000 10.0000000 10.0000000</DriftFrequency>
+        <GaussianNoise>10.0000000 10.0000000 10.0000000</GaussianNoise>
         </plugin>
     </gazebo>
 
@@ -37,16 +51,20 @@
         <topicName>imu</topicName>
         <rpyOffset>0 0 0</rpyOffset>
         <xyzOffset>0 0 0</xyzOffset>
-        <gaussianNoise>0.00000001</gaussianNoise>
+        <!-- <gaussianNoise>0.00000001</gaussianNoise>
         <accelDrift>0.00000001 0.00000001 0.00000001</accelDrift>
         <accelDriftFrequency>0.00000001 0.00000001 0.00000001</accelDriftFrequency>
-        <accelGaussianNoise>0.00000001 0.00000001 0.00000001</accelGaussianNoise>
-        <rateDrift>0.0 0.0 0.0</rateDrift>
-        <rateDriftFrequency>0.0 0.0 0.0</rateDriftFrequency>
-        <rateGaussianNoise>0.0 0.0 0.0</rateGaussianNoise>
-        <headingDrift>0.0 0.0 0.0</headingDrift>
-        <headingDriftFrequency>0.0 0.0 0.0</headingDriftFrequency>
-        <headingGaussianNoise>0.0 0.0 0.0</headingGaussianNoise>
+        <accelGaussianNoise>0.00000001 0.00000001 0.00000001</accelGaussianNoise> -->
+        <gaussianNoise>10.0000000</gaussianNoise>
+        <accelDrift>10.0000000 10.0000000 10.0000000</accelDrift>
+        <accelDriftFrequency>10.0000000 10.0000000 10.0000000</accelDriftFrequency>
+        <accelGaussianNoise>10.0000000 10.0000000 10.0000000</accelGaussianNoise>
+        <rateDrift>10.0 10.0 10.0</rateDrift>
+        <rateDriftFrequency>10.0 10.0 10.0</rateDriftFrequency>
+        <rateGaussianNoise>10.0 10.0 10.0</rateGaussianNoise>
+        <headingDrift>10.0 10.0 10.0</headingDrift>
+        <headingDriftFrequency>10.0 10.0 10.0</headingDriftFrequency>
+        <headingGaussianNoise>10.0 10.0 10.0</headingGaussianNoise>
         </plugin>
     </gazebo> 
 
@@ -66,10 +84,14 @@
         <frameId>gps_link</frameId>
         <topicName>gnss</topicName>
         <velocityTopicName>fix_velocity</velocityTopicName>
-        <drift>5.0 5.0 5.0</drift>
+        <!-- <drift>5.0 5.0 5.0</drift>
         <gaussianNoise>0.1 0.1 0.1</gaussianNoise>
         <velocityDrift>0 0 0</velocityDrift>
-        <velocityGaussianNoise>0.1 0.1 0.1</velocityGaussianNoise>
+        <velocityGaussianNoise>0.1 0.1 0.1</velocityGaussianNoise> -->
+        <drift>10.0 10.0 10.0</drift>
+        <gaussianNoise>10.0 10.0 10.0</gaussianNoise>
+        <velocityDrift>10 10 10</velocityDrift>
+        <velocityGaussianNoise>10.0 10.0 10.0</velocityGaussianNoise>
         </plugin>
     </gazebo> 
 
@@ -87,10 +109,13 @@
         <robotNamespace>agribot</robotNamespace>
         <bodyName>magnetic_link</bodyName>
         <topicName>magnetic_field</topicName>
-        <drift>5.0 5.0 5.0</drift>
+        <!-- <drift>5.0 5.0 5.0</drift>
         <gaussianNoise>0.1 0.1 0.1</gaussianNoise>
         <velocityDrift>0 0 0</velocityDrift>
-        <velocityGaussianNoise>0.1 0.1 0.1</velocityGaussianNoise>
+        <velocityGaussianNoise>0.1 0.1 0.1</velocityGaussianNoise> -->
+        <Drift>10.0000000 10.0000000 10.0000000</Drift>
+        <DriftFrequency>10.0000000 10.0000000 10.0000000</DriftFrequency>
+        <GaussianNoise>10.0000000 10.0000000 10.0000000</GaussianNoise>
         </plugin>
     </gazebo>
   </xacro:macro>
