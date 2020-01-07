@@ -34,12 +34,21 @@ int main(int argc, char** argv) {
         {
             //update joint_state
             joint_state.header.stamp = ros::Time::now();
-            joint_state.name.resize(2);
-            joint_state.position.resize(2);
+            joint_state.name.resize(6);
+            joint_state.position.resize(6);
             joint_state.name[0] ="front_cart_joint";
             joint_state.position[0] = dFrontCartAngle;
             joint_state.name[1] ="back_cart_joint";
             joint_state.position[1] = dBackCartAngle;
+            
+            joint_state.name[2] ="front_left_wheel_joint";
+            joint_state.position[2] = 0;
+            joint_state.name[3] ="front_right_wheel_joint";
+            joint_state.position[3] = 0;
+            joint_state.name[4] ="back_left_wheel_joint";
+            joint_state.position[4] = 0;
+            joint_state.name[5] ="back_right_wheel_joint";
+            joint_state.position[5] = 0;
             //send the joint state and transform
             joint_pub.publish(joint_state);
         }
