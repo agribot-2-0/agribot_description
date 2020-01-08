@@ -1,8 +1,10 @@
 <robot name="chassis" xmlns:xacro="http://ros.org/wiki/xacro">
-
-    <xacro:property name="chassis_length" value="1" />
+    <!-- <xacro:property name="chassis_length" value="1" />
     <xacro:property name="chassis_width" value="0.2" />
-    <xacro:property name="chassis_height" value="0.2" />
+    <xacro:property name="chassis_height" value="0.2" /> -->
+    <xacro:property name="chassis_length" value="2.42" />
+    <xacro:property name="chassis_width" value="1.05" />
+    <xacro:property name="chassis_height" value="1.3" />
 
     <xacro:macro name="agribot_chassis" params="name">
         <link name="${name}">
@@ -23,7 +25,8 @@
 
           <inertial>
             <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
-            <mass value="10"/>
+            <!-- <mass value="10"/> -->
+            <mass value="1.600"/>
             <inertia ixx="0.01" ixy="0.0" ixz="0.0"
                      iyy="0.01" iyz="0.0"
                      izz="0.01" />

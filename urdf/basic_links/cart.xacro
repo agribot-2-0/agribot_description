@@ -1,5 +1,4 @@
 <robot name="base" xmlns:xacro="http://ros.org/wiki/xacro">
-
     <xacro:include filename="$(find agribot_description)/urdf/basic_links/wheel.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_links/chassis.xacro"/>
 
@@ -26,7 +25,8 @@
 
           <inertial>
             <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
-            <mass value="1"/>
+            <!-- <mass value="1"/> -->
+            <mass value="1.00"/>
             <inertia ixx="0.01" ixy="0.0" ixz="0.0"
                      iyy="0.01" iyz="0.0"
                      izz="0.01" />

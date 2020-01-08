@@ -1,10 +1,6 @@
 <?xml version="1.0"?>
 <robot name="agribot" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <gazebo>
-    <plugin name="agribot_controller" filename="libgazebo_ros_agribot.so">
-    </plugin>
-  </gazebo>
 
   <gazebo reference="chassis_link">
       <material>Gazebo/Green</material>
@@ -13,8 +9,8 @@
   <gazebo reference="front_left_wheel_link">
     <mu1>10</mu1>
     <mu2>10</mu2>
-    <kp>1000000.0</kp>
-    <kd>10.0</kd>
+    <!-- <kp>1000000.0</kp>
+    <kd>10.0</kd> -->
     <minDepth>0.001</minDepth>
     <maxVel>0.1</maxVel>
     <fdir1>1 0 0</fdir1>
@@ -24,8 +20,8 @@
   <gazebo reference="front_right_wheel_link">
     <mu1>10</mu1>
     <mu2>10</mu2>
-    <kp>1000000.0</kp>
-    <kd>10.0</kd>
+    <!-- <kp>1000000.0</kp>
+    <kd>10.0</kd> -->
     <minDepth>0.001</minDepth>
     <maxVel>0.1</maxVel>
     <fdir1>1 0 0</fdir1>
@@ -35,8 +31,8 @@
   <gazebo reference="back_left_wheel_link">
     <mu1>10</mu1>
     <mu2>10</mu2>
-    <kp>1000000.0</kp>
-    <kd>10.0</kd>
+    <!-- <kp>1000000.0</kp>
+    <kd>10.0</kd> -->
     <minDepth>0.001</minDepth>
     <maxVel>0.1</maxVel>
     <fdir1>1 0 0</fdir1>
@@ -46,8 +42,8 @@
   <gazebo reference="back_right_wheel_link">
     <mu1>10</mu1>
     <mu2>10</mu2>
-    <kp>1000000.0</kp>
-    <kd>10.0</kd>
+    <!-- <kp>1000000.0</kp>
+    <kd>10.0</kd> -->
     <minDepth>0.001</minDepth>
     <maxVel>0.1</maxVel>
     <fdir1>1 0 0</fdir1>
@@ -56,24 +52,24 @@
 
   <gazebo reference="front_cart_link">
     <material>Gazebo/White</material>
-    <mu1>0</mu1>
-    <mu2>0</mu2>
+    <!-- <mu1>0</mu1>
+    <mu2>0</mu2> -->
   </gazebo>
   <gazebo reference="front_support_link">
     <material>Gazebo/White</material>
-    <mu1>0</mu1>
-    <mu2>0</mu2>
+    <!-- <mu1>0</mu1>
+    <mu2>0</mu2> -->
   </gazebo>
 
   <gazebo reference="back_cart_link">
     <material>Gazebo/Black</material>
-    <mu1>0</mu1>
-    <mu2>0</mu2>
+    <!-- <mu1>0</mu1>
+    <mu2>0</mu2> -->
   </gazebo>
   <gazebo reference="back_support_link">
     <material>Gazebo/Black</material>
-    <mu1>0</mu1>
-    <mu2>0</mu2>
+    <!-- <mu1>0</mu1>
+    <mu2>0</mu2> -->
   </gazebo>
 
 </robot>

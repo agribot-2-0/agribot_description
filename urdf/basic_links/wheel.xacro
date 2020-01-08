@@ -1,7 +1,8 @@
 <robot name="wheel" xmlns:xacro="http://ros.org/wiki/xacro">
-
-    <xacro:property name="wheel_width" value="0.02" />
-    <xacro:property name="wheel_radius" value="0.04" />
+    <!-- <xacro:property name="wheel_width" value="0.02" />
+    <xacro:property name="wheel_radius" value="0.04" /> -->
+    <xacro:property name="wheel_width" value="0.025" />
+    <xacro:property name="wheel_radius" value="0.16" />
 
     <xacro:macro name="agribot_wheel" params="name">
         <link name="${name}">
@@ -22,7 +23,8 @@
 
           <inertial>
             <origin xyz="0 0 0" />
-            <mass value="0.01" />
+            <!-- <mass value="0.01" /> -->
+            <mass value="0.50" />
             <inertia ixx="0.001" ixy="0.0" ixz="0.0"
                      iyy="0.001" iyz="0.0"
                      izz="0.001" />
