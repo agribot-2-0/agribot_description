@@ -11,12 +11,12 @@ bool bDataReceived = false;
 
 void encoderFrontCallback(const std_msgs::Float32 front_cart_msg)
 {
-	dFrontCartAngle = front_cart_msg.data*DEG_TO_RAD;
+	dFrontCartAngle = front_cart_msg.data;
 	bDataReceived=true;
 }
 void encoderBackCallback(const std_msgs::Float32 back_cart_msg)
 {
-	dBackCartAngle = back_cart_msg.data*DEG_TO_RAD;
+	dBackCartAngle = back_cart_msg.data;
 	bDataReceived=true;
 }
 
