@@ -49,7 +49,6 @@ include_directories(include
   ${Boost_INCLUDE_DIRS}
   ${catkin_INCLUDE_DIRS}
   ${GAZEBO_INCLUDE_DIRS}
-  ${agribot_common_SOURCE_DIR}/include
 )
 
 link_directories(
@@ -79,5 +78,3 @@ install(TARGETS
 #############
 ## Testing ##
 #############
-
-add_dependencies(kinematics_control ${catkin_EXPORTED_TARGETS})
