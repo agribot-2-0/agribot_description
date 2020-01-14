@@ -86,7 +86,7 @@
       <wheelSeparation> ${chassis_width+wheel_width} </wheelSeparation>
       <wheelRadius> ${wheel_radius} </wheelRadius>
       <chasisLength>${chassis_length-2*wheel_radius}</chasisLength>
-      <broadcastTF>true</broadcastTF>
+      <broadcastTF>false</broadcastTF>
     </plugin>
   </gazebo>
 
