@@ -87,6 +87,11 @@
       <wheelRadius> ${wheel_radius} </wheelRadius>
       <chasisLength>${chassis_length-2*wheel_radius}</chasisLength>
       <broadcastTF>false</broadcastTF>
+      <odometryTopic>/agribot/odometry</odometryTopic>
+      <encoderTopic>/agribot/encoder/caterpillar</encoderTopic>
+      <odometryFrame>odom</odometryFrame>
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+      <updateRate>10.000000</updateRate>
     </plugin>
   </gazebo>
 
