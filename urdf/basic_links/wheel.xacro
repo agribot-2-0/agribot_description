@@ -6,14 +6,6 @@
 
     <xacro:macro name="agribot_wheel" params="name">
         <link name="${name}">
-          <visual>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <geometry>
-                <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
-            </geometry>
-            <material name="blue"/>
-          </visual>
-
           <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
