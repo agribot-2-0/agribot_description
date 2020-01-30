@@ -51,7 +51,7 @@
   </gazebo>
 
   <gazebo reference="front_cart_link">
-    <material>Gazebo/White</material>
+    <material>Gazebo/Green</material>
     <!-- <mu1>0</mu1>
     <mu2>0</mu2> -->
   </gazebo>
@@ -62,7 +62,7 @@
   </gazebo>
 
   <gazebo reference="back_cart_link">
-    <material>Gazebo/Black</material>
+    <material>Gazebo/white</material>
     <!-- <mu1>0</mu1>
     <mu2>0</mu2> -->
   </gazebo>
