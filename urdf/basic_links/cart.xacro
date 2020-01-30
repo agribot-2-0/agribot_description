@@ -10,13 +10,15 @@
         <link name="${name}">
           <visual>
             <xacro:if value="${name == 'back_cart_link'}">
-              <origin xyz="${cart_width} 0.0 0.0" rpy="1.57 0 1.57"/>
+              <origin xyz="-0.25 0.0 0.3" rpy="0 0 1.57"/>
+              <material name="white"/>
             </xacro:if>
             <xacro:if value="${name == 'front_cart_link'}">
-              <origin xyz="-${cart_width} 0.0 0.0" rpy="1.57 0 -1.57"/>
+              <origin xyz="0.25 0.0 0.3" rpy="0 0 -1.57"/>
+              <material name="green"/>
             </xacro:if>
             <geometry>
-              <mesh filename="package://agribot_description/meshes/agribot_cart.dae" scale="1 1 1"/>
+              <mesh filename="package://agribot_description/meshes/agribot_cart.stl" scale="0.01 0.01 0.01"/>
             </geometry>
           </visual>
 

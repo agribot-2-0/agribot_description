@@ -9,10 +9,11 @@
     <xacro:macro name="agribot_chassis" params="name">
         <link name="${name}">
           <visual>
-            <origin xyz="0.0 0.0 -${chassis_width}" rpy="1.57 0 1.57"/>
+            <origin xyz="0.0 0.0 0" rpy="0 0 1.57"/>
             <geometry>
-              <mesh filename="package://agribot_description/meshes/agribot_chassis.dae" scale="1 1 1"/>
+              <mesh filename="package://agribot_description/meshes/agribot_chassis.stl" scale="0.01 0.01 0.01"/>
             </geometry>
+            <material name="green"/>
           </visual>
 
           <collision>
