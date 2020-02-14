@@ -30,13 +30,13 @@
           <rateOffset>0.0 0.0 0.0</rateOffset>
           <rateDrift>0.0 0.0 0.0</rateDrift>
           <rateDriftFrequency>0.0 0.0 0.0</rateDriftFrequency>
-          <rateGaussianNoise>0.01 0.01 0.01</rateGaussianNoise>
+          <rateGaussianNoise>0.001 0.001 0.001</rateGaussianNoise>
 
           <!-- Yaw noise -->
           <yawOffset>0.0</yawOffset>
           <yawDrift>0.01</yawDrift>
           <yawDriftFrequency>1.0</yawDriftFrequency>
-          <yawGaussianNoise>0.9</yawGaussianNoise>
+          <yawGaussianNoise>0.05</yawGaussianNoise>
         </plugin>
     </gazebo>
 
@@ -44,6 +44,7 @@
     <joint name="magnetic_joint" type="fixed">
         <parent link="chassis_link"/>
         <child link="magnetic_link" />
+        <!-- <origin xyz="0 0 0" rpy="0 0 3.14159265"/> -->
         <origin xyz="0 0 0" rpy="0 0 0"/>
     </joint>
 
@@ -51,20 +52,24 @@
         <plugin name="magnetic_controller" filename="libgazebo_magnetic.so">
           <updateRate>10.0</updateRate>
           <robotNamespace>agribot</robotNamespace>
-          <bodyName>imu_link</bodyName>
+          <bodyName>magnetic_link</bodyName>
+          <frameId>magnetic_link</frameId>
           <topicName>magnetic_field</topicName>
 
           <!-- Magnetometer setup -->
           <magnitude>1.0</magnitude>
           <referenceHeading>0.0</referenceHeading>
-          <declination>0.0</declination>
-          <inclination>60.0</inclination>
+
+          <!-- Parking Drzewna -->
+          <declination>5.0741</declination>
+          <inclination>67.0937</inclination>
 
           <!-- Magnetometer noise -->
           <offset>0.0 0.0 0.0</offset>
           <drift>0.0 0.0 0.0</drift>
           <driftFrequency>0.0 0.0 0.0</driftFrequency>
-          <gaussianNoise>0.01 0.01 0.01</gaussianNoise>
+          <gaussianNoise>1.1e-14 1.1e-14 1.1e-14</gaussianNoise>
+
         </plugin>
     </gazebo>
 
@@ -85,20 +90,22 @@
           <velocityTopicName>fix_velocity</velocityTopicName>
 
           <!-- Reference values -->
-          <referenceLatitude>49.9</referenceLatitude>
-          <referenceLongitude>8.9</referenceLongitude>
+          <!-- Parking Drzewna -->
+          <referenceLatitude>51.113448886283525</referenceLatitude>
+          <referenceLongitude>17.019922397662153</referenceLongitude>
+
           <referenceHeading>0.0</referenceHeading>
           <referenceAltitude>0.0</referenceAltitude>
 
           <!-- GPS noise -->
           <offset>0.0 0.0 0.0</offset>
-          <gaussianNoise>2.0 2.0 2.0</gaussianNoise>
+          <gaussianNoise>0.03 0.03 0.03</gaussianNoise>
           <drift>0.0 0.0 0.0</drift>
           <driftFrequency>0.0 0.0 0.0</driftFrequency>
-          
+
           <!-- Velocity noise -->
           <velocityOffset>0.0 0.0 0.0</velocityOffset>
-          <velocityGaussianNoise>0.5 0.5 0.5</velocityGaussianNoise>
+          <velocityGaussianNoise>0.3 0.3 0.3</velocityGaussianNoise>
           <velocityDrift>0.0 0.0 0.0</velocityDrift>
           <velocityDriftFrequency>0.0 0.0 0.0</velocityDriftFrequency>
 
