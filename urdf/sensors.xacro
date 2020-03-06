@@ -69,6 +69,8 @@
           <drift>0.0 0.0 0.0</drift>
           <driftFrequency>0.0 0.0 0.0</driftFrequency>
           <gaussianNoise>1.1e-14 1.1e-14 1.1e-14</gaussianNoise>
+          <!-- <gaussianNoise>1.1e-8 1.1e-8 1.1e-8</gaussianNoise> -->
+          <!-- <gaussianNoise>1.1e-5 1.1e-5 1.1e-5</gaussianNoise> -->
 
         </plugin>
     </gazebo>
@@ -90,9 +92,14 @@
           <velocityTopicName>fix_velocity</velocityTopicName>
 
           <!-- Reference values -->
-          <!-- Parking Drzewna -->
-          <referenceLatitude>51.113448886283525</referenceLatitude>
-          <referenceLongitude>17.019922397662153</referenceLongitude>
+          <!-- Parking Drzewna v1 -->
+          <!-- <referenceLatitude>51.113448886283525</referenceLatitude> -->
+          <!-- <referenceLongitude>17.019922397662153</referenceLongitude> -->
+
+          <!-- Parking Drzewna v2 -->
+          <referenceLatitude>51.11356025945108</referenceLatitude>
+          <referenceLongitude>17.019947648318876</referenceLongitude>
+
 
           <referenceHeading>0.0</referenceHeading>
           <referenceAltitude>0.0</referenceAltitude>
