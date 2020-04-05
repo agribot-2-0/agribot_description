@@ -8,38 +8,6 @@
         <origin xyz="0 0 0" rpy="0 0 0"/>
     </joint>
 
-    <gazebo>
-        <plugin name="imu_controller" filename="libgazebo_imu.so">
-          <updateRate>10.0</updateRate>
-          <robotNamespace>agribot</robotNamespace>
-          <bodyName>imu_link</bodyName>
-          <frameId>imu_link</frameId>
-          <topicName>imu/raw</topicName>
-
-          <!-- General noise  -->
-          <!-- If 0.0 [accel/rate/yaw]GaussianNoises are used -->
-          <gaussianNoise>0.0</gaussianNoise>
-
-          <!-- Accelerometer noise -->
-          <accelOffset>0.0 0.0 0.0</accelOffset>
-          <accelDrift>0.0 0.0 0.0</accelDrift>
-          <accelDriftFrequency>0.0 0.0 0.0</accelDriftFrequency>
-          <accelGaussianNoise>0.001 0.001 0.001</accelGaussianNoise>
-
-          <!-- Gyroscope noise -->
-          <rateOffset>0.0 0.0 0.0</rateOffset>
-          <rateDrift>0.0 0.0 0.0</rateDrift>
-          <rateDriftFrequency>0.0 0.0 0.0</rateDriftFrequency>
-          <rateGaussianNoise>0.001 0.001 0.001</rateGaussianNoise>
-
-          <!-- Yaw noise -->
-          <yawOffset>0.0</yawOffset>
-          <yawDrift>0.01</yawDrift>
-          <yawDriftFrequency>1.0</yawDriftFrequency>
-          <yawGaussianNoise>0.05</yawGaussianNoise>
-        </plugin>
-    </gazebo>
-
     <link name="magnetic_link"/>
     <joint name="magnetic_joint" type="fixed">
         <parent link="chassis_link"/>
@@ -48,33 +16,6 @@
         <origin xyz="0 0 0" rpy="0 0 0"/>
     </joint>
 
-    <gazebo>
-        <plugin name="magnetic_controller" filename="libgazebo_magnetic.so">
-          <updateRate>10.0</updateRate>
-          <robotNamespace>agribot</robotNamespace>
-          <bodyName>magnetic_link</bodyName>
-          <frameId>magnetic_link</frameId>
-          <topicName>magnetic_field</topicName>
-
-          <!-- Magnetometer setup -->
-          <magnitude>1.0</magnitude>
-          <referenceHeading>0.0</referenceHeading>
-
-          <!-- Parking Drzewna -->
-          <declination>5.0741</declination>
-          <inclination>67.0937</inclination>
-
-          <!-- Magnetometer noise -->
-          <offset>0.0 0.0 0.0</offset>
-          <drift>0.0 0.0 0.0</drift>
-          <driftFrequency>0.0 0.0 0.0</driftFrequency>
-          <gaussianNoise>1.1e-14 1.1e-14 1.1e-14</gaussianNoise>
-          <!-- <gaussianNoise>1.1e-8 1.1e-8 1.1e-8</gaussianNoise> -->
-          <!-- <gaussianNoise>1.1e-5 1.1e-5 1.1e-5</gaussianNoise> -->
-
-        </plugin>
-    </gazebo>
-
     <link name="gps_link"/>
     <joint name="gps_joint" type="fixed">
         <parent link="chassis_link"/>
@@ -82,82 +23,12 @@
         <origin xyz="0 0 0" rpy="0 0 0"/>
     </joint>
 
-    <gazebo>
-        <plugin name="gps_controller" filename="libgazebo_gps.so">
-          <updateRate>10.0</updateRate>
-          <robotNamespace>agribot</robotNamespace>
-          <bodyName>gps_link</bodyName>
-          <frameId>gps_link</frameId>
-          <topicName>gnss</topicName>
-          <velocityTopicName>fix_velocity</velocityTopicName>
-
-          <!-- Reference values -->
-          <!-- Parking Drzewna v1 -->
-          <!-- <referenceLatitude>51.113448886283525</referenceLatitude> -->
-          <!-- <referenceLongitude>17.019922397662153</referenceLongitude> -->
-
-          <!-- Parking Drzewna v2 -->
-          <referenceLatitude>51.11356025945108</referenceLatitude>
-          <referenceLongitude>17.019947648318876</referenceLongitude>
-
-
-          <referenceHeading>0.0</referenceHeading>
-          <referenceAltitude>0.0</referenceAltitude>
-
-          <!-- GPS noise -->
-          <offset>0.0 0.0 0.0</offset>
-          <gaussianNoise>0.03 0.03 0.03</gaussianNoise>
-          <drift>0.0 0.0 0.0</drift>
-          <driftFrequency>0.0 0.0 0.0</driftFrequency>
-
-          <!-- Velocity noise -->
-          <velocityOffset>0.0 0.0 0.0</velocityOffset>
-          <velocityGaussianNoise>0.3 0.3 0.3</velocityGaussianNoise>
-          <velocityDrift>0.0 0.0 0.0</velocityDrift>
-          <velocityDriftFrequency>0.0 0.0 0.0</velocityDriftFrequency>
-
-          <!-- Flags -->
-          <status>STATUS_FIX</status>
-          <service>SERVICE_GPS</service>
-        </plugin>
-    </gazebo>
-
-    <gazebo>
-        <plugin name="heading_controller" filename="libgazebo_heading.so">
-          <updateRate>10.0</updateRate>
-          <robotNamespace>agribot</robotNamespace>
-          <bodyName>gps_link</bodyName>
-          <frameId>gps_link</frameId>
-          <topicName>heading</topicName>
-
-          <!-- Heading noise -->
-          <Drift>0.0 0.0 0.0</Drift>
-          <DriftFrequency>0.0 0.0 0.0</DriftFrequency>
-          <GaussianNoise>0.01 0.01 0.01</GaussianNoise>
-        </plugin>
-    </gazebo>
-
     <link name="inclinometer_link"/>
     <joint name="inclinometer_joint" type="fixed">
         <parent link="chassis_link"/>
         <child link="inclinometer_link" />
         <origin xyz="0 0 0" rpy="0 0 0"/>
     </joint>
-
-    <gazebo>
-        <plugin name="inclinometer_controller" filename="libgazebo_inclinometer.so">
-          <updateRate>10.0</updateRate>
-          <robotNamespace>agribot</robotNamespace>
-          <bodyName>inclinometer_link</bodyName>
-          <frameId>inclinometer_link</frameId>
-          <topicName>inclinometer</topicName>
-
-          <!-- Inclinometer noise -->
-          <Drift>0.0 0.0 0.0</Drift>
-          <DriftFrequency>0.0 0.0 0.0</DriftFrequency>
-          <GaussianNoise>0.01 0.01 0.01</GaussianNoise>
-        </plugin>
-    </gazebo>
 
   </xacro:macro>
 </robot>
