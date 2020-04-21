@@ -35,7 +35,7 @@
         </joint>
 
 
-        <xacro:velodyne16>
+        <!-- <xacro:velodyne16>
             <origin xyz="1.6 0 1.4" rpy="0 0 0" />
             <xacro:property name="parent"               value="base_footprint"/>
             <xacro:property name="topic"                value="/agribot/front_lidar/pc2"/>
@@ -60,7 +60,7 @@
             <xacro:property name="name"                 value="front_right_sonar"/>
             <xacro:property name="hz"                   value="10.0"/>
             <xacro:property name="visualize"            value="false"/>
-        </xacro:balluff_sonar>
+        </xacro:balluff_sonar> -->
 
     </xacro:macro>
 </robot>
