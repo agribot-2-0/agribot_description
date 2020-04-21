@@ -1,34 +1,66 @@
 <robot name="sensors" xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:macro name="agribot_sensors">
 
-    <link name="imu_link"/>
-    <joint name="imu_joint" type="fixed">
-        <parent link="chassis_link"/>
-        <child link="imu_link" />
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-    </joint>
+    <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/velodyne16.xacro"/>
+    <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/bosch_sonar.xacro"/>
+    <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/balluff_sonar.xacro"/>
 
-    <link name="magnetic_link"/>
-    <joint name="magnetic_joint" type="fixed">
-        <parent link="chassis_link"/>
-        <child link="magnetic_link" />
-        <!-- <origin xyz="0 0 0" rpy="0 0 3.14159265"/> -->
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-    </joint>
+    <xacro:macro name="agribot_sensors">
 
-    <link name="gps_link"/>
-    <joint name="gps_joint" type="fixed">
-        <parent link="chassis_link"/>
-        <child link="gps_link" />
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-    </joint>
+        <link name="imu_link"/>
+        <joint name="imu_joint" type="fixed">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <parent link="chassis_link"/>
+            <child link="imu_link" />
+        </joint>
 
-    <link name="inclinometer_link"/>
-    <joint name="inclinometer_joint" type="fixed">
-        <parent link="chassis_link"/>
-        <child link="inclinometer_link" />
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-    </joint>
+        <link name="magnetic_link"/>
+        <joint name="magnetic_joint" type="fixed">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <parent link="chassis_link"/>
+            <child link="magnetic_link" />
+        </joint>
 
-  </xacro:macro>
+        <link name="gps_link"/>
+        <joint name="gps_joint" type="fixed">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <parent link="chassis_link"/>
+            <child link="gps_link" />
+        </joint>
+
+        <link name="inclinometer_link"/>
+        <joint name="inclinometer_joint" type="fixed">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <parent link="chassis_link"/>
+            <child link="inclinometer_link" />
+        </joint>
+
+
+        <xacro:velodyne16>
+            <origin xyz="1.6 0 1.4" rpy="0 0 0" />
+            <xacro:property name="parent"               value="base_footprint"/>
+            <xacro:property name="topic"                value="/agribot/front_lidar/pc2"/>
+            <xacro:property name="name"                 value="front_lidar"/>
+            <xacro:property name="hz"                   value="1.0"/>
+            <xacro:property name="visualize"            value="false"/>
+        </xacro:velodyne16>
+
+        <xacro:bosch_sonar>
+            <origin xyz="1.6 0.4 1.0" rpy="0 0 0" />
+            <xacro:property name="parent"               value="base_footprint"/>
+            <xacro:property name="topic"                value="/agribot/front_left_sonar"/>
+            <xacro:property name="name"                 value="front_left_sonar"/>
+            <xacro:property name="hz"                   value="10.0"/>
+            <xacro:property name="visualize"            value="false"/>
+        </xacro:bosch_sonar>
+
+        <xacro:balluff_sonar>
+            <origin xyz="1.6 -0.4 1.0" rpy="0 0 0" />
+            <xacro:property name="parent"               value="base_footprint"/>
+            <xacro:property name="topic"                value="/agribot/front_right_sonar"/>
+            <xacro:property name="name"                 value="front_right_sonar"/>
+            <xacro:property name="hz"                   value="10.0"/>
+            <xacro:property name="visualize"            value="false"/>
+        </xacro:balluff_sonar>
+
+    </xacro:macro>
 </robot>

@@ -1,0 +1,66 @@
+<robot name="sonar" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+    <!-- Basic sonar macro  -->
+    <xacro:macro  name="sonar" 
+                  params="*origin
+                          parent:=^
+                          name:=^
+                          topic:=^
+                          hz:=^
+                          visualize:=^
+                          min_range:=^
+                          max_range:=^
+                          noise:=^
+                          min_horizontal_angle:=^
+                          max_horizontal_angle:=^
+                          min_vertical_angle:=^
+                          max_vertical_angle:=^
+                          resolution:=^
+                          ">
+  
+        <joint name="${name}_joint" type="fixed">
+            <xacro:insert_block name="origin" />
+            <parent link="${parent}"/>
+            <child link="${name}_link" />
+        </joint>
+        <link name="${name}_link"/>
+                            
+  
+        <gazebo reference="${name}_link">
+            <sensor type="ray" name="${name}">
+                <pose>0 0 0 0 0 0</pose>
+                <visualize>${visualize}</visualize>
+                <update_rate>${hz}</update_rate>
+                <always_on>true</always_on>
+                <ray>
+                <scan>
+                    <horizontal>
+                        <samples>1</samples>
+                        <resolution>1</resolution>
+                        <min_angle>${min_horizontal_angle}</min_angle>
+                        <max_angle>${max_horizontal_angle}</max_angle>
+                    </horizontal>
+                    <vertical>
+                        <samples>1</samples>
+                        <resolution>1</resolution>
+                        <min_angle>${min_vertical_angle}</min_angle>
+                        <max_angle>${max_vertical_angle}</max_angle>
+                    </vertical>
+                </scan>
+                <range>
+                    <min>${min_range}</min>
+                    <max>${max_range}</max>
+                    <resolution>${resolution}</resolution>
+                </range>
+                </ray>
+
+                <plugin name="gazebo_ros_front_sonar_controller" filename="libhector_gazebo_ros_sonar.so">
+                    <topicName>${topic}</topicName>
+                    <frameId>${name}_link</frameId>
+                    <gaussianNoise>${noise}</gaussianNoise>
+                </plugin>
+            </sensor>
+        </gazebo>
+    </xacro:macro>
+</robot>
+  

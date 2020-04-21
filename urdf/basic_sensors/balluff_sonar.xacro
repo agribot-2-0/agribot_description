@@ -1,0 +1,43 @@
+<robot name="balluff_sonar" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:property name="M_PI" value="3.1415926535897931" />
+    <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/sonar.xacro"/>
+  
+    <xacro:macro    name="balluff_sonar"
+                    params="*origin
+                            parent:=^
+                            name:=^
+                            topic:=^ 
+                            hz:=^
+                            visualize:=^
+                            ">
+
+        <!-- Call basic sonar and pass arguments -->
+        <xacro:sonar parent="${parent}"
+                        name="${name}"
+                        topic="${topic}"
+                        hz="${hz}"
+                        >
+
+            <xacro:insert_block name="origin" />
+            
+            <!-- Sensor specific arguments -->
+            <xacro:property name="min_range"                value="0.35"/>
+            <xacro:property name="max_range"                value="5.0"/>
+            <xacro:property name="noise"                    value="0.001"/>
+
+            <!-- Plate obstacle -->
+            <xacro:property name="min_horizontal_angle"     value="-${15.8*M_PI/180.0}"/>
+            <xacro:property name="max_horizontal_angle"     value="${15.8*M_PI/180.0}"/>
+            <xacro:property name="min_vertical_angle"       value="-${15.8*M_PI/180.0}"/>
+            <xacro:property name="max_vertical_angle"       value="${15.8*M_PI/180.0}"/>
+            <!-- Pole obstacle -->
+            <!-- <xacro:property name="min_horizontal_angle"     value="-${5.9*M_PI/180.0}"/> -->
+            <!-- <xacro:property name="max_horizontal_angle"     value="${5.9*M_PI/180.0}"/> -->
+            <!-- <xacro:property name="min_vertical_angle"       value="-${5.9*M_PI/180.0}"/> -->
+            <!-- <xacro:property name="max_vertical_angle"       value="${5.9*M_PI/180.0}"/> -->
+            
+            <xacro:property name="resolution"               value="0.0018"/>
+        </xacro:sonar>
+    </xacro:macro>
+</robot>
