@@ -24,8 +24,8 @@
             <child link="${name}_link" />
         </joint>
         <link name="${name}_link"/>
-                            
-  
+
+
         <gazebo reference="${name}_link">
             <sensor type="ray" name="${name}">
                 <pose>0 0 0 0 0 0</pose>

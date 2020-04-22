@@ -87,38 +87,6 @@
   </gazebo>
 
   <gazebo>
-      <plugin name="imu_controller" filename="libgazebo_imu.so">
-        <updateRate>10.0</updateRate>
-        <robotNamespace>agribot</robotNamespace>
-        <bodyName>imu_link</bodyName>
-        <frameId>imu_link</frameId>
-        <topicName>imu/raw</topicName>
-
-        <!-- General noise  -->
-        <!-- If 0.0 [accel/rate/yaw]GaussianNoises are used -->
-        <gaussianNoise>0.0</gaussianNoise>
-
-        <!-- Accelerometer noise -->
-        <accelOffset>0.0 0.0 0.0</accelOffset>
-        <accelDrift>0.0 0.0 0.0</accelDrift>
-        <accelDriftFrequency>0.0 0.0 0.0</accelDriftFrequency>
-        <accelGaussianNoise>0.001 0.001 0.001</accelGaussianNoise>
-
-        <!-- Gyroscope noise -->
-        <rateOffset>0.0 0.0 0.0</rateOffset>
-        <rateDrift>0.0 0.0 0.0</rateDrift>
-        <rateDriftFrequency>0.0 0.0 0.0</rateDriftFrequency>
-        <rateGaussianNoise>0.001 0.001 0.001</rateGaussianNoise>
-
-        <!-- Yaw noise -->
-        <yawOffset>0.0</yawOffset>
-        <yawDrift>0.01</yawDrift>
-        <yawDriftFrequency>1.0</yawDriftFrequency>
-        <yawGaussianNoise>0.05</yawGaussianNoise>
-      </plugin>
-  </gazebo>
-
-  <gazebo>
       <plugin name="magnetic_controller" filename="libgazebo_magnetic.so">
         <updateRate>10.0</updateRate>
         <robotNamespace>agribot</robotNamespace>

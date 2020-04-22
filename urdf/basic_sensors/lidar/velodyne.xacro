@@ -96,8 +96,8 @@
                         </vertical>
                     </scan>
                     <range>
-                        <min>${collision_range}</min>
-                        <max>${max_range+1}</max>
+                        <min>${min_range}</min>
+                        <max>${max_range}</max>
                         <resolution>${resolution}</resolution>
                     </range>
                     <noise>
