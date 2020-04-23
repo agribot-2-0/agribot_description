@@ -5,6 +5,7 @@
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/sonar/bosch_sonar.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/sonar/balluff_sonar.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/imu/imu.xacro"/>
+    <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/gps/gps.xacro"/>
 
     <xacro:macro name="agribot_sensors">
 
@@ -15,12 +16,6 @@
             <child link="magnetic_link" />
         </joint>
 
-        <link name="gps_link"/>
-        <joint name="gps_joint" type="fixed">
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <parent link="chassis_link"/>
-            <child link="gps_link" />
-        </joint>
 
         <link name="inclinometer_link"/>
         <joint name="inclinometer_joint" type="fixed">
@@ -30,18 +25,43 @@
         </joint>
 
         <xacro:imu>
-            <origin xyz="1.6 0 1.4" rpy="0 0.2 0" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
             <xacro:property name="parent"               value="chassis_link"/>
             <xacro:property name="robot_namespace"      value="agribot"/>
             <xacro:property name="topic"                value="imu/raw"/>
             <xacro:property name="name"                 value="imu"/>
             <xacro:property name="hz"                   value="10.0"/>
+
             <xacro:property name="accel_noise"          value="0.001"/>
             <xacro:property name="gyro_noise"           value="0.001"/>
             <xacro:property name="yaw_noise"            value="0.05"/>
             <xacro:property name="yaw_drift"            value="0.01"/>
             <xacro:property name="yaw_drift_freq"       value="1.0"/>
         </xacro:imu>
+
+        <xacro:gps>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <xacro:property name="parent"               value="chassis_link"/>
+            <xacro:property name="robot_namespace"      value="agribot"/>
+            <xacro:property name="topic"                value="gnss"/>
+            <xacro:property name="velocity_topic"       value="fix_velocity"/>
+            <xacro:property name="name"                 value="gps"/>
+            <xacro:property name="hz"                   value="10.0"/>
+            
+            <xacro:property name="noise"                value="0.03"/>
+            <xacro:property name="velocity_noise"       value="0.3"/>
+            
+            <!-- Moderna vineyard coordinates -->
+            <xacro:property name="reference_latitude"   value="51.26662409135839"/>
+            <xacro:property name="reference_longitude"  value="17.20327894189977"/>
+            <xacro:property name="reference_heading"    value="158.5507847682035"/>
+            <xacro:property name="reference_altitude"   value="193.7327916698572"/>
+
+            <!-- Use heading -->
+            <xacro:property name="publish_heading"      value="true"/>
+            <xacro:property name="heading_topic"        value="heading"/>
+            <xacro:property name="heading_noise"        value="0.01"/>
+        </xacro:gps>
 <!-- 
         <xacro:velodyne16>
             <origin xyz="1.6 0 1.4" rpy="0 0.2 0" />

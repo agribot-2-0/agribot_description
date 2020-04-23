@@ -25,33 +25,33 @@
 
         <gazebo>
             <plugin name="imu_controller" filename="libgazebo_imu.so">
-              <updateRate> ${hz} </updateRate>
-              <robotNamespace> ${robot_namespace} </robotNamespace>
-              <bodyName> ${name}_link </bodyName>
-              <frameId> ${name}_link </frameId>
-              <topicName> ${topic} </topicName>
-      
-              <!-- General noise  -->
-              <!-- If 0.0 [accel/rate/yaw]GaussianNoises are used -->
-              <gaussianNoise>0.0</gaussianNoise>
-      
-              <!-- Accelerometer noise -->
-              <accelOffset>0.0 0.0 0.0</accelOffset>
-              <accelDrift>0.0 0.0 0.0</accelDrift>
-              <accelDriftFrequency>0.0 0.0 0.0</accelDriftFrequency>
-              <accelGaussianNoise> ${accel_noise} ${accel_noise} ${accel_noise} </accelGaussianNoise>
-      
-              <!-- Gyroscope noise -->
-              <rateOffset>0.0 0.0 0.0</rateOffset>
-              <rateDrift>0.0 0.0 0.0</rateDrift>
-              <rateDriftFrequency>0.0 0.0 0.0</rateDriftFrequency>
-              <rateGaussianNoise> ${gyro_noise} ${gyro_noise} ${gyro_noise} </rateGaussianNoise>
-      
-              <!-- Yaw noise -->
-              <yawOffset>0.0</yawOffset>
-              <yawDrift> ${yaw_drift} </yawDrift>
-              <yawDriftFrequency> ${yaw_drift_freq} </yawDriftFrequency>
-              <yawGaussianNoise> ${yaw_noise} </yawGaussianNoise>
+                <updateRate> ${hz} </updateRate>
+                <robotNamespace> ${robot_namespace} </robotNamespace>
+                <bodyName> ${name}_link </bodyName>
+                <frameId> ${name}_link </frameId>
+                <topicName> ${topic} </topicName>
+        
+                <!-- General noise  -->
+                <!-- If 0.0 [accel/rate/yaw]GaussianNoises are used -->
+                <gaussianNoise>0.0</gaussianNoise>
+        
+                <!-- Accelerometer noise -->
+                <accelOffset>0.0 0.0 0.0</accelOffset>
+                <accelDrift>0.0 0.0 0.0</accelDrift>
+                <accelDriftFrequency>0.0 0.0 0.0</accelDriftFrequency>
+                <accelGaussianNoise> ${accel_noise} ${accel_noise} ${accel_noise} </accelGaussianNoise>
+        
+                <!-- Gyroscope noise -->
+                <rateOffset>0.0 0.0 0.0</rateOffset>
+                <rateDrift>0.0 0.0 0.0</rateDrift>
+                <rateDriftFrequency>0.0 0.0 0.0</rateDriftFrequency>
+                <rateGaussianNoise> ${gyro_noise} ${gyro_noise} ${gyro_noise} </rateGaussianNoise>
+        
+                <!-- Yaw noise -->
+                <yawOffset>0.0</yawOffset>
+                <yawDrift> ${yaw_drift} </yawDrift>
+                <yawDriftFrequency> ${yaw_drift_freq} </yawDriftFrequency>
+                <yawGaussianNoise> ${yaw_noise} </yawGaussianNoise>
             </plugin>
         </gazebo>
     </xacro:macro>

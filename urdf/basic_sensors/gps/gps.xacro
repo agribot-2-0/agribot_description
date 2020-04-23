@@ -1,0 +1,81 @@
+<robot name="gps" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+    <!-- Basic sonar macro  -->
+    <xacro:macro  name="gps" 
+                  params="*origin
+                          parent:=^
+                          name:=^
+                          robot_namespace:=^
+                          topic:=^
+                          velocity_topic:=^
+                          hz:=^
+                          reference_latitude:=^
+                          reference_longitude:=^
+                          reference_heading:=^
+                          reference_altitude:=^
+                          noise:=^
+                          velocity_noise:=^
+                          publish_heading:=^|false
+                          heading_topic:=^|heading
+                          heading_noise:=^|0.00
+                          ">
+  
+        <joint name="${name}_joint" type="fixed">
+            <xacro:insert_block name="origin" />
+            <parent link="${parent}"/>
+            <child link="${name}_link" />
+        </joint>
+        <link name="${name}_link"/>
+
+        <gazebo>
+            <!-- GPS plugin -->
+            <plugin name="gps_controller" filename="libgazebo_gps.so">
+                <updateRate> ${hz} </updateRate>
+                <robotNamespace> ${robot_namespace} </robotNamespace>
+                <bodyName> ${name}_link </bodyName>
+                <frameId> ${name}_link </frameId>
+                <topicName> ${topic} </topicName>
+                <velocityTopicName> ${velocity_topic} </velocityTopicName>
+
+                <referenceLatitude> ${reference_latitude} </referenceLatitude>
+                <referenceLongitude> ${reference_longitude} </referenceLongitude>
+                <referenceHeading> ${reference_heading} </referenceHeading>
+                <referenceAltitude> ${reference_altitude} </referenceAltitude>
+        
+                <!-- GPS noise -->
+                <offset> 0.0 0.0 0.0 </offset>
+                <gaussianNoise> ${noise} ${noise} ${noise} </gaussianNoise>
+                <drift> 0.0 0.0 0.0 </drift>
+                <driftFrequency> 0.0 0.0 0.0 </driftFrequency>
+        
+                <!-- Velocity noise -->
+                <velocityOffset> 0.0 0.0 0.0 </velocityOffset>
+                <velocityGaussianNoise> ${velocity_noise} ${velocity_noise} ${velocity_noise} </velocityGaussianNoise>
+                <velocityDrift> 0.0 0.0 0.0 </velocityDrift>
+                <velocityDriftFrequency> 0.0 0.0 0.0 </velocityDriftFrequency>
+        
+                <!-- Flags -->
+                <status>STATUS_FIX</status>
+                <service>SERVICE_GPS</service>
+            </plugin>
+
+            <!-- Heading plugin -->
+            <xacro:if value="${publish_heading}">
+                <plugin name="heading_controller" filename="libgazebo_heading.so">
+                    <updateRate> ${hz} </updateRate>
+                    <robotNamespace> ${robot_namespace} </robotNamespace>
+                    <bodyName> ${name}_link </bodyName>
+                    <frameId> ${name}_link </frameId>
+                    <topicName> ${heading_topic} </topicName>
+            
+                    <!-- Heading noise -->
+                    <Drift> 0.0 0.0 0.0 </Drift>
+                    <DriftFrequency> 0.0 0.0 0.0 </DriftFrequency>
+                    <GaussianNoise> ${heading_noise} ${heading_noise} ${heading_noise} </GaussianNoise>
+                  </plugin>
+            </xacro:if>
+
+        </gazebo>
+    </xacro:macro>
+</robot>
+  
