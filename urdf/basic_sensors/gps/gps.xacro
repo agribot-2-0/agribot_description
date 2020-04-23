@@ -72,7 +72,7 @@
                     <Drift> 0.0 0.0 0.0 </Drift>
                     <DriftFrequency> 0.0 0.0 0.0 </DriftFrequency>
                     <GaussianNoise> ${heading_noise} ${heading_noise} ${heading_noise} </GaussianNoise>
-                  </plugin>
+                </plugin>
             </xacro:if>
 
         </gazebo>
