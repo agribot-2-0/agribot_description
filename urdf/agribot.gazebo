@@ -112,21 +112,4 @@
 
       </plugin>
   </gazebo>
-
-  <gazebo>
-      <plugin name="inclinometer_controller" filename="libgazebo_inclinometer.so">
-        <updateRate>10.0</updateRate>
-        <robotNamespace>agribot</robotNamespace>
-        <bodyName>inclinometer_link</bodyName>
-        <frameId>inclinometer_link</frameId>
-        <topicName>inclinometer</topicName>
-
-        <!-- Inclinometer noise -->
-        <Drift>0.0 0.0 0.0</Drift>
-        <DriftFrequency>0.0 0.0 0.0</DriftFrequency>
-        <GaussianNoise>0.01 0.01 0.01</GaussianNoise>
-      </plugin>
-  </gazebo>
-
-
 </robot>

@@ -1,0 +1,37 @@
+<robot name="inclinometer" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+    <!-- Basic sonar macro  -->
+    <xacro:macro  name="inclinometer" 
+                  params="*origin
+                          parent:=^
+                          name:=^
+                          robot_namespace:=^
+                          topic:=^
+                          hz:=^
+                          noise:=^
+                          ">
+  
+        <joint name="${name}_joint" type="fixed">
+            <xacro:insert_block name="origin" />
+            <parent link="${parent}"/>
+            <child link="${name}_link" />
+        </joint>
+        <link name="${name}_link"/>
+
+        <gazebo>
+            <plugin name="inclinometer_controller" filename="libgazebo_inclinometer.so">
+                <updateRate> ${hz} </updateRate>
+                <robotNamespace> ${robot_namespace} </robotNamespace>
+                <bodyName> ${name}_link </bodyName>
+                <frameId> ${name}_link </frameId>
+                <topicName> ${topic} </topicName>
+      
+                <!-- Inclinometer noise -->
+                <Drift> 0.0 0.0 0.0 </Drift>
+                <DriftFrequency> 0.0 0.0 0.0 </DriftFrequency>
+                <GaussianNoise> ${noise} ${noise} ${noise} </GaussianNoise>
+            </plugin>
+        </gazebo>
+    </xacro:macro>
+</robot>
+  

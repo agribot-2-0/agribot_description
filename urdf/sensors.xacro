@@ -6,6 +6,7 @@
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/sonar/balluff_sonar.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/imu/imu.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/gps/gps.xacro"/>
+    <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/inclinometer/inclinometer.xacro"/>
 
     <xacro:macro name="agribot_sensors">
 
@@ -14,14 +15,6 @@
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <parent link="chassis_link"/>
             <child link="magnetic_link" />
-        </joint>
-
-
-        <link name="inclinometer_link"/>
-        <joint name="inclinometer_joint" type="fixed">
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <parent link="chassis_link"/>
-            <child link="inclinometer_link" />
         </joint>
 
         <xacro:imu>
@@ -62,6 +55,18 @@
             <xacro:property name="heading_topic"        value="heading"/>
             <xacro:property name="heading_noise"        value="0.01"/>
         </xacro:gps>
+
+        <xacro:inclinometer>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <xacro:property name="parent"               value="chassis_link"/>
+            <xacro:property name="robot_namespace"      value="agribot"/>
+            <xacro:property name="topic"                value="inclinometer"/>
+            <xacro:property name="name"                 value="inclinometer"/>
+            <xacro:property name="hz"                   value="10.0"/>
+
+            <xacro:property name="noise"                value="0.01"/>
+        </xacro:inclinometer>
+
 <!-- 
         <xacro:velodyne16>
             <origin xyz="1.6 0 1.4" rpy="0 0.2 0" />
