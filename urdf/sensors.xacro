@@ -7,15 +7,9 @@
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/imu/imu.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/gps/gps.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/inclinometer/inclinometer.xacro"/>
-
+    <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/magnetometer/magnetometer.xacro"/>
+    
     <xacro:macro name="agribot_sensors">
-
-        <link name="magnetic_link"/>
-        <joint name="magnetic_joint" type="fixed">
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <parent link="chassis_link"/>
-            <child link="magnetic_link" />
-        </joint>
 
         <xacro:imu>
             <origin xyz="0 0 0" rpy="0 0 0" />
@@ -66,6 +60,23 @@
 
             <xacro:property name="noise"                value="0.01"/>
         </xacro:inclinometer>
+
+        <xacro:magnetometer>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <xacro:property name="parent"               value="chassis_link"/>
+            <xacro:property name="robot_namespace"      value="agribot"/>
+            <xacro:property name="topic"                value="magnetic_field"/>
+            <xacro:property name="name"                 value="magnetometer"/>
+            <xacro:property name="hz"                   value="10.0"/>
+
+            <xacro:property name="magnitude"            value="1.0"/>
+            <xacro:property name="reference_heading"    value="158.5507847682035"/>
+            <xacro:property name="declination"          value="5.0741"/>
+            <xacro:property name="inclination"          value="67.0937"/>
+            <xacro:property name="noise"                value="1.1e-14"/>
+            <!-- <xacro:property name="noise"                value="1.1e-8"/> -->
+            <!-- <xacro:property name="noise"                value="1.1e-5"/> -->
+        </xacro:magnetometer>
 
 <!-- 
         <xacro:velodyne16>

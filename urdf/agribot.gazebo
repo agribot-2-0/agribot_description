@@ -85,31 +85,4 @@
       <updateRate>10.000000</updateRate>
     </plugin>
   </gazebo>
-
-  <gazebo>
-      <plugin name="magnetic_controller" filename="libgazebo_magnetic.so">
-        <updateRate>10.0</updateRate>
-        <robotNamespace>agribot</robotNamespace>
-        <bodyName>magnetic_link</bodyName>
-        <frameId>magnetic_link</frameId>
-        <topicName>magnetic_field</topicName>
-
-        <!-- Magnetometer setup -->
-        <magnitude>1.0</magnitude>
-        <referenceHeading>158.5507847682035</referenceHeading>
-
-        <!-- Parking Drzewna -->
-        <declination>5.0741</declination>
-        <inclination>67.0937</inclination>
-
-        <!-- Magnetometer noise -->
-        <offset>0.0 0.0 0.0</offset>
-        <drift>0.0 0.0 0.0</drift>
-        <driftFrequency>0.0 0.0 0.0</driftFrequency>
-        <gaussianNoise>1.1e-14 1.1e-14 1.1e-14</gaussianNoise>
-        <!-- <gaussianNoise>1.1e-8 1.1e-8 1.1e-8</gaussianNoise> -->
-        <!-- <gaussianNoise>1.1e-5 1.1e-5 1.1e-5</gaussianNoise> -->
-
-      </plugin>
-  </gazebo>
 </robot>
