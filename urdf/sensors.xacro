@@ -8,6 +8,12 @@
     
     <xacro:macro name="agribot_sensors">
 
+        <!-- Moderna vineyard coordinates -->
+        <xacro:property name="reference_latitude"   value="51.26662409135839"/>
+        <xacro:property name="reference_longitude"  value="17.20327894189977"/>
+        <xacro:property name="reference_heading"    value="158.5507847682035"/>
+        <xacro:property name="reference_altitude"   value="193.7327916698572"/>
+
         <xacro:imu>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <xacro:property name="parent"               value="chassis_link"/>
@@ -35,12 +41,6 @@
             <xacro:property name="noise"                value="0.03"/>
             <xacro:property name="velocity_noise"       value="0.3"/>
             
-            <!-- Moderna vineyard coordinates -->
-            <xacro:property name="reference_latitude"   value="51.26662409135839"/>
-            <xacro:property name="reference_longitude"  value="17.20327894189977"/>
-            <xacro:property name="reference_heading"    value="158.5507847682035"/>
-            <xacro:property name="reference_altitude"   value="193.7327916698572"/>
-
             <!-- Use heading -->
             <xacro:property name="publish_heading"      value="true"/>
             <xacro:property name="heading_topic"        value="heading"/>
@@ -67,7 +67,6 @@
             <xacro:property name="hz"                   value="10.0"/>
 
             <xacro:property name="magnitude"            value="1.0"/>
-            <xacro:property name="reference_heading"    value="158.5507847682035"/>
             <xacro:property name="declination"          value="5.0741"/>
             <xacro:property name="inclination"          value="67.0937"/>
             <xacro:property name="noise"                value="1.1e-14"/>
