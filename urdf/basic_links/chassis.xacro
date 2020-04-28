@@ -17,10 +17,11 @@
           </visual>
 
           <collision>
-            <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+            <origin xyz="0.0 0.0 0" rpy="0 0 1.57"/>
             <geometry>
-              <box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
+              <mesh filename="package://agribot_description/meshes/agribot_chassis.stl" scale="0.01 0.01 0.01"/>
             </geometry>
+            <material name="green"/>
           </collision>
 
           <inertial>
