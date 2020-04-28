@@ -1,23 +1,27 @@
 <robot name="perception_sensors" xmlns:xacro="http://ros.org/wiki/xacro">
 
+    <xacro:property name="M_PI" value="3.1415926535897931" />
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/lidar/velodyne16.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/lidar/benewake_ce30_c.xacro"/>
+    <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/lidar/livox_horizon.xacro"/>
+    <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/lidar/robosense_bpearl.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/sonar/bosch_sonar.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/sonar/balluff_sonar.xacro"/>
     
     <xacro:macro name="perception_sensors">
 
-        <xacro:velodyne16>
-            <origin xyz="1.6 0 1.4" rpy="0 0.2 0" />
+        <!-- Lidars -->
+        <!-- <xacro:velodyne16>
+            <origin xyz="1.3 0 1.25" rpy="0 0.35 0" />
             <xacro:property name="parent"               value="base_footprint"/>
             <xacro:property name="topic"                value="/agribot/front_lidar/v16/pc2"/>
             <xacro:property name="name"                 value="front_lidar_v16"/>
             <xacro:property name="hz"                   value="1.0"/>
             <xacro:property name="visualize"            value="false"/>
-        </xacro:velodyne16>
+        </xacro:velodyne16> -->
 
-        <xacro:benewake_ce30_c>
-            <origin xyz="1.6 0 1.4" rpy="0 0.4 0" />
+        <!-- <xacro:benewake_ce30_c>
+            <origin xyz="1.3 0 1.25" rpy="0 0.5 0" />
             <xacro:property name="parent"               value="base_footprint"/>
             <xacro:property name="topic"                value="/agribot/front_lidar/ce30c/pc2"/>
             <xacro:property name="name"                 value="front_lidar_ce30c"/>
@@ -25,23 +29,94 @@
             <xacro:property name="visualize"            value="false"/>
         </xacro:benewake_ce30_c>
 
-        <xacro:bosch_sonar>
-            <origin xyz="1.6 0.4 1.0" rpy="0 0 0" />
+        <xacro:livox_horizon>
+            <origin xyz="1.3 0 1.25" rpy="0 0.5 0" />
             <xacro:property name="parent"               value="base_footprint"/>
-            <xacro:property name="topic"                value="/agribot/front_left_sonar"/>
-            <xacro:property name="name"                 value="front_left_sonar"/>
-            <xacro:property name="hz"                   value="10.0"/>
+            <xacro:property name="topic"                value="/agribot/front_lidar/livox_horizon/pc2"/>
+            <xacro:property name="name"                 value="front_lidar_livox_horizon"/>
+            <xacro:property name="hz"                   value="1.0"/>
             <xacro:property name="visualize"            value="false"/>
+        </xacro:livox_horizon>
+
+        <xacro:robosense_bpearl>
+            <origin xyz="1.3 0 1.25" rpy="0 ${M_PI/2} 0" />
+            <xacro:property name="parent"               value="base_footprint"/>
+            <xacro:property name="topic"                value="/agribot/front_lidar/robosense_bpearl/pc2"/>
+            <xacro:property name="name"                 value="front_lidar_robosense_bpearl"/>
+            <xacro:property name="hz"                   value="1.0"/>
+            <xacro:property name="visualize"            value="false"/>
+        </xacro:robosense_bpearl> -->
+
+
+        <!-- Left sonars -->
+        <xacro:bosch_sonar>
+            <origin xyz="0.0 0.5 1.1" rpy="0 0 ${90*M_PI/180.0}" />
+            <xacro:property name="parent"               value="base_footprint"/>
+            <xacro:property name="topic"                value="/agribot/left_sonar_1"/>
+            <xacro:property name="name"                 value="left_sonar_1"/>
+            <xacro:property name="hz"                   value="10.0"/>
+            <xacro:property name="visualize"            value="true"/>
+        </xacro:bosch_sonar>
+
+        
+        <!-- Right sonars -->
+        <xacro:bosch_sonar>
+            <origin xyz="0.0 -0.5 1.1" rpy="0 0 -${90*M_PI/180.0}" />
+            <xacro:property name="parent"               value="base_footprint"/>
+            <xacro:property name="topic"                value="/agribot/right_sonar_1"/>
+            <xacro:property name="name"                 value="right_sonar_1"/>
+            <xacro:property name="hz"                   value="10.0"/>
+            <xacro:property name="visualize"            value="true"/>
+        </xacro:bosch_sonar>
+
+
+        <!-- Front sonars -->
+        <xacro:bosch_sonar>
+            <origin xyz="0.8 0.25 0.6" rpy="0 0 ${50*M_PI/180.0}" />
+            <xacro:property name="parent"               value="front_cart_link"/>
+            <xacro:property name="topic"                value="/agribot/front_sonar_1"/>
+            <xacro:property name="name"                 value="front_sonar_1"/>
+            <xacro:property name="hz"                   value="10.0"/>
+            <xacro:property name="visualize"            value="true"/>
         </xacro:bosch_sonar>
 
         <xacro:balluff_sonar>
-            <origin xyz="1.6 -0.4 1.0" rpy="0 0 0" />
-            <xacro:property name="parent"               value="base_footprint"/>
-            <xacro:property name="topic"                value="/agribot/front_right_sonar"/>
-            <xacro:property name="name"                 value="front_right_sonar"/>
+            <origin xyz="0.9 0 0.6" rpy="0 0 0" />
+            <xacro:property name="parent"               value="front_cart_link"/>
+            <xacro:property name="topic"                value="/agribot/front_sonar_2"/>
+            <xacro:property name="name"                 value="front_sonar_2"/>
             <xacro:property name="hz"                   value="10.0"/>
-            <xacro:property name="visualize"            value="false"/>
+            <xacro:property name="visualize"            value="true"/>
         </xacro:balluff_sonar>
+
+        <xacro:bosch_sonar>
+            <origin xyz="0.8 -0.25 0.6" rpy="0 0 -${50*M_PI/180.0}" />
+            <xacro:property name="parent"               value="front_cart_link"/>
+            <xacro:property name="topic"                value="/agribot/front_sonar_3"/>
+            <xacro:property name="name"                 value="front_sonar_3"/>
+            <xacro:property name="hz"                   value="10.0"/>
+            <xacro:property name="visualize"            value="true"/>
+        </xacro:bosch_sonar>
+
+
+        <!-- Rear sonars -->
+        <xacro:bosch_sonar>
+            <origin xyz="-0.8 0.25 0.6" rpy="0 0 ${135*M_PI/180.0}" />
+            <xacro:property name="parent"               value="back_cart_link"/>
+            <xacro:property name="topic"                value="/agribot/rear_sonar_1"/>
+            <xacro:property name="name"                 value="rear_sonar_1"/>
+            <xacro:property name="hz"                   value="10.0"/>
+            <xacro:property name="visualize"            value="true"/>
+        </xacro:bosch_sonar>
+
+        <xacro:bosch_sonar>
+            <origin xyz="-0.8 -0.25 0.6" rpy="0 0 -${135*M_PI/180.0}" />
+            <xacro:property name="parent"               value="back_cart_link"/>
+            <xacro:property name="topic"                value="/agribot/rear_sonar_2"/>
+            <xacro:property name="name"                 value="rear_sonar_2"/>
+            <xacro:property name="hz"                   value="10.0"/>
+            <xacro:property name="visualize"            value="true"/>
+        </xacro:bosch_sonar>
 
     </xacro:macro>
 </robot>
