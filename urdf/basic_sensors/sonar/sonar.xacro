@@ -35,13 +35,13 @@
                 <ray>
                 <scan>
                     <horizontal>
-                        <samples>1</samples>
+                        <samples>10</samples>
                         <resolution>1</resolution>
                         <min_angle>${min_horizontal_angle}</min_angle>
                         <max_angle>${max_horizontal_angle}</max_angle>
                     </horizontal>
                     <vertical>
-                        <samples>1</samples>
+                        <samples>10</samples>
                         <resolution>1</resolution>
                         <min_angle>${min_vertical_angle}</min_angle>
                         <max_angle>${max_vertical_angle}</max_angle>
