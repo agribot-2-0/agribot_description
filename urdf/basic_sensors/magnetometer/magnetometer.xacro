@@ -1,0 +1,51 @@
+<robot name="magnetometer" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+    <!-- Basic sonar macro  -->
+    <xacro:macro  name="magnetometer" 
+                  params="*origin
+                          parent:=^
+                          name:=^
+                          robot_namespace:=^
+                          topic:=^
+                          hz:=^
+                          magnitude:=^
+                          reference_heading:=^
+                          declination:=^
+                          inclination:=^
+                          noise:=^
+                          ">
+  
+        <joint name="${name}_joint" type="fixed">
+            <xacro:insert_block name="origin" />
+            <parent link="${parent}"/>
+            <child link="${name}_link" />
+        </joint>
+        <link name="${name}_link"/>
+
+        <gazebo>
+            <plugin name="magnetic_controller" filename="libgazebo_magnetic.so">
+                <updateRate> ${hz} </updateRate>
+                <robotNamespace> ${robot_namespace} </robotNamespace>
+                <bodyName> ${name}_link </bodyName>
+                <frameId> ${name}_link </frameId>
+                <topicName> ${topic} </topicName>
+        
+                <!-- Magnetometer setup -->
+                <magnitude> ${magnitude} </magnitude>
+                <referenceHeading> ${reference_heading} </referenceHeading>
+                <declination> ${declination} </declination>
+                <inclination> ${inclination} </inclination>
+        
+                <!-- Magnetometer noise -->
+                <offset> 0.0 0.0 0.0 </offset>
+                <drift> 0.0 0.0 0.0 </drift>
+                <driftFrequency> 0.0 0.0 0.0 </driftFrequency>
+                <gaussianNoise> ${noise} ${noise} ${noise} </gaussianNoise>
+                <!-- <gaussianNoise>1.1e-8 1.1e-8 1.1e-8</gaussianNoise> -->
+                <!-- <gaussianNoise>1.1e-5 1.1e-5 1.1e-5</gaussianNoise> -->
+      
+            </plugin>
+        </gazebo>
+    </xacro:macro>
+</robot>
+  

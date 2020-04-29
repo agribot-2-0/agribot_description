@@ -23,9 +23,16 @@
           </visual>
 
           <collision>
-            <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+            <xacro:if value="${name == 'back_cart_link'}">
+              <origin xyz="-0.25 0.0 0.3" rpy="0 0 1.57"/>
+              <material name="white"/>
+            </xacro:if>
+            <xacro:if value="${name == 'front_cart_link'}">
+              <origin xyz="0.25 0.0 0.3" rpy="0 0 -1.57"/>
+              <material name="green"/>
+            </xacro:if>
             <geometry>
-              <box size="${cart_lenght} ${cart_width} ${cart_height}"/>
+              <mesh filename="package://agribot_description/meshes/agribot_cart.stl" scale="0.01 0.01 0.01"/>
             </geometry>
           </collision>
 

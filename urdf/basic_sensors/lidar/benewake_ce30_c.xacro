@@ -1,0 +1,37 @@
+<robot name="benewake_ce30_c" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:property name="M_PI" value="3.1415926535897931" />
+    <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/lidar/velodyne.xacro"/>
+  
+    <xacro:macro    name="benewake_ce30_c"
+                    params="*origin
+                            parent:=^
+                            name:=^
+                            topic:=^ 
+                            hz:=^
+                            visualize:=^
+                            ">
+
+        <!-- Call basic velodyne lidar and pass arguments -->
+        <xacro:velodyne parent="${parent}"
+                        name="${name}"
+                        topic="${topic}"
+                        hz="${hz}"
+                        >
+
+            <xacro:insert_block name="origin" />
+            
+            <!-- Sensor specific arguments -->
+            <xacro:property name="lasers"                   value="24"/>
+            <xacro:property name="samples"                  value="320"/>
+            <xacro:property name="min_range"                value="0.1"/>
+            <xacro:property name="max_range"                value="4.0"/>
+            <xacro:property name="noise"                    value="0.01"/>
+            <xacro:property name="min_horizontal_angle"     value="-${66.0*M_PI/180.0}"/>
+            <xacro:property name="max_horizontal_angle"     value="${66.0*M_PI/180.0}"/>
+            <xacro:property name="min_vertical_angle"       value="-${4.5*M_PI/180.0}"/>
+            <xacro:property name="max_vertical_angle"       value="${4.5*M_PI/180.0}"/>
+            <xacro:property name="resolution"               value="0.001"/>
+        </xacro:velodyne>
+    </xacro:macro>
+</robot>

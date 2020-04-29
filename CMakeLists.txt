@@ -14,6 +14,8 @@ find_package(catkin REQUIRED COMPONENTS
   xacro
   roscpp
   tf
+  hector_gazebo_plugins
+  velodyne_gazebo_plugins
 )
 
 ################################################
