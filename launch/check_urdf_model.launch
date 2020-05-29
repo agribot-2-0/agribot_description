@@ -1,0 +1,13 @@
+<launch>
+
+  <include file="$(find agribot_description)/launch/robot_state_publisher.xml"/>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+      <param name="use_gui" value="True"/>
+  </node>
+  
+  <node pkg="rviz" type="rviz" name="rviz"
+        args="-d $(find agribot_description)/rviz/model.rviz"
+        required="true"
+  />
+</launch>
