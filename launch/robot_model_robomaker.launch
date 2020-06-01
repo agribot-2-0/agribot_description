@@ -1,4 +1,10 @@
 <launch>
+  
+  <arg name="use_perception_sensors" default="true"/>
+
+  <param name="robot_description" command="$(find xacro)/xacro '$(find agribot_description)/urdf/agribot.urdf.xacro'
+    use_perception_sensors:=$(arg use_perception_sensors)"
+  />
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
        <remap from="joint_state" to="/agribot_model/joint_states" />
