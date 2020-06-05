@@ -30,7 +30,7 @@
         </xacro:benewake_ce30_c> -->
 
         <xacro:livox_horizon>
-            <origin xyz="1.3 0 1.25" rpy="0 0.5 0" />
+            <origin xyz="1.3 0 1.25" rpy="0 0.2 0" />
             <xacro:property name="parent"               value="base_footprint"/>
             <xacro:property name="topic"                value="/agribot/front_lidar/livox_horizon/pc2"/>
             <xacro:property name="name"                 value="front_lidar_livox_horizon"/>
