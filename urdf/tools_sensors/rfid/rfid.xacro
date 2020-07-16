@@ -5,7 +5,7 @@
                           parent:=^
                           name:=^
                           robot_namespace:=^
-                          topic:=^
+                          service:=^
                           ">
 
         <joint name="${name}_joint" type="fixed">
@@ -20,7 +20,7 @@
                 <robotNamespace> ${robot_namespace} </robotNamespace>
                 <bodyName> ${name}_link </bodyName>
                 <frameId> ${name}_link </frameId>
-                <topicName> ${topic} </topicName>
+                <serviceName> ${service} </serviceName>
             </plugin>
         </gazebo>
     </xacro:macro>
