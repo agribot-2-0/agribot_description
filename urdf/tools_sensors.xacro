@@ -1,0 +1,14 @@
+<robot name="tools" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find agribot_description)/urdf/tools_sensors/rfid/rfid.xacro"/>
+
+    <xacro:macro name="tools_sensors">
+      <xacro:rfid>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <xacro:property name="parent"               value="chassis_link"/>
+        <xacro:property name="robot_namespace"      value="agribot"/>
+        <xacro:property name="service"              value="tags"/>
+        <xacro:property name="name"                 value="rfid"/>
+      </xacro:rfid>
+    </xacro:macro>
+</robot>

@@ -3,6 +3,7 @@
   <xacro:include filename="$(find agribot_description)/urdf/common_properties.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_sensors.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/perception_sensors.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/tools_sensors.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/cart.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/wheel.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/support.xacro"/>
@@ -87,6 +88,9 @@
 
   <!-- Load basic sensors -->
   <xacro:basic_sensors/>
+
+  <!-- Load tools sensors -->
+  <xacro:tools_sensors/>
 
   <!-- Load perception sensors -->
   <xacro:if value="$(arg use_perception_sensors)">
