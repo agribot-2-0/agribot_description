@@ -1,0 +1,27 @@
+<robot name="rfid" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro  name="rfid" 
+                  params="*origin
+                          parent:=^
+                          name:=^
+                          robot_namespace:=^
+                          service:=^
+                          ">
+
+        <joint name="${name}_joint" type="fixed">
+            <xacro:insert_block name="origin" />
+            <parent link="${parent}"/>
+            <child link="${name}_link" />
+        </joint>
+        <link name="${name}_link"/>
+
+        <gazebo>
+            <plugin name="rfid_controller" filename="libgazebo_rfid.so">
+                <robotNamespace> ${robot_namespace} </robotNamespace>
+                <bodyName> ${name}_link </bodyName>
+                <frameId> ${name}_link </frameId>
+                <serviceName> ${service} </serviceName>
+            </plugin>
+        </gazebo>
+    </xacro:macro>
+</robot>

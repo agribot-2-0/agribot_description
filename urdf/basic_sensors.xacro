@@ -1,12 +1,11 @@
 <robot name="sensors" xmlns:xacro="http://ros.org/wiki/xacro">
 
-    <xacro:include filename="$(find agribot_description)/urdf/perception_sensors.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/imu/imu.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/gps/gps.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/inclinometer/inclinometer.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/magnetometer/magnetometer.xacro"/>
-    
-    <xacro:macro name="agribot_sensors">
+
+    <xacro:macro name="basic_sensors">
 
         <!-- Moderna vineyard coordinates -->
         <xacro:property name="reference_latitude"   value="51.26662409135839"/>
@@ -73,10 +72,6 @@
             <!-- <xacro:property name="noise"                value="1.1e-8"/> -->
             <!-- <xacro:property name="noise"                value="1.1e-5"/> -->
         </xacro:magnetometer>
-
-
-        <!-- Add perception sensors -->
-        <!-- <xacro:perception_sensors /> -->
 
     </xacro:macro>
 </robot>
