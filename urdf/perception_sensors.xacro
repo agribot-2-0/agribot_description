@@ -32,8 +32,8 @@
         <xacro:livox_horizon>
             <origin xyz="1.3 0 1.25" rpy="0 0.2 0" />
             <xacro:property name="parent"               value="base_footprint"/>
-            <xacro:property name="topic"                value="/agribot/front_lidar/livox_horizon/pc2"/>
-            <xacro:property name="name"                 value="front_lidar_livox_horizon"/>
+            <xacro:property name="topic"                value="/bumper/front/lidar"/>
+            <xacro:property name="name"                 value="bumper_front_lidar"/>
             <xacro:property name="hz"                   value="1.0"/>
             <xacro:property name="visualize"            value="false"/>
         </xacro:livox_horizon>
