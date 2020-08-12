@@ -1,10 +1,8 @@
 <robot name="base" xmlns:xacro="http://ros.org/wiki/xacro">
-    <xacro:include filename="$(find agribot_description)/urdf/basic_links/wheel.xacro"/>
-    <xacro:include filename="$(find agribot_description)/urdf/basic_links/chassis.xacro"/>
-
-    <xacro:property name="cart_lenght" value="${wheel_radius*2}" />
-    <xacro:property name="cart_width" value="${chassis_width}" />
-    <xacro:property name="cart_height" value="${wheel_radius*2}" />
+    <xacro:property name="cart_lenght" value="0.4" />
+    <xacro:property name="cart_width" value="0.6" />
+    <xacro:property name="cart_height" value="0.3" />
+    <xacro:property name="cart_mass" value="500" />
 
     <xacro:macro name="agribot_cart" params="name">
         <link name="${name}">
@@ -24,25 +22,26 @@
 
           <collision>
             <xacro:if value="${name == 'back_cart_link'}">
-              <origin xyz="-0.25 0.0 0.3" rpy="0 0 1.57"/>
+              <origin xyz="0.0 0.0 -0.01" rpy="0 0 0"/>
               <material name="white"/>
             </xacro:if>
             <xacro:if value="${name == 'front_cart_link'}">
-              <origin xyz="0.25 0.0 0.3" rpy="0 0 -1.57"/>
+              <origin xyz="0.0 0.0 -0.01" rpy="0 0 0"/>
               <material name="green"/>
             </xacro:if>
             <geometry>
-              <mesh filename="package://agribot_description/meshes/agribot_cart.stl" scale="0.01 0.01 0.01"/>
+               <box size="${cart_lenght} ${cart_width} ${cart_height}" />
             </geometry>
           </collision>
 
           <inertial>
             <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
-            <!-- <mass value="1"/> -->
-            <mass value="1.00"/>
-            <inertia ixx="0.01" ixy="0.0" ixz="0.0"
-                     iyy="0.01" iyz="0.0"
-                     izz="0.01" />
+            <!-- Moments of inertia taken from-->
+            <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia#List_of_3D_inertia_tensors-->
+            <mass value="${cart_mass}"/>
+            <inertia ixx="${cart_mass*(cart_height*cart_height+cart_width*cart_width)/12}" ixy="0.0" ixz="0.0"
+                     iyy="${cart_mass*(cart_lenght*cart_lenght+cart_width*cart_width)/12}" iyz="0.0"
+                     izz="${cart_mass*(cart_lenght*cart_lenght+cart_height*cart_height)/12}" />
           </inertial>
         </link>
     </xacro:macro>

@@ -1,11 +1,17 @@
 <robot name="wheel" xmlns:xacro="http://ros.org/wiki/xacro">
-    <!-- <xacro:property name="wheel_width" value="0.02" />
-    <xacro:property name="wheel_radius" value="0.04" /> -->
-    <xacro:property name="wheel_width" value="0.025" />
-    <xacro:property name="wheel_radius" value="0.16" />
+    <xacro:property name="wheel_width" value="0.2" />
+    <xacro:property name="wheel_radius" value="0.2" />
+    <xacro:property name="wheel_mass" value="500" />
 
     <xacro:macro name="agribot_wheel" params="name">
         <link name="${name}">
+          <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+              <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+            </geometry>
+          </visual>
+
           <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
@@ -15,11 +21,12 @@
 
           <inertial>
             <origin xyz="0 0 0" />
-            <!-- <mass value="0.01" /> -->
-            <mass value="0.50" />
-            <inertia ixx="0.001" ixy="0.0" ixz="0.0"
-                     iyy="0.001" iyz="0.0"
-                     izz="0.001" />
+            <!-- Moments of inertia taken from-->
+            <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia#List_of_3D_inertia_tensors-->
+            <mass value="${wheel_mass}" />
+            <inertia ixx="${wheel_mass*(3*wheel_radius*wheel_radius+wheel_width*wheel_width)/12}" ixy="0.0" ixz="0.0"
+                     iyy="${wheel_mass*(3*wheel_radius*wheel_radius+wheel_width*wheel_width)/12}" iyz="0.0"
+                     izz="${wheel_mass*(wheel_radius*wheel_radius)/2}" />
           </inertial>
         </link>
     </xacro:macro>
