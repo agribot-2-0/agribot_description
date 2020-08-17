@@ -1,20 +1,18 @@
 <launch>
 
-  <arg name="x_pos" default="0.0"/>
-  <arg name="y_pos" default="0.0"/>
-  <arg name="z_pos" default="0.0"/>
-  <arg name="roll" default="0.0"/>
-  <arg name="pitch" default="0.0"/>
-  <arg name="yaw" default="0.0"/>
+  <arg name="x_pos" default="0.0" />
+  <arg name="y_pos" default="0.0" />
+  <arg name="z_pos" default="0.0" />
+  <arg name="roll" default="0.0" />
+  <arg name="pitch" default="0.0" />
+  <arg name="yaw" default="0.0" />
 
-  <arg name="use_perception_sensors" default="true"/>
+  <arg name="perception_sensors" default="true" />
 
   <param name="robot_description" command="$(find xacro)/xacro '$(find agribot_description)/urdf/agribot.urdf.xacro'
-    use_perception_sensors:=$(arg use_perception_sensors)"
-  />
-  
-  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
-        args="-urdf -param robot_description -model agribot
+    perception_sensors:=$(arg perception_sensors)" />
+
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model agribot
               -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos)
               -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)" />
 
