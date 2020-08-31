@@ -9,7 +9,7 @@
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/wheel.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/agribot.gazebo"/>
 
-  <xacro:arg name="use_perception_sensors" default="false" />
+  <xacro:arg name="perception_sensors" default="false" />
 
   
   <link name="base_footprint"/>
@@ -93,7 +93,7 @@
   <xacro:tools_sensors/>
 
   <!-- Load perception sensors -->
-  <xacro:if value="$(arg use_perception_sensors)">
+  <xacro:if value="$(arg perception_sensors)">
     <xacro:perception_sensors/>
   </xacro:if>
 
