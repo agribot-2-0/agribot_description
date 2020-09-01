@@ -22,14 +22,6 @@
 
   <xacro:agribot_chassis name="chassis_link" />
 
-  <joint name="front_cart_joint_fixed" type="fixed">
-      <parent link="base_footprint"/>
-      <child link="front_cart_footprint" />
-      <origin xyz="${(chassis_length/2)-cart_lenght/2} 0 0" rpy="0 0 0"/>
-  </joint>
-
-  <link name="front_cart_footprint"/>
-
   <joint name="front_cart_joint" type="revolute">
     <parent link="chassis_link"/>
     <child link="front_cart_link"/>
