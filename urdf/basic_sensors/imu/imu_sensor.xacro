@@ -1,0 +1,111 @@
+<robot name="imu" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Basic sonar macro  -->
+  <xacro:macro name="imu_sensor" params="*origin
+                          parent:=^
+                          name:=^
+                          topic:=^
+                          hz:=^
+                          accel_noise:=^
+                          gyro_noise:=^
+                          ">
+
+    <joint name="${name}_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}" />
+      <child link="${name}_link" />
+    </joint>
+    <link name="${name}_link" />
+
+
+    <gazebo reference="imu_link">
+      <gravity>true</gravity>
+      <sensor name="imu_sensor" type="imu">
+        <always_on> true </always_on>
+        <update_rate> ${hz} </update_rate>
+        <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+          <topicName> ${topic} </topicName>
+          <bodyName> ${name}_link </bodyName>
+          <updateRateHZ> ${hz} </updateRateHZ>
+          <gaussianNoise> 0.0 </gaussianNoise>
+          <xyzOffset> 0 0 0 </xyzOffset>
+          <rpyOffset> 0 0 0 </rpyOffset>
+          <frameName> ${name}_link </frameName>
+          <initialOrientationAsReference> false </initialOrientationAsReference>
+        </plugin>
+        <imu>
+          <!-- Linear acceleration noise -->
+          <linear_acceleration>
+            <x>
+              <noise type="gaussian">
+                <mean> 0.0 </mean>
+                <stddev> ${accel_noise} </stddev>
+                <bias_mean> 0.0 </bias_mean>
+                <bias_stddev> 0.0 </bias_stddev>
+                <dynamic_bias_stddev> 0.0 </dynamic_bias_stddev>
+                <dynamic_bias_correlation_time> 0.0 </dynamic_bias_correlation_time>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean> 0.0 </mean>
+                <stddev> ${accel_noise} </stddev>
+                <bias_mean> 0.0 </bias_mean>
+                <bias_stddev> 0.0 </bias_stddev>
+                <dynamic_bias_stddev> 0.0 </dynamic_bias_stddev>
+                <dynamic_bias_correlation_time> 0.0 </dynamic_bias_correlation_time>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean> 0.0 </mean>
+                <stddev> ${accel_noise} </stddev>
+                <bias_mean> 0.0 </bias_mean>
+                <bias_stddev> 0.0 </bias_stddev>
+                <dynamic_bias_stddev> 0.0 </dynamic_bias_stddev>
+                <dynamic_bias_correlation_time> 0.0 </dynamic_bias_correlation_time>
+              </noise>
+            </z>
+          </linear_acceleration>
+
+          <!-- Angular velocity noise -->
+          <angular_velocity>
+            <x>
+              <noise type="gaussian">
+                <mean> 0.0 </mean>
+                <stddev> ${gyro_noise} </stddev>
+                <bias_mean> 0.0 </bias_mean>
+                <bias_stddev> 0.0 </bias_stddev>
+                <dynamic_bias_stddev> 0.0 </dynamic_bias_stddev>
+                <dynamic_bias_correlation_time> 0.0 </dynamic_bias_correlation_time>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean> 0.0 </mean>
+                <stddev> ${gyro_noise} </stddev>
+                <bias_mean> 0.0 </bias_mean>
+                <bias_stddev> 0.0 </bias_stddev>
+                <dynamic_bias_stddev> 0.0 </dynamic_bias_stddev>
+                <dynamic_bias_correlation_time> 0.0 </dynamic_bias_correlation_time>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean> 0.0 </mean>
+                <stddev> ${gyro_noise} </stddev>
+                <bias_mean> 0.0 </bias_mean>
+                <bias_stddev> 0.0 </bias_stddev>
+                <dynamic_bias_stddev> 0.0 </dynamic_bias_stddev>
+                <dynamic_bias_correlation_time> 0.0 </dynamic_bias_correlation_time>
+              </noise>
+            </z>
+          </angular_velocity>
+
+        </imu>
+        <pose> 0 0 0 0 0 0 </pose>
+      </sensor>
+    </gazebo>
+
+  </xacro:macro>
+</robot>
