@@ -40,8 +40,8 @@
             <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia#List_of_3D_inertia_tensors-->
             <mass value="${cart_mass}"/>
             <inertia ixx="${cart_mass*(cart_height*cart_height+cart_width*cart_width)/12}" ixy="0.0" ixz="0.0"
-                     iyy="${cart_mass*(cart_lenght*cart_lenght+cart_width*cart_width)/12}" iyz="0.0"
-                     izz="${cart_mass*(cart_lenght*cart_lenght+cart_height*cart_height)/12}" />
+                     iyy="${cart_mass*(cart_lenght*cart_lenght+cart_height*cart_height)/12}" iyz="0.0"
+                     izz="${cart_mass*(cart_lenght*cart_lenght+cart_width*cart_width)/12}" />
           </inertial>
         </link>
     </xacro:macro>

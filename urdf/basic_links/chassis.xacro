@@ -28,8 +28,8 @@
             <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia#List_of_3D_inertia_tensors-->
             <mass value="${chassis_mass}"/>
             <inertia ixx="${chassis_mass*(chassis_height*chassis_height+chassis_width*chassis_width)/12}" ixy="0.0" ixz="0.0"
-                     iyy="${chassis_mass*(chassis_length*chassis_length+chassis_width*chassis_width)/12}" iyz="0.0"
-                     izz="${chassis_mass*(chassis_length*chassis_length+chassis_height*chassis_height)/12}" />
+                     iyy="${chassis_mass*(chassis_length*chassis_length+chassis_height*chassis_height)/12}" iyz="0.0"
+                     izz="${chassis_mass*(chassis_length*chassis_length+chassis_width*chassis_width)/12}" />
           </inertial>
         </link>
     </xacro:macro>
