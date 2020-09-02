@@ -7,7 +7,6 @@
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/chassis.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/cart.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/wheel.xacro"/>
-  <xacro:include filename="$(find agribot_description)/urdf/agribot.gazebo"/>
 
   <xacro:arg name="perception_sensors" default="false" />
 
@@ -77,6 +76,20 @@
   </joint>
 
   <xacro:agribot_wheel name="back_right_wheel_link" />
+
+ <gazebo>
+    <plugin name="agribot_controller" filename="libgazebo_ros_agribot.so">
+      <wheelSeparation> ${chassis_width+wheel_width} </wheelSeparation>
+      <wheelRadius> ${wheel_radius} </wheelRadius>
+      <chasisLength>${chassis_length-2*wheel_radius}</chasisLength>
+      <broadcastTF>false</broadcastTF> <!-- set this paremeter to false when localization is used-->
+      <odometryTopic>/agribot/odometry</odometryTopic>
+      <encoderTopic>/agribot/encoder/caterpillar</encoderTopic>
+      <odometryFrame>odom</odometryFrame>
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+      <updateRate>10.000000</updateRate>
+    </plugin>
+  </gazebo>
 
   <!-- Load basic sensors -->
   <xacro:basic_sensors/>

@@ -1,7 +1,7 @@
 <robot name="wheel" xmlns:xacro="http://ros.org/wiki/xacro">
     <xacro:property name="wheel_width" value="0.2" />
-    <xacro:property name="wheel_radius" value="0.2" />
-    <xacro:property name="wheel_mass" value="500" />
+    <xacro:property name="wheel_radius" value="0.16" />
+    <xacro:property name="wheel_mass" value="50" />
 
     <xacro:macro name="agribot_wheel" params="name">
         <link name="${name}">
@@ -29,6 +29,13 @@
                      izz="${wheel_mass*(wheel_radius*wheel_radius)/2}" />
           </inertial>
         </link>
+
+        <gazebo reference="${name}">
+          <mu1>0.1</mu1>
+          <mu2>0.1</mu2>
+          <kp>5e9</kp>
+          <kd>10.0</kd>
+        </gazebo>
     </xacro:macro>
 
 </robot>
