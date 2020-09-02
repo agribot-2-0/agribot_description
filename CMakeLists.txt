@@ -16,6 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf
   hector_gazebo_plugins
   velodyne_gazebo_plugins
+  agribot_msgs
 )
 
 ################################################
