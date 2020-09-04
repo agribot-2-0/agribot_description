@@ -1,10 +1,15 @@
 <launch>
 
-  <include file="$(find agribot_description)/launch/robot_state_publisher.xml"/>
+  <arg name="perception_sensors" default="false" />
 
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
-      <param name="use_gui" value="True"/>
+  <param name="robot_description" command="$(find xacro)/xacro '$(find agribot_description)/urdf/agribot.urdf.xacro'
+    perception_sensors:=$(arg perception_sensors)" />
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+    <param name="use_tf_static" value="false" />
   </node>
+
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
   
   <node pkg="rviz" type="rviz" name="rviz"
         args="-d $(find agribot_description)/rviz/model.rviz"
