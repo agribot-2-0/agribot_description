@@ -1,5 +1,5 @@
 <robot name="wheel" xmlns:xacro="http://ros.org/wiki/xacro">
-    <xacro:property name="wheel_width" value="0.2" />
+    <xacro:property name="wheel_width" value="0.025" />
     <xacro:property name="wheel_radius" value="0.16" />
     <xacro:property name="wheel_mass" value="50" />
 
