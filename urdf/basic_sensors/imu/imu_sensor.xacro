@@ -42,8 +42,6 @@
                 <stddev> ${accel_noise} </stddev>
                 <bias_mean> 0.0 </bias_mean>
                 <bias_stddev> 0.0 </bias_stddev>
-                <dynamic_bias_stddev> 0.0 </dynamic_bias_stddev>
-                <dynamic_bias_correlation_time> 0.0 </dynamic_bias_correlation_time>
               </noise>
             </x>
             <y>
@@ -52,8 +50,6 @@
                 <stddev> ${accel_noise} </stddev>
                 <bias_mean> 0.0 </bias_mean>
                 <bias_stddev> 0.0 </bias_stddev>
-                <dynamic_bias_stddev> 0.0 </dynamic_bias_stddev>
-                <dynamic_bias_correlation_time> 0.0 </dynamic_bias_correlation_time>
               </noise>
             </y>
             <z>
@@ -62,8 +58,6 @@
                 <stddev> ${accel_noise} </stddev>
                 <bias_mean> 0.0 </bias_mean>
                 <bias_stddev> 0.0 </bias_stddev>
-                <dynamic_bias_stddev> 0.0 </dynamic_bias_stddev>
-                <dynamic_bias_correlation_time> 0.0 </dynamic_bias_correlation_time>
               </noise>
             </z>
           </linear_acceleration>
@@ -76,8 +70,6 @@
                 <stddev> ${gyro_noise} </stddev>
                 <bias_mean> 0.0 </bias_mean>
                 <bias_stddev> 0.0 </bias_stddev>
-                <dynamic_bias_stddev> 0.0 </dynamic_bias_stddev>
-                <dynamic_bias_correlation_time> 0.0 </dynamic_bias_correlation_time>
               </noise>
             </x>
             <y>
@@ -86,8 +78,6 @@
                 <stddev> ${gyro_noise} </stddev>
                 <bias_mean> 0.0 </bias_mean>
                 <bias_stddev> 0.0 </bias_stddev>
-                <dynamic_bias_stddev> 0.0 </dynamic_bias_stddev>
-                <dynamic_bias_correlation_time> 0.0 </dynamic_bias_correlation_time>
               </noise>
             </y>
             <z>
@@ -96,8 +86,6 @@
                 <stddev> ${gyro_noise} </stddev>
                 <bias_mean> 0.0 </bias_mean>
                 <bias_stddev> 0.0 </bias_stddev>
-                <dynamic_bias_stddev> 0.0 </dynamic_bias_stddev>
-                <dynamic_bias_correlation_time> 0.0 </dynamic_bias_correlation_time>
               </noise>
             </z>
           </angular_velocity>
