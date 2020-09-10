@@ -1,6 +1,6 @@
 <robot name="sensors" xmlns:xacro="http://ros.org/wiki/xacro">
 
-    <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/imu/imu.xacro"/>
+    <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/imu/imu_sensor.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/gps/gps.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/inclinometer/inclinometer.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/magnetometer/magnetometer.xacro"/>
@@ -13,20 +13,16 @@
         <xacro:property name="reference_heading"    value="158.5507847682035"/>
         <xacro:property name="reference_altitude"   value="193.7327916698572"/>
 
-        <xacro:imu>
+        <xacro:imu_sensor>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <xacro:property name="parent"               value="chassis_link"/>
-            <xacro:property name="robot_namespace"      value="agribot"/>
-            <xacro:property name="topic"                value="imu/raw"/>
+            <xacro:property name="topic"                value="agribot/imu/raw"/>
             <xacro:property name="name"                 value="imu"/>
             <xacro:property name="hz"                   value="10.0"/>
 
-            <xacro:property name="accel_noise"          value="0.001"/>
-            <xacro:property name="gyro_noise"           value="0.001"/>
-            <xacro:property name="yaw_noise"            value="0.05"/>
-            <xacro:property name="yaw_drift"            value="0.01"/>
-            <xacro:property name="yaw_drift_freq"       value="1.0"/>
-        </xacro:imu>
+            <xacro:property name="accel_noise"          value="0.0"/>
+            <xacro:property name="gyro_noise"           value="0.0"/>
+        </xacro:imu_sensor>
 
         <xacro:gps>
             <origin xyz="0 0 0" rpy="0 0 0" />

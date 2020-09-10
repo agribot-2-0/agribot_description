@@ -1,7 +1,7 @@
-<robot name="imu" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="legacy_imu" xmlns:xacro="http://www.ros.org/wiki/xacro">
   
     <!-- Basic sonar macro  -->
-    <xacro:macro  name="imu" 
+    <xacro:macro  name="legacy_imu" 
                   params="*origin
                           parent:=^
                           name:=^
@@ -14,7 +14,7 @@
                           yaw_drift:=^
                           yaw_drift_freq:=^
                           ">
-  
+
         <joint name="${name}_joint" type="fixed">
             <xacro:insert_block name="origin" />
             <parent link="${parent}"/>
@@ -56,4 +56,3 @@
         </gazebo>
     </xacro:macro>
 </robot>
-  
