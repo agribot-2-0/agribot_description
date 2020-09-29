@@ -10,6 +10,7 @@
                             topic:=^ 
                             hz:=^
                             visualize:=^
+                            perception_plugins:=^
                             ">
 
         <!-- Call basic velodyne lidar and pass arguments -->
@@ -32,6 +33,7 @@
             <xacro:property name="min_vertical_angle"       value="-${12.55*M_PI/180.0}"/>
             <xacro:property name="max_vertical_angle"       value="${12.55*M_PI/180.0}"/>
             <xacro:property name="resolution"               value="0.001"/>
+            <xacro:property name="perception_plugins_arg"       value="${perception_plugins}"/>
         </xacro:velodyne>
     </xacro:macro>
 </robot>

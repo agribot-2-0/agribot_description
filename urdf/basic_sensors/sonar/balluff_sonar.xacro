@@ -10,6 +10,7 @@
                             topic:=^ 
                             hz:=^
                             visualize:=^
+                            perception_plugins:=^
                             ">
 
         <!-- Call basic sonar and pass arguments -->
@@ -38,6 +39,7 @@
             <!-- <xacro:property name="max_vertical_angle"       value="${5.9*M_PI/180.0}"/> -->
             
             <xacro:property name="resolution"               value="0.0018"/>
+            <xacro:property name="perception_plugins_arg"  value="${perception_plugins}"/>
         </xacro:sonar>
     </xacro:macro>
 </robot>
