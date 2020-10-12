@@ -16,6 +16,7 @@
                           min_vertical_angle:=^
                           max_vertical_angle:=^
                           resolution:=^
+                          perception_plugins_arg:=^
                           ">
   
         <joint name="${name}_joint" type="fixed">
@@ -25,42 +26,43 @@
         </joint>
         <link name="${name}_link"/>
 
+        <xacro:if value="${perception_plugins_arg}">
+            <gazebo reference="${name}_link">
+                <sensor type="ray" name="${name}">
+                    <pose>0 0 0 0 0 0</pose>
+                    <visualize>${visualize}</visualize>
+                    <update_rate>${hz}</update_rate>
+                    <always_on>true</always_on>
+                    <ray>
+                    <scan>
+                        <horizontal>
+                            <samples>10</samples>
+                            <resolution>1</resolution>
+                            <min_angle>${min_horizontal_angle}</min_angle>
+                            <max_angle>${max_horizontal_angle}</max_angle>
+                        </horizontal>
+                        <vertical>
+                            <samples>10</samples>
+                            <resolution>1</resolution>
+                            <min_angle>${min_vertical_angle}</min_angle>
+                            <max_angle>${max_vertical_angle}</max_angle>
+                        </vertical>
+                    </scan>
+                    <range>
+                        <min>${min_range}</min>
+                        <max>${max_range}</max>
+                        <resolution>${resolution}</resolution>
+                    </range>
+                    </ray>
 
-        <gazebo reference="${name}_link">
-            <sensor type="ray" name="${name}">
-                <pose>0 0 0 0 0 0</pose>
-                <visualize>${visualize}</visualize>
-                <update_rate>${hz}</update_rate>
-                <always_on>true</always_on>
-                <ray>
-                <scan>
-                    <horizontal>
-                        <samples>10</samples>
-                        <resolution>1</resolution>
-                        <min_angle>${min_horizontal_angle}</min_angle>
-                        <max_angle>${max_horizontal_angle}</max_angle>
-                    </horizontal>
-                    <vertical>
-                        <samples>10</samples>
-                        <resolution>1</resolution>
-                        <min_angle>${min_vertical_angle}</min_angle>
-                        <max_angle>${max_vertical_angle}</max_angle>
-                    </vertical>
-                </scan>
-                <range>
-                    <min>${min_range}</min>
-                    <max>${max_range}</max>
-                    <resolution>${resolution}</resolution>
-                </range>
-                </ray>
+                    <plugin name="gazebo_ros_front_sonar_controller" filename="libhector_gazebo_ros_sonar.so">
+                        <topicName>${topic}</topicName>
+                        <frameId>${name}_link</frameId>
+                        <gaussianNoise>${noise}</gaussianNoise>
+                    </plugin>
+                </sensor>
+            </gazebo>
+        </xacro:if>
 
-                <plugin name="gazebo_ros_front_sonar_controller" filename="libhector_gazebo_ros_sonar.so">
-                    <topicName>${topic}</topicName>
-                    <frameId>${name}_link</frameId>
-                    <gaussianNoise>${noise}</gaussianNoise>
-                </plugin>
-            </sensor>
-        </gazebo>
     </xacro:macro>
 </robot>
-  
