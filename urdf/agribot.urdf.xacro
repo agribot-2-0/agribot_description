@@ -92,6 +92,10 @@
     </plugin>
   </gazebo>
 
+  <gazebo>
+    <plugin name="weather_station" filename="libgazebo_weather.so">
+    </plugin>
+  </gazebo>
   <!-- Load basic sensors -->
   <xacro:basic_sensors/>
 
