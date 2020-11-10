@@ -2,7 +2,7 @@
  * Copyright (C) 2020 Agribot. All rights reserved.
  */
 
-#include <agribot_msgs/AgribotCaterpillarWheels.h>
+#include <agribot_msgs/AgribotCaterpillarWheelsRotation.h>
 #include <ros/ros.h>
 #include <sensor_msgs/JointState.h>
 #include <std_msgs/Float32.h>
@@ -14,7 +14,7 @@
 #define DEG_TO_RAD (PI / 180)
 
 double dFrontCartAngle, dBackCartAngle = 0.0;
-agribot_msgs::AgribotCaterpillarWheels caterpilarWheels;
+agribot_msgs::AgribotCaterpillarWheelsRotation caterpilarWheels;
 bool bDataReceived = false;
 
 void encoderFrontCallback(const std_msgs::Float32 front_cart_msg)
@@ -29,7 +29,7 @@ void encoderBackCallback(const std_msgs::Float32 back_cart_msg)
   bDataReceived = true;
 }
 
-void caterpillarWheelsCallback(const agribot_msgs::AgribotCaterpillarWheels msg)
+void caterpillarWheelsCallback(const agribot_msgs::AgribotCaterpillarWheelsRotation msg)
 {
   caterpilarWheels = msg;
   bDataReceived = true;
