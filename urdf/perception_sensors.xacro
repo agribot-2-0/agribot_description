@@ -8,7 +8,9 @@
   <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/sonar/bosch_sonar.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/sonar/balluff_sonar.xacro"/>
   
-  <xacro:macro name="perception_sensors">
+  <xacro:macro  name="perception_sensors"
+              params="perception_plugins_arg:=^
+                     ">
 
     <!-- Lidars -->
     <!-- <xacro:velodyne16>
@@ -36,6 +38,7 @@
       <xacro:property name="name"                 value="bumper_front_lidar"/>
       <xacro:property name="hz"                   value="1.0"/>
       <xacro:property name="visualize"            value="false"/>
+      <xacro:property name="perception_plugins"   value="${perception_plugins_arg}"/>
     </xacro:livox_horizon>
 
     <!-- <xacro:robosense_bpearl>
@@ -56,6 +59,7 @@
       <xacro:property name="name"                 value="bumper_front_sonar_left_side"/>
       <xacro:property name="hz"                   value="10.0"/>
       <xacro:property name="visualize"            value="true"/>
+      <xacro:property name="perception_plugins"   value="${perception_plugins_arg}"/>
     </xacro:bosch_sonar>
 
     <xacro:bosch_sonar>
@@ -65,6 +69,7 @@
       <xacro:property name="name"                 value="bumper_front_sonar_left"/>
       <xacro:property name="hz"                   value="10.0"/>
       <xacro:property name="visualize"            value="true"/>
+      <xacro:property name="perception_plugins"   value="${perception_plugins_arg}"/>
     </xacro:bosch_sonar>
 
     <xacro:balluff_sonar>
@@ -83,6 +88,7 @@
       <xacro:property name="name"                 value="bumper_front_sonar_right"/>
       <xacro:property name="hz"                   value="10.0"/>
       <xacro:property name="visualize"            value="true"/>
+      <xacro:property name="perception_plugins"   value="${perception_plugins_arg}"/>
     </xacro:bosch_sonar>
 
     <xacro:bosch_sonar>
@@ -92,6 +98,7 @@
       <xacro:property name="name"                 value="bumper_front_sonar_right_side"/>
       <xacro:property name="hz"                   value="10.0"/>
       <xacro:property name="visualize"            value="true"/>
+      <xacro:property name="perception_plugins"   value="${perception_plugins_arg}"/>
     </xacro:bosch_sonar>
 
 
@@ -103,6 +110,7 @@
       <xacro:property name="name"                 value="agribot_sonar_left_front"/>
       <xacro:property name="hz"                   value="10.0"/>
       <xacro:property name="visualize"            value="true"/>
+      <xacro:property name="perception_plugins"   value="${perception_plugins_arg}"/>
     </xacro:bosch_sonar>
 
     <xacro:bosch_sonar>
@@ -112,6 +120,7 @@
       <xacro:property name="name"                 value="agribot_sonar_left_back"/>
       <xacro:property name="hz"                   value="10.0"/>
       <xacro:property name="visualize"            value="true"/>
+      <xacro:property name="perception_plugins"   value="${perception_plugins_arg}"/>
     </xacro:bosch_sonar>
 
 
@@ -123,6 +132,7 @@
       <xacro:property name="name"                 value="agribot_sonar_right_front"/>
       <xacro:property name="hz"                   value="10.0"/>
       <xacro:property name="visualize"            value="true"/>
+      <xacro:property name="perception_plugins"   value="${perception_plugins_arg}"/>
     </xacro:bosch_sonar>
 
     <xacro:bosch_sonar>
@@ -132,6 +142,7 @@
       <xacro:property name="name"                 value="agribot_sonar_right_back"/>
       <xacro:property name="hz"                   value="10.0"/>
       <xacro:property name="visualize"            value="true"/>
+      <xacro:property name="perception_plugins"   value="${perception_plugins_arg}"/>
     </xacro:bosch_sonar>
 
 
@@ -143,6 +154,7 @@
       <xacro:property name="name"                 value="bumper_back_sonar_left_side"/>
       <xacro:property name="hz"                   value="10.0"/>
       <xacro:property name="visualize"            value="true"/>
+      <xacro:property name="perception_plugins"   value="${perception_plugins_arg}"/>
     </xacro:bosch_sonar>
 
     <xacro:bosch_sonar>
@@ -152,6 +164,7 @@
       <xacro:property name="name"                 value="bumper_back_sonar_left"/>
       <xacro:property name="hz"                   value="10.0"/>
       <xacro:property name="visualize"            value="true"/>
+      <xacro:property name="perception_plugins"   value="${perception_plugins_arg}"/>
     </xacro:bosch_sonar>
 
     <xacro:balluff_sonar>
@@ -161,6 +174,7 @@
       <xacro:property name="name"                 value="bumper_back_sonar_center"/>
       <xacro:property name="hz"                   value="10.0"/>
       <xacro:property name="visualize"            value="true"/>
+      <xacro:property name="perception_plugins"   value="${perception_plugins_arg}"/>
     </xacro:balluff_sonar>
 
     <xacro:bosch_sonar>
@@ -170,6 +184,7 @@
       <xacro:property name="name"                 value="bumper_back_sonar_right"/>
       <xacro:property name="hz"                   value="10.0"/>
       <xacro:property name="visualize"            value="true"/>
+      <xacro:property name="perception_plugins"   value="${perception_plugins_arg}"/>
     </xacro:bosch_sonar>
 
     <xacro:bosch_sonar>
@@ -179,6 +194,7 @@
       <xacro:property name="name"                 value="bumper_back_sonar_right_side"/>
       <xacro:property name="hz"                   value="10.0"/>
       <xacro:property name="visualize"            value="true"/>
+      <xacro:property name="perception_plugins"   value="${perception_plugins_arg}"/>
     </xacro:bosch_sonar>
 
   </xacro:macro>

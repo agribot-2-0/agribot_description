@@ -9,6 +9,7 @@
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/cart.xacro"/>
 
   <xacro:arg name="perception_sensors" default="false" />
+  <xacro:arg name="perception_plugins" default="true" />
 
   
   <link name="base_footprint"/>
@@ -91,6 +92,10 @@
     </plugin>
   </gazebo>
 
+  <gazebo>
+    <plugin name="weather_station" filename="libgazebo_weather.so">
+    </plugin>
+  </gazebo>
   <!-- Load basic sensors -->
   <xacro:basic_sensors/>
 
@@ -99,7 +104,9 @@
 
   <!-- Load perception sensors -->
   <xacro:if value="$(arg perception_sensors)">
-    <xacro:perception_sensors/>
+    <xacro:perception_sensors>
+      <xacro:property name="perception_plugins_arg" value="$(arg perception_plugins)"/>
+    </xacro:perception_sensors>
   </xacro:if>
 
 </robot>
