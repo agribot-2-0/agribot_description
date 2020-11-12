@@ -7,6 +7,7 @@
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/wheel.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/chassis.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/cart.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl.xacro"/>
 
   <xacro:arg name="perception_sensors" default="false" />
   <xacro:arg name="perception_plugins" default="true" />
@@ -77,6 +78,15 @@
   </joint>
 
   <xacro:agribot_wheel name="back_right_wheel_link" />
+
+  <joint name="back_tpl_joint" type="fixed">
+    <parent link="back_cart_link"/>
+    <child link="back_tpl_link"/>
+    <origin xyz="0.0 ${-(cart_width+wheel_width)} ${-cart_height}" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <xacro:agribot_tpl name="back_tpl_link" />
 
  <gazebo>
     <plugin name="agribot_controller" filename="libgazebo_ros_agribot.so">
