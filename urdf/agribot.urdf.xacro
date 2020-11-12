@@ -12,7 +12,7 @@
   <xacro:arg name="perception_sensors" default="false" />
   <xacro:arg name="perception_plugins" default="true" />
 
-  
+
   <link name="base_footprint"/>
 
   <joint name="chassis_joint" type="fixed">
@@ -61,6 +61,15 @@
 
   <xacro:agribot_cart name="back_cart_link" />
 
+  <joint name="front_tpl_joint" type="fixed">
+    <parent link="front_cart_link"/>
+    <child link="front_tpl_link"/>
+    <origin xyz="${(cart_lenght+tpl_len)/2} 0.0 -0.02" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <xacro:agribot_tpl_base name="front_tpl_link" />
+
   <joint name="back_left_wheel_joint" type="continuous">
     <parent link="back_cart_link"/>
     <child link="back_left_wheel_link"/>
@@ -82,11 +91,20 @@
   <joint name="back_tpl_joint" type="fixed">
     <parent link="back_cart_link"/>
     <child link="back_tpl_link"/>
-    <origin xyz="0.0 ${-(cart_width+wheel_width)} ${-cart_height}" rpy="0 0 0"/>
+    <origin xyz="${-(cart_lenght+tpl_len)/2} 0.0 -0.02" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
-  <xacro:agribot_tpl name="back_tpl_link" />
+  <xacro:agribot_tpl_base name="back_tpl_link" />
+
+  <joint name="back_tpl_cyl_joint" type="fixed">
+    <parent link="back_tpl_link"/>
+    <child link="back_tpl_cyl_link"/>
+    <origin xyz="${-(cart_lenght+tpl_len)/2} 0.0 -0.02" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <xacro:agribot_tpl_cylinder name="back_tpl_cyl_link" />
 
  <gazebo>
     <plugin name="agribot_controller" filename="libgazebo_ros_agribot.so">

@@ -1,32 +1,86 @@
 <robot name="tpl" xmlns:xacro="http://ros.org/wiki/xacro">
-    <xacro:property name="tpl_width" value="0.25" />
-    <xacro:property name="tpl_mass" value="500" />
-    <xacro:property name="tpl_radius" value="500" />
+    <xacro:property name="tpl_len" value="0.7" />
+    <xacro:property name="tpl_wid" value="0.2" />
+    <xacro:property name="tpl_hei" value="0.1" />
+    <xacro:property name="tpl_mass" value="300" />
+    <xacro:property name="cyl_width" value="1.0" />
+    <xacro:property name="cyl_radius" value="0.2" />
 
-        <xacro:macro name="agribot_tpl" params="name">
-        <link name="${name}">
-          <visual>
-            <geometry>
-              <cylinder length="${tpl_width}" radius="${tpl_radius}"/>
-            </geometry>
-          </visual>
+    <xacro:macro name="agribot_tpl_base" params="name">
+      <link name="${name}">
+        <visual>
+          <xacro:if value="${name == 'back_tpl_link'}">
+            <material name="white"/>
+          </xacro:if>
+          <xacro:if value="${name == 'front_tpl_link'}">
+            <material name="green"/>
+          </xacro:if>
+          <geometry>
+            <box size="${tpl_len} ${tpl_wid} ${tpl_hei}"/>
+          </geometry>
+        </visual>
 
-          <collision>
-            <geometry>
-               <cylinder length="${tpl_width}" radius="${tpl_radius}"/>
-            </geometry>
-          </collision>
+        <collision>
+          <xacro:if value="${name == 'back_tpl_link'}">
+            <material name="white"/>
+          </xacro:if>
+          <xacro:if value="${name == 'front_tpl_link'}">
+            <material name="green"/>
+          </xacro:if>
+          <geometry>
+            <box size="${tpl_len} ${tpl_wid} ${tpl_hei}"/>
+          </geometry>
+        </collision>
 
-          <inertial>
-            <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
-            <!-- Moments of inertia taken from-->
-            <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia#List_of_3D_inertia_tensors-->
-            <mass value="${tpl_mass}"/>
-            <inertia ixx="0.0" ixy="0.0" ixz="0.0"
-                     iyy="0.0" iyz="0.0"
-                     izz="0.0}" />
-          </inertial>
-        </link>
+        <inertial>
+          <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+          <!-- Moments of inertia taken from-->
+          <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia#List_of_3D_inertia_tensors-->
+          <mass value="${tpl_mass}"/>
+          <inertia ixx="0.0" ixy="0.0" ixz="0.0"
+                   iyy="0.0" iyz="0.0"
+                   izz="0.0" />
+        </inertial>
+      </link>
     </xacro:macro>
+
+    <xacro:macro name="agribot_tpl_cylinder" params="name">
+      <link name="${name}">
+        <visual>
+          <xacro:if value="${name == 'back_tpl_link'}">
+            <material name="white"/>
+          </xacro:if>
+          <xacro:if value="${name == 'front_tpl_link'}">
+            <material name="green"/>
+          </xacro:if>
+          <geometry>
+            <cylinder length="${cyl_width}" radius="${cyl_radius}"/>
+          </geometry>
+        </visual>
+
+        <collision>
+          <xacro:if value="${name == 'back_tpl_link'}">
+            <material name="white"/>
+          </xacro:if>
+          <xacro:if value="${name == 'front_tpl_link'}">
+            <material name="green"/>
+          </xacro:if>
+          <geometry>
+            <box size="${tpl_len} ${tpl_wid} ${tpl_hei}"/>
+          </geometry>
+        </collision>
+
+        <inertial>
+          <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+          <!-- Moments of inertia taken from-->
+          <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia#List_of_3D_inertia_tensors-->
+          <mass value="${tpl_mass}"/>
+          <inertia ixx="0.0" ixy="0.0" ixz="0.0"
+                   iyy="0.0" iyz="0.0"
+                   izz="0.0" />
+        </inertial>
+      </link>
+    </xacro:macro>
+
 
 </robot>
