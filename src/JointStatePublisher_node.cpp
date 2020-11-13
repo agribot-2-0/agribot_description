@@ -44,7 +44,7 @@ int main(int argc, char** argv)
   ros::Subscriber front_cart_sub = n.subscribe("/agribot/encoder/cart/front", 1000, encoderFrontCallback);
   ros::Subscriber back_cart_sub = n.subscribe("/agribot/encoder/cart/back", 1000, encoderBackCallback);
   ros::Subscriber catterpilar_wheels_sub =
-      n.subscribe("agribot/encoder/caterpillar/wheels", 1000, caterpillarWheelsCallback);
+      n.subscribe("agribot/encoder/caterpillar/rotations", 1000, caterpillarWheelsCallback);
   sensor_msgs::JointState joint_state;
 
   while (ros::ok())
