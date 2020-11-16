@@ -6,15 +6,12 @@
     <xacro:property name="tpl_cyl_width" value="0.45" />
     <xacro:property name="tpl_cyl_radius" value="${tpl_base_hei/2}" />
     <xacro:property name="tpl_cyl_mass" value="50" />
-    
     <xacro:property name="tpl_rev_hit_base_len" value="0.3" />
     <xacro:property name="tpl_rev_hit_base_wid" value="${2*tpl_base_hei}" />
     <xacro:property name="tpl_rev_hit_base_hei" value="0.05" />
-
     <xacro:property name="tpl_rev_hit_effector_len" value="0.5" />
     <xacro:property name="tpl_rev_hit_effector_wid" value="${2*tpl_base_hei}" />
     <xacro:property name="tpl_rev_hit_effector_hei" value="0.05" />
-    
     <xacro:property name="tpl_upper_hit_base_len" value="0.66" />
     <xacro:property name="tpl_upper_hit_base_wid" value="0.3" />
     <xacro:property name="tpl_upper_hit_base_hei" value="0.05" />
@@ -59,9 +56,9 @@
           <!-- Moments of inertia taken from-->
           <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia#List_of_3D_inertia_tensors-->
           <mass value="${tpl_base_mass}"/>
-          <inertia ixx="0.0" ixy="0.0" ixz="0.0"
-                   iyy="0.0" iyz="0.0"
-                   izz="0.0" />
+          <inertia ixx="${tpl_base_mass*(tpl_base_hei*tpl_base_hei+tpl_base_wid*tpl_base_wid)/12}" ixy="0.0" ixz="0.0"
+                   iyy="${tpl_base_mass*(tpl_base_len*tpl_base_len+tpl_base_hei*tpl_base_hei)/12}" iyz="0.0"
+                   izz="${tpl_base_mass*(tpl_base_len*tpl_base_len+tpl_base_wid*tpl_base_wid)/12}" />
         </inertial>
       </link>
     </xacro:macro>
@@ -98,9 +95,9 @@
           <!-- Moments of inertia taken from-->
           <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia#List_of_3D_inertia_tensors-->
           <mass value="${tpl_cyl_mass}"/>
-          <inertia ixx="0.0" ixy="0.0" ixz="0.0"
-                   iyy="0.0" iyz="0.0"
-                   izz="0.0" />
+            <inertia ixx="${tpl_cyl_mass*(3*tpl_cyl_radius*tpl_cyl_radius+tpl_cyl_width*tpl_cyl_width)/12}" ixy="0.0" ixz="0.0"
+                     iyy="${tpl_cyl_mass*(3*tpl_cyl_radius*tpl_cyl_radius+tpl_cyl_width*tpl_cyl_width)/12}" iyz="0.0"
+                     izz="${tpl_cyl_mass*(tpl_cyl_radius*tpl_cyl_radius)/2}" />
         </inertial>
       </link>
     </xacro:macro>
