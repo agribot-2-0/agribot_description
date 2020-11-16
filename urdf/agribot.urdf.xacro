@@ -104,7 +104,7 @@
     <parent link="back_tpl_base_link"/>
     <child link="back_tpl_cylinder_link"/>
     <origin xyz="${-(tpl_base_len)/2} 0.0 0.0" rpy="${M_PI/2} ${-M_PI/5} 0"/>
-    <limit lower="${-60*M_PI/180}" upper="${15*M_PI/180}"  effort="1000.0" velocity="1000.0"/>
+    <limit lower="${-90*M_PI/180}" upper="${15*M_PI/180}"  effort="1000.0" velocity="1000.0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
@@ -149,7 +149,7 @@
   <joint name="back_tpl_bases_joint" type="fixed">
     <parent link="back_tpl_base_link"/>
     <child link="back_tpl_up_hit_base_link"/>
-    <origin xyz="${-(tpl_base_len)/2} 0.0 ${(tpl_upper_hit_base_len)/2}" rpy="0 ${M_PI/2} 0"/>
+    <origin xyz="${-0.82*tpl_base_len} 0.0 ${0.8*(tpl_upper_hit_base_len)/2}" rpy="0 ${M_PI/3.15} 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
@@ -158,7 +158,7 @@
   <joint name="back_tpl_upper_hitch_revolute_joint" type="revolute">
     <parent link="back_tpl_up_hit_base_link"/>
     <child link="back_tpl_upper_hitch_cylinder_link"/>
-    <origin xyz="${-(tpl_base_len)/2} 0.0 0.0" rpy="${M_PI/2} ${-M_PI/18} 0"/>
+    <origin xyz="${-tpl_upper_hit_base_len/2} 0.0 0.0" rpy="${M_PI/2} ${-M_PI/18} 0"/>
     <limit lower="${-10*M_PI/180}" upper="${80*M_PI/180}"  effort="1000.0" velocity="1000.0"/>
     <axis xyz="0 0 1"/>
   </joint>

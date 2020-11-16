@@ -15,18 +15,18 @@
     <xacro:property name="tpl_rev_hit_effector_wid" value="${2*tpl_base_hei}" />
     <xacro:property name="tpl_rev_hit_effector_hei" value="0.05" />
     
-    <xacro:property name="tpl_upper_hit_base_len" value="0.7" />
-    <xacro:property name="tpl_upper_hit_base_wid" value="0.2" />
-    <xacro:property name="tpl_upper_hit_base_hei" value="0.1" />
-    <xacro:property name="tpl_upper_hit_base_cyl_width" value="0.2" />
-    <xacro:property name="tpl_upper_hit_base_cyl_radius" value="0.05" />
+    <xacro:property name="tpl_upper_hit_base_len" value="0.66" />
+    <xacro:property name="tpl_upper_hit_base_wid" value="0.3" />
+    <xacro:property name="tpl_upper_hit_base_hei" value="0.05" />
+    <xacro:property name="tpl_upper_hit_base_cyl_width" value="${tpl_upper_hit_base_wid}" />
+    <xacro:property name="tpl_upper_hit_base_cyl_radius" value="${tpl_cyl_radius}" />
     <xacro:property name="tpl_upper_hit_base_cyl_mass" value="10" />
     <xacro:property name="tpl_upper_hitch_prism_base_len" value="0.5" />
-    <xacro:property name="tpl_upper_hitch_prism_base_wid" value="0.1" />
-    <xacro:property name="tpl_upper_hitch_prism_base_hei" value="0.1" />
+    <xacro:property name="tpl_upper_hitch_prism_base_wid" value="0.075" />
+    <xacro:property name="tpl_upper_hitch_prism_base_hei" value="0.075" />
     <xacro:property name="tpl_upper_hitch_prism_core_len" value="0.5" />
-    <xacro:property name="tpl_upper_hitch_prism_core_wid" value="0.075" />
-    <xacro:property name="tpl_upper_hitch_prism_core_hei" value="0.075" />
+    <xacro:property name="tpl_upper_hitch_prism_core_wid" value="0.05" />
+    <xacro:property name="tpl_upper_hitch_prism_core_hei" value="0.05" />
 
     <xacro:macro name="agribot_tpl_base" params="name">
       <link name="${name}">
