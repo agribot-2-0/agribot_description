@@ -1,0 +1,45 @@
+<robot name="tpl_assembled" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:property name="tpl_upper_hit_base_cyl_width" value="${tpl_upper_hit_base_wid}" />
+    <xacro:property name="tpl_upper_hit_base_cyl_radius" value="${tpl_cyl_radius}" />
+    <xacro:property name="tpl_upper_hit_base_cyl_mass" value="10" />
+
+    <xacro:macro name="agribot_tpl_upper_hitch_cylinder" params="name">
+      <link name="${name}">
+        <visual>
+          <xacro:if value="${name == 'back_tpl_upper_hitch_cylinder_link'}">
+            <material name="white"/>
+          </xacro:if>
+          <xacro:if value="${name == 'front_tpl_upper_hitch_cylinder_link'}">
+            <material name="green"/>
+          </xacro:if>
+          <geometry>
+            <cylinder length="${tpl_upper_hit_base_cyl_width}" radius="${tpl_upper_hit_base_cyl_radius}"/>
+          </geometry>
+        </visual>
+
+        <collision>
+          <xacro:if value="${name == 'back_tpl_upper_hitch_cylinder_link'}">
+            <material name="white"/>
+          </xacro:if>
+          <xacro:if value="${name == 'front_tpl_upper_hitch_cylinder_link'}">
+            <material name="green"/>
+          </xacro:if>
+          <geometry>
+            <cylinder length="${tpl_upper_hit_base_cyl_width}" radius="${tpl_upper_hit_base_cyl_radius}"/>
+          </geometry>
+        </collision>
+
+        <inertial>
+          <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+          <!-- Moments of inertia taken from-->
+          <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia#List_of_3D_inertia_tensors-->
+          <mass value="${tpl_upper_hit_base_cyl_mass}" />
+          <inertia ixx="${tpl_upper_hit_base_cyl_mass*(3*tpl_upper_hit_base_cyl_radius*tpl_upper_hit_base_cyl_radius+tpl_upper_hit_base_cyl_width*tpl_upper_hit_base_cyl_width)/12}" ixy="0.0" ixz="0.0"
+                   iyy="${tpl_upper_hit_base_cyl_mass*(3*tpl_upper_hit_base_cyl_radius*tpl_upper_hit_base_cyl_radius+tpl_upper_hit_base_cyl_width*tpl_upper_hit_base_cyl_width)/12}" iyz="0.0"
+                   izz="${tpl_upper_hit_base_cyl_mass*(tpl_upper_hit_base_cyl_radius*tpl_upper_hit_base_cyl_radius)/2}" />
+        </inertial>
+      </link>
+    </xacro:macro>
+
+
+</robot>

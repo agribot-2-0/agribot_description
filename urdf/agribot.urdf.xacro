@@ -7,7 +7,7 @@
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/wheel.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/chassis.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/cart.xacro"/>
-  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_assembled.xacro"/>
 
   <xacro:arg name="perception_sensors" default="false" />
   <xacro:arg name="perception_plugins" default="true" />

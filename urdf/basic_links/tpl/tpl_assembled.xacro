@@ -1,0 +1,11 @@
+<robot name="tpl_assembled" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_base.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_cyl.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_rev_hit_base.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_rev_hit_effector.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_upper_hit_base.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_upper_hit_base_cyl.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_upper_hitch_prism_base.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_upper_hitch_prism_core.xacro"/>
+
+</robot>
