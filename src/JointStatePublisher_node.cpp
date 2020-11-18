@@ -1,18 +1,23 @@
 /*
-* Copyright (C) 2020 Agribot. All rights reserved.
-*/
+ * Copyright (C) 2020 Agribot. All rights reserved.
+ */
 
 #include <ros/ros.h>
 #include <sensor_msgs/JointState.h>
 #include <std_msgs/Float32.h>
+#include <agribot_msgs/AgribotTool.h>
 
 #include <string>
 
 #define PI 3.14159265359
-#define RAD_TO_DEG (180/PI)
-#define DEG_TO_RAD (PI/180)
+#define RAD_TO_DEG (180 / PI)
+#define DEG_TO_RAD (PI / 180)
+constexpr int joints_cnt = 12;
 
 double dFrontCartAngle, dBackCartAngle = 0.0;
+double dFrontTplHeight, dFrontTplAngle = 0.0;
+double dBackTplHeight, dBackTplAngle = 0.0;
+
 bool bDataReceived = false;
 
 void encoderFrontCallback(const std_msgs::Float32 front_cart_msg)
@@ -26,45 +31,69 @@ void encoderBackCallback(const std_msgs::Float32 back_cart_msg)
   bDataReceived = true;
 }
 
+void tplFrontCallback(const agribot_msgs::AgribotTool front_tpl_config)
+{
+  dFrontTplAngle = front_tpl_config.tpl_angle;
+  dFrontTplHeight = -front_tpl_config.tpl_height;
+}
+
+void tplBackCallback(const agribot_msgs::AgribotTool back_tpl_config)
+{
+  dBackTplAngle = back_tpl_config.tpl_angle;
+  dBackTplHeight = -back_tpl_config.tpl_height;
+}
+
 int main(int argc, char** argv)
 {
-    ros::init(argc, argv, "state_publisher");
-    ros::NodeHandle n;
-    ros::Rate loop_rate(100);
-    ros::Publisher joint_pub =
-                        n.advertise<sensor_msgs::JointState>("joint_states", 1);
-    ros::Subscriber front_cart_sub = n.subscribe("/agribot/encoder/cart/front",
-                                                 1000, encoderFrontCallback);
-    ros::Subscriber back_cart_sub = n.subscribe("/agribot/encoder/cart/back",
-                                                1000, encoderBackCallback);
-    sensor_msgs::JointState joint_state;
+  ros::init(argc, argv, "state_publisher");
+  ros::NodeHandle n;
+  ros::Rate loop_rate(100);
+  ros::Publisher joint_pub = n.advertise<sensor_msgs::JointState>("joint_states", 1);
+  ros::Subscriber front_cart_sub = n.subscribe("/agribot/encoder/cart/front", 1000, encoderFrontCallback);
+  ros::Subscriber back_cart_sub = n.subscribe("/agribot/encoder/cart/back", 1000, encoderBackCallback);
+  ros::Subscriber front_tpl_sub = n.subscribe("agribot/control/tool/front", 1000, tplFrontCallback);
+  ros::Subscriber back_tpl_sub = n.subscribe("agribot/control/tool/back", 1000, tplBackCallback);
+  sensor_msgs::JointState joint_state;
 
-    while (ros::ok())
+  while (ros::ok())
+  {
+    if (bDataReceived)
     {
-        if (bDataReceived)
-        {
-            // update joint_state
-            joint_state.header.stamp = ros::Time::now();
-            joint_state.name.resize(6);
-            joint_state.position.resize(6);
-            joint_state.name[0] ="front_cart_joint";
-            joint_state.position[0] = dFrontCartAngle;
-            joint_state.name[1] ="back_cart_joint";
-            joint_state.position[1] = dBackCartAngle;
+      // update joint_state
+      joint_state.header.stamp = ros::Time::now();
+      joint_state.name.resize(joints_cnt);
+      joint_state.position.resize(joints_cnt);
+      joint_state.name[0] = "front_cart_joint";
+      joint_state.position[0] = dFrontCartAngle;
+      joint_state.name[1] = "back_cart_joint";
+      joint_state.position[1] = dBackCartAngle;
 
-            joint_state.name[2] ="front_left_wheel_joint";
-            joint_state.position[2] = 0;
-            joint_state.name[3] ="front_right_wheel_joint";
-            joint_state.position[3] = 0;
-            joint_state.name[4] ="back_left_wheel_joint";
-            joint_state.position[4] = 0;
-            joint_state.name[5] ="back_right_wheel_joint";
-            joint_state.position[5] = 0;
-            // send the joint state and transform
-            joint_pub.publish(joint_state);
-        }
-        ros::spinOnce();
-        loop_rate.sleep();
+      joint_state.name[2] = "front_left_wheel_joint";
+      joint_state.position[2] = 0;
+      joint_state.name[3] = "front_right_wheel_joint";
+      joint_state.position[3] = 0;
+      joint_state.name[4] = "back_left_wheel_joint";
+      joint_state.position[4] = 0;
+      joint_state.name[5] = "back_right_wheel_joint";
+      joint_state.position[5] = 0;
+
+      joint_state.name[6] = "front_tpl_lower_hitches_revolute_joint";
+      joint_state.position[6] = dFrontTplAngle;
+      joint_state.name[7] = "front_tpl_upper_hitch_revolute_joint";
+      joint_state.position[7] = 0;
+      joint_state.name[8] = "front_tpl_upper_hitch_prismatic_joint";
+      joint_state.position[8] = dFrontTplHeight;
+      joint_state.name[9] = "back_tpl_lower_hitches_revolute_joint";
+      joint_state.position[9] = dBackTplAngle;
+      joint_state.name[10] = "back_tpl_upper_hitch_revolute_joint";
+      joint_state.position[10] = 0;
+      joint_state.name[11] = "back_tpl_upper_hitch_prismatic_joint";
+      joint_state.position[11] = dBackTplHeight;
+      // send the joint state and transform
+      joint_pub.publish(joint_state);
     }
-    return 0;
+    ros::spinOnce();
+    loop_rate.sleep();
+  }
+  return 0;
 }
