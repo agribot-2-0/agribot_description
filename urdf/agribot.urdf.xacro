@@ -11,7 +11,6 @@
   <xacro:arg name="perception_sensors" default="false" />
   <xacro:arg name="perception_plugins" default="true" />
 
-
   <link name="base_footprint"/>
 
   <joint name="chassis_joint" type="fixed">
