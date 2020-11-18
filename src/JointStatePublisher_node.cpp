@@ -18,7 +18,6 @@ constexpr int joints_cnt = 12;
 double dFrontCartAngle, dBackCartAngle = 0.0;
 double dFrontTplHeight, dFrontTplAngle = 0.0;
 double dBackTplHeight, dBackTplAngle = 0.0;
-
 agribot_msgs::AgribotCaterpillarWheelsRotation caterpilarWheels;
 bool bDataReceived = false;
 
