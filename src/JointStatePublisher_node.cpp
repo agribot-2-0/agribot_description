@@ -2,6 +2,7 @@
  * Copyright (C) 2020 Agribot. All rights reserved.
  */
 
+#include <agribot_msgs/AgribotCaterpillarWheelsRotation.h>
 #include <ros/ros.h>
 #include <sensor_msgs/JointState.h>
 #include <std_msgs/Float32.h>
@@ -18,6 +19,7 @@ double dFrontCartAngle, dBackCartAngle = 0.0;
 double dFrontTplHeight, dFrontTplAngle = 0.0;
 double dBackTplHeight, dBackTplAngle = 0.0;
 
+agribot_msgs::AgribotCaterpillarWheelsRotation caterpilarWheels;
 bool bDataReceived = false;
 
 void encoderFrontCallback(const std_msgs::Float32 front_cart_msg)
@@ -25,6 +27,7 @@ void encoderFrontCallback(const std_msgs::Float32 front_cart_msg)
   dFrontCartAngle = front_cart_msg.data;
   bDataReceived = true;
 }
+
 void encoderBackCallback(const std_msgs::Float32 back_cart_msg)
 {
   dBackCartAngle = back_cart_msg.data;
@@ -43,6 +46,12 @@ void tplBackCallback(const agribot_msgs::AgribotTool back_tpl_config)
   dBackTplHeight = -back_tpl_config.tpl_height;
 }
 
+void caterpillarWheelsCallback(const agribot_msgs::AgribotCaterpillarWheelsRotation msg)
+{
+  caterpilarWheels = msg;
+  bDataReceived = true;
+}
+
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "state_publisher");
@@ -53,6 +62,8 @@ int main(int argc, char** argv)
   ros::Subscriber back_cart_sub = n.subscribe("/agribot/encoder/cart/back", 1000, encoderBackCallback);
   ros::Subscriber front_tpl_sub = n.subscribe("agribot/control/tool/front", 1000, tplFrontCallback);
   ros::Subscriber back_tpl_sub = n.subscribe("agribot/control/tool/back", 1000, tplBackCallback);
+  ros::Subscriber catterpilar_wheels_sub =
+      n.subscribe("agribot/encoder/caterpillar/rotations", 1000, caterpillarWheelsCallback);
   sensor_msgs::JointState joint_state;
 
   while (ros::ok())
@@ -69,13 +80,13 @@ int main(int argc, char** argv)
       joint_state.position[1] = dBackCartAngle;
 
       joint_state.name[2] = "front_left_wheel_joint";
-      joint_state.position[2] = 0;
+      joint_state.position[2] = caterpilarWheels.front_left;
       joint_state.name[3] = "front_right_wheel_joint";
-      joint_state.position[3] = 0;
+      joint_state.position[3] = caterpilarWheels.front_right;
       joint_state.name[4] = "back_left_wheel_joint";
-      joint_state.position[4] = 0;
+      joint_state.position[4] = caterpilarWheels.back_left;
       joint_state.name[5] = "back_right_wheel_joint";
-      joint_state.position[5] = 0;
+      joint_state.position[5] = caterpilarWheels.back_right;
 
       joint_state.name[6] = "front_tpl_lower_hitches_revolute_joint";
       joint_state.position[6] = dFrontTplAngle;
@@ -89,6 +100,7 @@ int main(int argc, char** argv)
       joint_state.position[10] = 0;
       joint_state.name[11] = "back_tpl_upper_hitch_prismatic_joint";
       joint_state.position[11] = dBackTplHeight;
+
       // send the joint state and transform
       joint_pub.publish(joint_state);
     }
