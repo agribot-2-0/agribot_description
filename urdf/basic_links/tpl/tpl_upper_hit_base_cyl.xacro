@@ -13,7 +13,7 @@
             <material name="green"/>
           </xacro:if>
           <geometry>
-            <cylinder length="${tpl_upper_hit_base_cyl_width}" radius="${tpl_upper_hit_base_cyl_radius}"/>
+            <cylinder length="0" radius="0"/>
           </geometry>
         </visual>
 

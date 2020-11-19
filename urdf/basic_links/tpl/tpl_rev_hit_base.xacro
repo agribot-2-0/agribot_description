@@ -20,7 +20,7 @@
           <material name="green"/>
         </xacro:if>
         <geometry>
-          <box size="${tpl_rev_hit_base_len} ${tpl_rev_hit_base_wid} ${tpl_rev_hit_base_hei}"/>
+          <box size="0 0 0"/>
         </geometry>
       </visual>
 

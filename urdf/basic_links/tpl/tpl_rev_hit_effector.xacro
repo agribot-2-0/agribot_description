@@ -1,6 +1,6 @@
 <robot name="tpl_assembled" xmlns:xacro="http://ros.org/wiki/xacro">
-    <xacro:property name="tpl_rev_hit_effector_len" value="0.5" />
-    <xacro:property name="tpl_rev_hit_effector_wid" value="${2*tpl_base_hei}" />
+    <xacro:property name="tpl_rev_hit_effector_len" value="0.55" />
+    <xacro:property name="tpl_rev_hit_effector_wid" value="${3.5*tpl_base_hei}" />
     <xacro:property name="tpl_rev_hit_effector_hei" value="0.05" />
     <xacro:property name="tpl_rev_hit_effector_mass" value="25.0" />
 
@@ -20,7 +20,7 @@
             <material name="green"/>
           </xacro:if>
           <geometry>
-            <box size="${tpl_rev_hit_effector_len} ${tpl_rev_hit_effector_wid} ${tpl_rev_hit_effector_hei}"/>
+            <box size="0 0 0"/>
           </geometry>
         </visual>
 

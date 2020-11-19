@@ -7,13 +7,15 @@
     <link name="${name}">
       <visual>
         <xacro:if value="${name == 'back_tpl_cylinder_link'}">
+          <origin xyz="1.84 -0.68 -0.1" rpy="${M_PI/10} ${M_PI/2} 0"/>
           <material name="white"/>
         </xacro:if>
         <xacro:if value="${name == 'front_tpl_cylinder_link'}">
+          <origin xyz="-1.84 0.68 -0.1" rpy="${-M_PI+M_PI/10} ${M_PI/2} 0"/>
           <material name="green"/>
         </xacro:if>
         <geometry>
-          <cylinder length="${tpl_cyl_width}" radius="${tpl_cyl_radius}"/>
+          <mesh filename="package://agribot_description/meshes/lower_hitches.stl" scale="0.00105 0.00105 0.00105"/>
         </geometry>
       </visual>
 
