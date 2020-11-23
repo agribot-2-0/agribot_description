@@ -15,9 +15,9 @@
 #define DEG_TO_RAD (PI / 180)
 constexpr int joints_cnt = 12;
 
-double dFrontCartAngle, dBackCartAngle = 0.0;
-double dFrontTplHeight, dFrontTplAngle = 0.0;
-double dBackTplHeight, dBackTplAngle = 0.0;
+double dFrontCartAngle = 0.0, dBackCartAngle = 0.0;
+double dFrontTplHeight = 0.0, dFrontTplAngle = 0.0;
+double dBackTplHeight = 0.0, dBackTplAngle = 0.0;
 agribot_msgs::AgribotCaterpillarWheelsRotation caterpilarWheels;
 bool bDataReceived = false;
 
@@ -33,13 +33,13 @@ void encoderBackCallback(const std_msgs::Float32 back_cart_msg)
   bDataReceived = true;
 }
 
-void tplFrontCallback(const agribot_msgs::AgribotTool front_tpl_config)
+void tplFrontCallback(const agribot_msgs::AgribotTool &front_tpl_config)
 {
   dFrontTplAngle = front_tpl_config.tpl_angle;
   dFrontTplHeight = -front_tpl_config.tpl_height;
 }
 
-void tplBackCallback(const agribot_msgs::AgribotTool back_tpl_config)
+void tplBackCallback(const agribot_msgs::AgribotTool &back_tpl_config)
 {
   dBackTplAngle = back_tpl_config.tpl_angle;
   dBackTplHeight = -back_tpl_config.tpl_height;
