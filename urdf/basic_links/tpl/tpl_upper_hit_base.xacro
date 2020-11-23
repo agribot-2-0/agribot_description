@@ -14,7 +14,7 @@
             <material name="green"/>
           </xacro:if>
           <geometry>
-            <box size="0 0 0"/>
+            <box size="0.0001 0.0001 0.0001"/>
           </geometry>
         </visual>
 
