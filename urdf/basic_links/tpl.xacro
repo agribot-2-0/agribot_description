@@ -25,7 +25,7 @@
     </joint>
 
     <xacro:agribot_tpl_cylinder name="${name}_cylinder_link" />
-<!--
+
     <joint name="${name}_revolute_hitch_base_left_joint" type="fixed">
       <parent link="${name}_cylinder_link"/>
       <child link="${name}_revolute_hitch_base_right_link"/>
@@ -81,7 +81,7 @@
     </joint>
 
     <xacro:agribot_tpl_revolute_hitch_effector name="${name}_revolute_hitch_effector_left_link" />
--->
+
     <joint name="${name}_upper_hich_base_joint" type="fixed">
       <parent link="${name}_base_link"/>
       <child link="${name}_up_hit_base_link"/>
