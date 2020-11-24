@@ -35,13 +35,13 @@ void encoderBackCallback(const std_msgs::Float32 back_cart_msg)
 
 void tplFrontCallback(const agribot_msgs::AgribotTool &front_tpl_config)
 {
-  dFrontTplAngle = front_tpl_config.tpl_angle;
+  dFrontTplAngle = -front_tpl_config.tpl_angle;
   dFrontTplHeight = -front_tpl_config.tpl_height;
 }
 
 void tplBackCallback(const agribot_msgs::AgribotTool &back_tpl_config)
 {
-  dBackTplAngle = back_tpl_config.tpl_angle;
+  dBackTplAngle = -back_tpl_config.tpl_angle;
   dBackTplHeight = -back_tpl_config.tpl_height;
 }
 
