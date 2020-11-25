@@ -1,7 +1,7 @@
 <robot name="tpl_assembled" xmlns:xacro="http://ros.org/wiki/xacro">
     <xacro:property name="tpl_upper_hit_base_cyl_width" value="${tpl_upper_hit_base_wid}" />
     <xacro:property name="tpl_upper_hit_base_cyl_radius" value="${tpl_cyl_radius}" />
-    <xacro:property name="tpl_upper_hit_base_cyl_mass" value="10" />
+    <xacro:property name="tpl_upper_hit_base_cyl_mass" value="0.001" />
 
     <xacro:macro name="agribot_tpl_upper_hitch_cylinder" params="name">
       <link name="${name}">

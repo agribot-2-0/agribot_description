@@ -1,7 +1,7 @@
 <robot name="tpl_assembled" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:property name="tpl_cyl_width" value="0.45" />
   <xacro:property name="tpl_cyl_radius" value="${tpl_base_hei/2}" />
-  <xacro:property name="tpl_cyl_mass" value="50" />
+  <xacro:property name="tpl_cyl_mass" value="0.001" />
 
   <xacro:macro name="agribot_tpl_cylinder" params="name">
     <link name="${name}">

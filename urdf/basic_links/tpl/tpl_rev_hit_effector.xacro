@@ -2,7 +2,7 @@
     <xacro:property name="tpl_rev_hit_effector_len" value="0.55" />
     <xacro:property name="tpl_rev_hit_effector_wid" value="${3.5*tpl_base_hei}" />
     <xacro:property name="tpl_rev_hit_effector_hei" value="0.05" />
-    <xacro:property name="tpl_rev_hit_effector_mass" value="25.0" />
+    <xacro:property name="tpl_rev_hit_effector_mass" value="0.001" />
 
     <xacro:macro name="agribot_tpl_revolute_hitch_effector" params="name">
       <link name="${name}">

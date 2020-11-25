@@ -2,7 +2,7 @@
   <xacro:property name="tpl_rev_hit_base_len" value="0.3" />
   <xacro:property name="tpl_rev_hit_base_wid" value="${2*tpl_base_hei}" />
   <xacro:property name="tpl_rev_hit_base_hei" value="0.05" />
-  <xacro:property name="tpl_rev_hit_base_mass" value="20.0" />
+  <xacro:property name="tpl_rev_hit_base_mass" value="0.001" />
 
   <xacro:macro name="agribot_tpl_revolute_hitch_base" params="name">
     <link name="${name}">
