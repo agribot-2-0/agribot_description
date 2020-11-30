@@ -35,6 +35,11 @@ void encoderBackCallback(const std_msgs::Float32 back_cart_msg)
 
 void tplFrontCallback(const agribot_msgs::AgribotTool &front_tpl_config)
 {
+  // Joints implemented in simulation have inverted limits:
+  // - revolute joint from -60 to 15 deg
+  // - prismatic joint from -0.45 to 0 m
+  // To correspond to real values, the inversion of sign is
+  // needed in below lines.
   dFrontTplAngle = -front_tpl_config.tpl_angle;
   dFrontTplHeight = -front_tpl_config.tpl_height;
 }
