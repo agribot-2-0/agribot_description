@@ -31,8 +31,8 @@
         </link>
 
         <gazebo reference="${name}">
-          <mu1>0.1</mu1>
-          <mu2>0.1</mu2>
+          <mu1>0.5</mu1>
+          <mu2>0.5</mu2>
           <kp>5e9</kp>
           <kd>10.0</kd>
         </gazebo>

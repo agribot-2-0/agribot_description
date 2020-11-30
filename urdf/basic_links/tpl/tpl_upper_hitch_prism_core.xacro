@@ -1,0 +1,45 @@
+<robot name="tpl_assembled" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:property name="tpl_upper_hitch_prism_core_len" value="0.5" />
+    <xacro:property name="tpl_upper_hitch_prism_core_wid" value="0.025" />
+    <xacro:property name="tpl_upper_hitch_prism_core_hei" value="0.025" />
+    <xacro:property name="tpl_upper_hitch_prism_core_mass" value="0.001" />
+
+    <xacro:macro name="agribot_tpl_upper_hitch_prism_joint_core" params="name">
+      <link name="${name}">
+        <visual>
+          <xacro:if value="${name == 'back_tpl_upper_hitch_prism_joint_core_link'}">
+            <material name="white"/>
+          </xacro:if>
+          <xacro:if value="${name == 'front_tpl_upper_hitch_prism_joint_core_link'}">
+            <material name="green"/>
+          </xacro:if>
+          <geometry>
+            <box size="${tpl_upper_hitch_prism_core_len} ${tpl_upper_hitch_prism_core_wid} ${tpl_upper_hitch_prism_core_hei}"/>
+          </geometry>
+        </visual>
+
+        <collision>
+          <xacro:if value="${name == 'back_tpl_upper_hitch_prism_joint_core_link'}">
+            <material name="white"/>
+          </xacro:if>
+          <xacro:if value="${name == 'front_tpl_upper_hitch_prism_joint_core_link'}">
+            <material name="green"/>
+          </xacro:if>
+          <geometry>
+            <box size="${tpl_upper_hitch_prism_core_len} ${tpl_upper_hitch_prism_core_wid} ${tpl_upper_hitch_prism_core_hei}"/>
+          </geometry>
+        </collision>
+
+        <inertial>
+          <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+          <!-- Moments of inertia taken from-->
+          <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia#List_of_3D_inertia_tensors-->
+          <mass value="${tpl_upper_hitch_prism_core_mass}"/>
+          <inertia ixx="${tpl_upper_hitch_prism_core_mass*(tpl_upper_hitch_prism_core_hei*tpl_upper_hitch_prism_core_hei+tpl_upper_hitch_prism_core_wid*tpl_upper_hitch_prism_core_wid)/12}" ixy="0.0" ixz="0.0"
+                   iyy="${tpl_upper_hitch_prism_core_mass*(tpl_upper_hitch_prism_core_len*tpl_upper_hitch_prism_core_len+tpl_upper_hitch_prism_core_hei*tpl_upper_hitch_prism_core_hei)/12}" iyz="0.0"
+                   izz="${tpl_upper_hitch_prism_core_mass*(tpl_upper_hitch_prism_core_len*tpl_upper_hitch_prism_core_len+tpl_upper_hitch_prism_core_wid*tpl_upper_hitch_prism_core_wid)/12}" />
+        </inertial>
+      </link>
+    </xacro:macro>
+
+</robot>

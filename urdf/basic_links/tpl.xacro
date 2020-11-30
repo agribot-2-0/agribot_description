@@ -1,0 +1,132 @@
+<robot name="tpl" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_base.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_cyl.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_rev_hit_base.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_rev_hit_effector.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_upper_hit_base.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_upper_hit_base_cyl.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_upper_hitch_prism_base.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_upper_hitch_prism_core.xacro"/>
+
+  <xacro:macro name="agribot_tpl" params="name">
+    <xacro:agribot_tpl_base name="${name}_base_link" />
+
+    <joint name="${name}_lower_hitches_revolute_joint" type="revolute">
+      <parent link="${name}_base_link"/>
+      <child link="${name}_cylinder_link"/>
+      <xacro:if value="${name == 'back_tpl'}">
+        <origin xyz="${-(tpl_base_len)/2} 0.0 0.0" rpy="${M_PI/2} ${-M_PI/5} 0"/>
+      </xacro:if>
+      <xacro:if value="${name == 'front_tpl'}">
+        <origin xyz="${(tpl_base_len)/2} 0.0 0.0" rpy="${-M_PI/2} ${M_PI/5} 0"/>
+      </xacro:if>
+      <limit lower="${-90*M_PI/180}" upper="${15*M_PI/180}"  effort="1000.0" velocity="1000.0"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+
+    <xacro:agribot_tpl_cylinder name="${name}_cylinder_link" />
+
+    <joint name="${name}_revolute_hitch_base_left_joint" type="fixed">
+      <parent link="${name}_cylinder_link"/>
+      <child link="${name}_revolute_hitch_base_right_link"/>
+      <xacro:if value="${name == 'back_tpl'}">
+        <origin xyz="${-(tpl_rev_hit_base_len-tpl_cyl_radius)/2} 0.0 ${(tpl_cyl_width)/2}" rpy="0 0 0"/>
+      </xacro:if>
+      <xacro:if value="${name == 'front_tpl'}">
+        <origin xyz="${(tpl_rev_hit_base_len-tpl_cyl_radius)/2} 0.0 ${-(tpl_cyl_width)/2}" rpy="0 0 0"/>
+      </xacro:if>
+      <axis xyz="0 0 1"/>
+    </joint>
+
+    <xacro:agribot_tpl_revolute_hitch_base name="${name}_revolute_hitch_base_right_link" />
+
+    <joint name="${name}_revolute_hitch_effector_right_joint" type="fixed">
+      <parent link="${name}_revolute_hitch_base_right_link"/>
+      <child link="${name}_revolute_hitch_effector_right_link"/>
+      <xacro:if value="${name == 'back_tpl'}">
+        <origin xyz="${-0.43*(tpl_rev_hit_base_len+tpl_rev_hit_effector_len)} 0.12 ${0.28*tpl_rev_hit_effector_len}" rpy="0 ${M_PI/6} ${-M_PI/6}"/>
+      </xacro:if>
+      <xacro:if value="${name == 'front_tpl'}">
+        <origin xyz="${0.43*(tpl_rev_hit_base_len+tpl_rev_hit_effector_len)} ${-0.28*tpl_rev_hit_effector_len} -0.12 " rpy="0 ${M_PI/6} ${-M_PI/6}"/>
+      </xacro:if>
+      <axis xyz="0 0 1"/>
+    </joint>
+
+    <xacro:agribot_tpl_revolute_hitch_effector name="${name}_revolute_hitch_effector_right_link" />
+
+    <joint name="${name}_revolute_hitch_left_joint" type="fixed">
+      <parent link="${name}_cylinder_link"/>
+      <child link="${name}_revolute_hitch_base_left_link"/>
+      <xacro:if value="${name == 'back_tpl'}">
+        <origin xyz="${-(tpl_rev_hit_base_len-tpl_cyl_radius)/2} 0.0 ${-(tpl_cyl_width)/2}" rpy="0 0 0"/>
+      </xacro:if>
+      <xacro:if value="${name == 'front_tpl'}">
+        <origin xyz="${(tpl_rev_hit_base_len-tpl_cyl_radius)/2} 0.0 ${(tpl_cyl_width)/2}" rpy="0 0 0"/>
+      </xacro:if>
+      <axis xyz="0 0 1"/>
+    </joint>
+
+    <xacro:agribot_tpl_revolute_hitch_base name="${name}_revolute_hitch_base_left_link" />
+
+    <joint name="${name}_revolute_hitch_effector_left_joint" type="fixed">
+      <parent link="${name}_revolute_hitch_base_left_link"/>
+      <child link="${name}_revolute_hitch_effector_left_link"/>
+      <xacro:if value="${name == 'back_tpl'}">
+        <origin xyz="${-0.43*(tpl_rev_hit_base_len+tpl_rev_hit_effector_len)} 0.12 ${-0.28*tpl_rev_hit_effector_len}" rpy="0 ${-M_PI/6} ${-M_PI/6}"/>
+      </xacro:if>
+      <xacro:if value="${name == 'front_tpl'}">
+        <origin xyz="${0.43*(tpl_rev_hit_base_len+tpl_rev_hit_effector_len)} ${-0.28*tpl_rev_hit_effector_len} 0.12" rpy="0 ${-M_PI/6} ${-M_PI/6}"/>
+      </xacro:if>
+      <axis xyz="0 0 1"/>
+    </joint>
+
+    <xacro:agribot_tpl_revolute_hitch_effector name="${name}_revolute_hitch_effector_left_link" />
+
+    <joint name="${name}_upper_hich_base_joint" type="fixed">
+      <parent link="${name}_base_link"/>
+      <child link="${name}_up_hit_base_link"/>
+      <xacro:if value="${name == 'back_tpl'}">
+        <origin xyz="${-0.78*tpl_base_len} 0.0 ${0.8*(tpl_upper_hit_base_len)/2}" rpy="0 ${M_PI/3.43} 0"/>
+      </xacro:if>
+      <xacro:if value="${name == 'front_tpl'}">
+        <origin xyz="${0.82*tpl_base_len} 0.0 ${0.8*(tpl_upper_hit_base_len)/2}" rpy="0 ${-M_PI/3.15} 0"/>
+      </xacro:if>
+      <axis xyz="0 0 1"/>
+    </joint>
+
+    <xacro:agribot_tpl_upper_hitch_base name="${name}_up_hit_base_link" />
+
+    <joint name="${name}_upper_hitch_revolute_joint" type="revolute">
+      <parent link="${name}_up_hit_base_link"/>
+      <child link="${name}_upper_hitch_cylinder_link"/>
+      <xacro:if value="${name == 'back_tpl'}">
+        <origin xyz="${-tpl_upper_hit_base_len/2} 0.0 0.0" rpy="${M_PI/2} ${-M_PI/18} 0"/>
+      </xacro:if>
+      <xacro:if value="${name == 'front_tpl'}">
+        <origin xyz="${tpl_upper_hit_base_len/2} 0.0 0.0" rpy="${-M_PI/2} ${M_PI/18+M_PI} 0"/>
+      </xacro:if>
+      <limit lower="${-10*M_PI/180}" upper="${80*M_PI/180}"  effort="1000.0" velocity="1000.0"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+
+    <xacro:agribot_tpl_upper_hitch_cylinder name="${name}_upper_hitch_cylinder_link" />
+
+    <joint name="${name}_upper_hitch_prism_joint_base_joint" type="fixed">
+      <parent link="${name}_upper_hitch_cylinder_link"/>
+      <child link="${name}_upper_hitch_prism_joint_base_link"/>
+      <origin xyz="${-(tpl_upper_hitch_prism_base_len)/2} 0.0 0.0" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+
+    <xacro:agribot_tpl_upper_hitch_prism_joint_base name="${name}_upper_hitch_prism_joint_base_link" />
+
+    <joint name="${name}_upper_hitch_prismatic_joint" type="prismatic">
+      <parent link="${name}_upper_hitch_prism_joint_base_link"/>
+      <child link="${name}_upper_hitch_prism_joint_core_link"/>
+      <limit effort="1000.0" lower="${-tpl_upper_hitch_prism_core_len+0.05}" upper="0.0" velocity="0.5"/>
+      <origin rpy="0 0 0" xyz="-0.05 0 0"/>
+    </joint>
+
+    <xacro:agribot_tpl_upper_hitch_prism_joint_core name="${name}_upper_hitch_prism_joint_core_link" />  </xacro:macro>
+
+</robot>

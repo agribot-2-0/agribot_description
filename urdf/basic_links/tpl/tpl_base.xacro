@@ -1,0 +1,45 @@
+<robot name="tpl_assembled" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:property name="tpl_base_len" value="0.64" />
+  <xacro:property name="tpl_base_wid" value="0.3" />
+  <xacro:property name="tpl_base_hei" value="0.05" />
+  <xacro:property name="tpl_base_mass" value="0.001" />
+
+  <xacro:macro name="agribot_tpl_base" params="name">
+    <link name="${name}">
+      <visual>
+        <xacro:if value="${name == 'back_tpl_base_link'}">
+          <material name="white"/>
+        </xacro:if>
+        <xacro:if value="${name == 'front_tpl_base_link'}">
+          <material name="green"/>
+        </xacro:if>
+        <geometry>
+          <box size="0.0001 0.0001 0.0001"/>
+        </geometry>
+      </visual>
+
+      <collision>
+        <xacro:if value="${name == 'back_tpl_base_link'}">
+          <material name="white"/>
+        </xacro:if>
+        <xacro:if value="${name == 'front_tpl_base_link'}">
+          <material name="green"/>
+        </xacro:if>
+        <geometry>
+          <box size="${tpl_base_len} ${tpl_base_wid} ${tpl_base_hei}"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        <!-- Moments of inertia taken from-->
+        <!-- https://en.wikipedia.org/wiki/List_of_moments_of_inertia#List_of_3D_inertia_tensors-->
+        <mass value="${tpl_base_mass}"/>
+        <inertia ixx="${tpl_base_mass*(tpl_base_hei*tpl_base_hei+tpl_base_wid*tpl_base_wid)/12}" ixy="0.0" ixz="0.0"
+                 iyy="${tpl_base_mass*(tpl_base_len*tpl_base_len+tpl_base_hei*tpl_base_hei)/12}" iyz="0.0"
+                 izz="${tpl_base_mass*(tpl_base_len*tpl_base_len+tpl_base_wid*tpl_base_wid)/12}" />
+      </inertial>
+    </link>
+  </xacro:macro>
+
+</robot>
