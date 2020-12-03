@@ -60,6 +60,7 @@
   <build_depend>velodyne_gazebo_plugins</build_depend>
   <build_depend>velodyne_description</build_depend>
   <build_depend>agribot_msgs</build_depend>
+  <build_depend>agribot_common</build_depend>
   <build_export_depend>rviz</build_export_depend>
   <build_export_depend>joint_state_publisher_gui</build_export_depend>
   <build_export_depend>robot_state_publisher</build_export_depend>
