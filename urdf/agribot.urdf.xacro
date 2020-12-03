@@ -9,7 +9,7 @@
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/cart.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl.xacro"/>
 
-  <xacro:property name="yaml_file" value="$(find agribot_common)/config/agribot_simulation_config.yaml" />
+  <xacro:property name="yaml_file" value="$(find agribot_common)/config/simulation/config.yaml" />
   <xacro:property name="props_simulation" value="${load_yaml(yaml_file)}"/>
 
   <xacro:arg name="perception_sensors" default="false" />
