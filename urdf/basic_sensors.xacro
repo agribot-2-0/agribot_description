@@ -7,10 +7,10 @@
 
     <xacro:macro name="basic_sensors">
 
-        <xacro:property name="reference_latitude"   value="${props_simulation['simulation_latitude']}"/>
-        <xacro:property name="reference_longitude"  value="${props_simulation['simulation_longitude']}"/>
-        <xacro:property name="reference_heading"    value="${props_simulation['simulation_heading']}"/>
-        <xacro:property name="reference_altitude"   value="${props_simulation['simulation_altitude']}"/>
+        <xacro:property name="reference_latitude"   value="${param_simulation['simulation_latitude']}"/>
+        <xacro:property name="reference_longitude"  value="${param_simulation['simulation_longitude']}"/>
+        <xacro:property name="reference_heading"    value="${param_simulation['simulation_heading']}"/>
+        <xacro:property name="reference_altitude"   value="${param_simulation['simulation_altitude']}"/>
 
         <xacro:imu_sensor>
             <origin xyz="0 0 0" rpy="0 0 0" />

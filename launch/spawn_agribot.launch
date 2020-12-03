@@ -7,12 +7,9 @@
   <arg name="pitch" default="0.0" />
   <arg name="yaw" default="0.0" />
 
-  <arg name="perception_sensors" default="true" />
-  <arg name="perception_plugins" default="true" />
+  <rosparam command="load" file="$(find agribot_common)/config/simulation/config.yaml" />
 
-  <param name="robot_description" command="$(find xacro)/xacro '$(find agribot_description)/urdf/agribot.urdf.xacro'
-    perception_sensors:=$(arg perception_sensors)
-    perception_plugins:=$(arg perception_plugins)"/>
+  <param name="robot_description" command="$(find xacro)/xacro '$(find agribot_description)/urdf/agribot.urdf.xacro'"/>
 
   <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model agribot
               -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos)

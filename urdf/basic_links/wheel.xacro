@@ -1,7 +1,7 @@
 <robot name="wheel" xmlns:xacro="http://ros.org/wiki/xacro">
-    <xacro:property name="wheel_width" value="0.025" />
-    <xacro:property name="wheel_radius" value="0.16" />
-    <xacro:property name="wheel_mass" value="50" />
+    <xacro:property name="wheel_width" value="${param_dimension['wheel_width']}" />
+    <xacro:property name="wheel_radius" value="${param_dimension['wheel_radius']}" />
+    <xacro:property name="wheel_mass" value="${param_dimension['wheel_mass']}" />
 
     <xacro:macro name="agribot_wheel" params="name">
         <link name="${name}">

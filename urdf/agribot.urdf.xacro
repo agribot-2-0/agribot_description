@@ -9,12 +9,6 @@
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/cart.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl.xacro"/>
 
-  <xacro:property name="yaml_file" value="$(find agribot_common)/config/simulation/config.yaml" />
-  <xacro:property name="props_simulation" value="${load_yaml(yaml_file)}"/>
-
-  <xacro:arg name="perception_sensors" default="false" />
-  <xacro:arg name="perception_plugins" default="true" />
-
   <link name="base_footprint"/>
 
   <joint name="chassis_joint" type="fixed">
@@ -124,9 +118,9 @@
   <xacro:tools_sensors/>
 
   <!-- Load perception sensors -->
-  <xacro:if value="$(arg perception_sensors)">
+  <xacro:if value="${param_simulation['perception_sensors']}">
     <xacro:perception_sensors>
-      <xacro:property name="perception_plugins_arg" value="$(arg perception_plugins)"/>
+      <xacro:property name="perception_plugins_arg" value="${param_simulation['perception_plugins']}"/>
     </xacro:perception_sensors>
   </xacro:if>
 

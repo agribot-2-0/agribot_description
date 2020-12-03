@@ -1,9 +1,8 @@
 <launch>
 
-  <arg name="perception_sensors" default="false" />
+  <rosparam command="load" file="$(find agribot_common)/config/simulation/config.yaml" />
 
-  <param name="robot_description" command="$(find xacro)/xacro '$(find agribot_description)/urdf/agribot.urdf.xacro'
-    perception_sensors:=$(arg perception_sensors)" />
+  <param name="robot_description" command="$(find xacro)/xacro '$(find agribot_description)/urdf/agribot.urdf.xacro'" />
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
     <param name="use_tf_static" value="false" />
