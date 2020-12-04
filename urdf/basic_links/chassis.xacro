@@ -1,5 +1,5 @@
 <robot name="chassis" xmlns:xacro="http://ros.org/wiki/xacro">
-    <xacro:property name="chassis_length" value="${param_dimension['chassis_length']}" />
+    <xacro:property name="chassis_length" value="${param_dimension['robot_length']+2*param_dimension['wheel_radius']}" />
     <xacro:property name="chassis_width" value="${param_dimension['chassis_width']}" />
     <xacro:property name="chassis_height" value="${param_dimension['chassis_height']}" />
     <xacro:property name="chassis_mass" value="${param_dimension['chassis_mass']}" />
