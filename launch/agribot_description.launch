@@ -1,6 +1,9 @@
 <launch>
 
   <rosparam command="load" file="$(find agribot_common)/config/simulation/config.yaml" />
+  <param name="simulation_latitude" value="$(env AGRIBOT_LATITUDE)"/>
+  <param name="simulation_longitude" value="$(env AGRIBOT_LONGITUDE)"/>
+  <param name="simulation_heading" value="$(env AGRIBOT_HEADING)"/>
 
   <param name="robot_description" command="$(find xacro)/xacro '$(find agribot_description)/urdf/agribot.urdf.xacro'" />
 
