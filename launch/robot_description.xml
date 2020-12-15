@@ -1,0 +1,11 @@
+<launch>
+
+  <param name="robot_description" command="$(find xacro)/xacro '$(find agribot_description)/urdf/agribot.urdf.xacro'
+    perception_sensors:=$(env AGRIBOT_PERCEPTION_SENSORS)
+    perception_plugins:=$(env AGRIBOT_SIMULATION_PERCEPTION_PLUGINS)
+    simulation_latitude:=$(env AGRIBOT_SIMULATION_LATITUDE)
+    simulation_longitude:=$(env AGRIBOT_SIMULATION_LONGITUDE)
+    simulation_heading:=$(env AGRIBOT_SIMULATION_HEADING)
+    simulation_altitude:=$(env AGRIBOT_SIMULATION_ALTITUDE)" />
+
+</launch>

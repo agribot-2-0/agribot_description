@@ -9,6 +9,14 @@
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/cart.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl.xacro"/>
 
+  <xacro:arg name="perception_sensors" default="false" />
+  <xacro:arg name="perception_plugins" default="false" />
+
+  <xacro:arg name="simulation_latitude" default="51.26662409135839" />
+  <xacro:arg name="simulation_longitude" default="17.20327894189977" />
+  <xacro:arg name="simulation_heading" default="158.5507847682035" />
+  <xacro:arg name="simulation_altitude" default="193.7327916698572" />
+
   <link name="base_footprint"/>
 
   <joint name="chassis_joint" type="fixed">
@@ -118,9 +126,9 @@
   <xacro:tools_sensors/>
 
   <!-- Load perception sensors -->
-  <xacro:if value="${param_simulation['perception_sensors']}">
+  <xacro:if value="$(arg perception_sensors)">
     <xacro:perception_sensors>
-      <xacro:property name="perception_plugins_arg" value="${param_simulation['perception_plugins']}"/>
+      <xacro:property name="perception_plugins_arg" value="$(arg perception_plugins)"/>
     </xacro:perception_sensors>
   </xacro:if>
 
