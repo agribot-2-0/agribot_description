@@ -2,11 +2,6 @@
   <include file="$(find agribot_description)/launch/robot_description.xml" />
 
   <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model agribot
-              -x $(env AGRIBOT_SIMULATION_X)
-              -y $(env AGRIBOT_SIMULATION_Y)
-              -z $(env AGRIBOT_SIMULATION_Z)
-              -R $(env AGRIBOT_SIMULATION_ROLL)
-              -P $(env AGRIBOT_SIMULATION_PITCH)
-              -Y $(env AGRIBOT_SIMULATION_YAW)" />
+              -Y $(env AGRIBOT_SIMULATION_ROBOT_START_YAW)" />
 
 </launch>
