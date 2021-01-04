@@ -13,6 +13,10 @@
         <xacro:property name="reference_heading"    value="158.5507847682035"/>
         <xacro:property name="reference_altitude"   value="193.7327916698572"/>
 
+        <!-- Magnetometer simulation plugin -->
+        <xacro:property name="declination"   value="-5.2809"/>
+        <xacro:property name="inclination"   value="-67.2494"/>
+
         <xacro:imu_sensor>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <xacro:property name="parent"               value="chassis_link"/>
@@ -32,10 +36,10 @@
             <xacro:property name="velocity_topic"       value="fix_velocity"/>
             <xacro:property name="name"                 value="gps"/>
             <xacro:property name="hz"                   value="10.0"/>
-            
+
             <xacro:property name="noise"                value="0.03"/>
             <xacro:property name="velocity_noise"       value="0.3"/>
-            
+
             <!-- Use heading -->
             <xacro:property name="publish_heading"      value="true"/>
             <xacro:property name="heading_topic"        value="heading"/>
@@ -61,12 +65,8 @@
             <xacro:property name="name"                 value="magnetometer"/>
             <xacro:property name="hz"                   value="10.0"/>
 
-            <xacro:property name="magnitude"            value="1.0"/>
-            <xacro:property name="declination"          value="5.0741"/>
-            <xacro:property name="inclination"          value="67.0937"/>
-            <xacro:property name="noise"                value="1.1e-14"/>
-            <!-- <xacro:property name="noise"                value="1.1e-8"/> -->
-            <!-- <xacro:property name="noise"                value="1.1e-5"/> -->
+            <xacro:property name="magnitude"            value="4.97604e-5"/>
+            <xacro:property name="noise"                value="3.2e-7"/>
         </xacro:magnetometer>
 
     </xacro:macro>
