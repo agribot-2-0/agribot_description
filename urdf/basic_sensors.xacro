@@ -7,13 +7,10 @@
 
     <xacro:macro name="basic_sensors">
 
-        <!-- TODO - move properties to environmental variables -->
-
-        <!-- Moderna vineyard coordinates -->
-        <xacro:property name="reference_latitude"   value="51.26662409135839"/>
-        <xacro:property name="reference_longitude"  value="17.20327894189977"/>
-        <xacro:property name="reference_heading"    value="158.5507847682035"/>
-        <xacro:property name="reference_altitude"   value="193.7327916698572"/>
+        <xacro:property name="reference_latitude"   value="$(arg simulation_latitude)"/>
+        <xacro:property name="reference_longitude"  value="$(arg simulation_longitude)"/>
+        <xacro:property name="reference_heading"    value="$(arg simulation_heading)"/>
+        <xacro:property name="reference_altitude"   value="$(arg simulation_altitude)"/>
 
         <!-- Magnetometer simulation plugin -->
         <xacro:property name="declination"   value="-5.2809"/>

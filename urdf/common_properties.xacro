@@ -1,6 +1,12 @@
 <?xml version="1.0" ?>
 
 <robot name="xacro_properties" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:property name="simulation_yaml_file" value="$(env AGRIBOT_HOME)/agribot/configs/simulation/config.yaml" />
+  <xacro:property name="param_simulation" value="${load_yaml(simulation_yaml_file)}"/>
+
+  <xacro:property name="description_dimensions_file" value="$(env AGRIBOT_HOME)/agribot/configs/base/description/dimensions.yaml" />
+  <xacro:property name="param_dimension" value="${load_yaml(description_dimensions_file)}"/>
+
   <xacro:property name="M_PI" value="3.1415926535897931" />
 
   <!-- Init colour -->  

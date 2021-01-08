@@ -1,7 +1,7 @@
 <robot name="base" xmlns:xacro="http://ros.org/wiki/xacro">
-    <xacro:property name="cart_lenght" value="${wheel_radius*2}" />
-    <xacro:property name="cart_width" value="${chassis_width}" />
-    <xacro:property name="cart_height" value="${wheel_radius*2}" />
+    <xacro:property name="cart_lenght" value="${param_dimension['wheel_radius']*2}" />
+    <xacro:property name="cart_width" value="${param_dimension['chassis_width']}" />
+    <xacro:property name="cart_height" value="${param_dimension['wheel_radius']*2}" />
     <xacro:property name="cart_mass" value="500" />
 
     <xacro:macro name="agribot_cart" params="name">
