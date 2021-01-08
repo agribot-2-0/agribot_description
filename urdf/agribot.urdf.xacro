@@ -10,7 +10,12 @@
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl.xacro"/>
 
   <xacro:arg name="perception_sensors" default="false" />
-  <xacro:arg name="perception_plugins" default="true" />
+  <xacro:arg name="perception_plugins" default="false" />
+
+  <xacro:arg name="simulation_latitude" default="51.26662409135839" />
+  <xacro:arg name="simulation_longitude" default="17.20327894189977" />
+  <xacro:arg name="simulation_heading" default="158.5507847682035" />
+  <xacro:arg name="simulation_altitude" default="193.7327916698572" />
 
   <link name="base_footprint"/>
 
@@ -100,7 +105,7 @@
     <plugin name="agribot_controller" filename="libgazebo_ros_agribot.so">
       <wheelSeparation> ${chassis_width+wheel_width} </wheelSeparation>
       <wheelRadius> ${wheel_radius} </wheelRadius>
-      <chasisLength>${chassis_length-2*wheel_radius}</chasisLength>
+      <chasisLength>${param_dimension['robot_length']}</chasisLength>
       <broadcastTF>false</broadcastTF> <!-- set this paremeter to false when localization is used-->
       <odometryTopic>/agribot/odometry</odometryTopic>
       <encoderTopic>/agribot/encoder/caterpillar</encoderTopic>
