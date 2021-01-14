@@ -8,7 +8,7 @@
     <xacro:macro name="basic_sensors">
 
         <!-- NOTE: Simulation properties are passed in robot_description.xml file -->
-        <!-- Position on earth -->
+        <!-- Position on Earth -->
         <xacro:property name="reference_latitude"   value="$(arg simulation_latitude)"/>
         <xacro:property name="reference_longitude"  value="$(arg simulation_longitude)"/>
         <xacro:property name="reference_heading"    value="$(arg simulation_heading)"/>
@@ -25,8 +25,8 @@
             <xacro:property name="name"                 value="imu"/>
             <xacro:property name="hz"                   value="10.0"/>
 
-            <xacro:property name="accel_noise"          value="0.0"/>
-            <xacro:property name="gyro_noise"           value="0.0"/>
+            <xacro:property name="accel_noise"          value="$(arg simulation_accelerometer_noise)"/>
+            <xacro:property name="gyro_noise"           value="$(arg simulation_gyroscope_noise)"/>
         </xacro:imu_sensor>
 
         <xacro:gps>
@@ -38,13 +38,13 @@
             <xacro:property name="name"                 value="gps"/>
             <xacro:property name="hz"                   value="10.0"/>
 
-            <xacro:property name="noise"                value="0.03"/>
-            <xacro:property name="velocity_noise"       value="0.3"/>
+            <xacro:property name="noise"                value="$(arg simulation_gps_noise)"/>
+            <xacro:property name="velocity_noise"       value="$(arg simulation_gps_velocity_noise)"/>
 
             <!-- Use heading -->
-            <xacro:property name="publish_heading"      value="true"/>
+            <xacro:property name="publish_heading"      value="$(arg simulation_gps_publish_heading)"/>
             <xacro:property name="heading_topic"        value="heading"/>
-            <xacro:property name="heading_noise"        value="0.01"/>
+            <xacro:property name="heading_noise"        value="$(arg simulation_gps_heading_noise)"/>
         </xacro:gps>
 
         <xacro:inclinometer>
@@ -55,7 +55,7 @@
             <xacro:property name="name"                 value="inclinometer"/>
             <xacro:property name="hz"                   value="10.0"/>
 
-            <xacro:property name="noise"                value="0.01"/>
+            <xacro:property name="noise"                value="$(arg simulation_inclinometer_noise)"/>
         </xacro:inclinometer>
 
         <xacro:magnetometer>
@@ -66,8 +66,8 @@
             <xacro:property name="name"                 value="magnetometer"/>
             <xacro:property name="hz"                   value="10.0"/>
 
-            <xacro:property name="magnitude"            value="4.97604e-5"/>
-            <xacro:property name="noise"                value="3.2e-7"/>
+            <xacro:property name="magnitude"            value="$(arg simulation_magnetometer_magnitude)"/>
+            <xacro:property name="noise"                value="$(arg simulation_magnetometer_noise)"/>
         </xacro:magnetometer>
 
     </xacro:macro>
