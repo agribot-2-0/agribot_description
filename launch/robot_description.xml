@@ -6,6 +6,10 @@
     simulation_latitude:=$(optenv AGRIBOT_SIMULATION_LATITUDE 0)
     simulation_longitude:=$(optenv AGRIBOT_SIMULATION_LONGITUDE 0)
     simulation_heading:=$(optenv AGRIBOT_SIMULATION_HEADING 0)
-    simulation_altitude:=$(optenv AGRIBOT_SIMULATION_ALTITUDE 0)" />
+    simulation_altitude:=$(optenv AGRIBOT_SIMULATION_ALTITUDE 0)
+    simulation_declination:=$(env AGRIBOT_SIMULATION_DECLINATION)
+    simulation_inclination:=$(env AGRIBOT_SIMULATION_INCLINATION)
+    
+    "/>
 
 </launch>

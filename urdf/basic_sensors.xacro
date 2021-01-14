@@ -7,14 +7,16 @@
 
     <xacro:macro name="basic_sensors">
 
+        <!-- NOTE: Simulation properties are passed in robot_description.xml file -->
+        <!-- Position on earth -->
         <xacro:property name="reference_latitude"   value="$(arg simulation_latitude)"/>
         <xacro:property name="reference_longitude"  value="$(arg simulation_longitude)"/>
         <xacro:property name="reference_heading"    value="$(arg simulation_heading)"/>
         <xacro:property name="reference_altitude"   value="$(arg simulation_altitude)"/>
 
         <!-- Magnetometer simulation plugin -->
-        <xacro:property name="declination"   value="-5.2809"/>
-        <xacro:property name="inclination"   value="-67.2494"/>
+        <xacro:property name="declination"   value="$(arg simulation_declination)"/>
+        <xacro:property name="inclination"   value="$(arg simulation_inclination)"/>
 
         <xacro:imu_sensor>
             <origin xyz="0 0 0" rpy="0 0 0" />
