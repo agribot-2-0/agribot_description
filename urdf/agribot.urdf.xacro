@@ -31,7 +31,7 @@
     <parent link="chassis_link"/>
     <child link="front_cart_link"/>
     <limit lower="${-45*M_PI/180}" upper="${45*M_PI/180}" effort="1000.0" velocity="1000.0"/>
-    <origin xyz="${(chassis_length/2)-cart_lenght/2} 0.0 ${(chassis_height+cart_height)/(-2)}" rpy="0 0 0"/>
+    <origin xyz="${(chassis_length/2)-cart_length/2} 0.0 ${(chassis_height+cart_height)/(-2)}" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
@@ -59,7 +59,7 @@
     <parent link="chassis_link"/>
     <child link="back_cart_link"/>
     <limit lower="${-45*M_PI/180}" upper="${45*M_PI/180}"  effort="1000.0" velocity="1000.0"/>
-    <origin xyz="${-(chassis_length/2)+cart_lenght/2} 0.0 ${(chassis_height+cart_height)/(-2)}" rpy="0 0 0"/>
+    <origin xyz="${-(chassis_length/2)+cart_length/2} 0.0 ${(chassis_height+cart_height)/(-2)}" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
@@ -68,7 +68,7 @@
   <joint name="front_tpl_joint" type="fixed">
     <parent link="front_cart_link"/>
     <child link="front_tpl_base_link"/>
-    <origin xyz="${(cart_lenght+tpl_base_len)/2} 0.0 ${(cart_height-tpl_base_hei)/2}" rpy="0 ${-M_PI/36} 0"/>
+    <origin xyz="${(cart_length+tpl_base_len)/2} 0.0 ${(cart_height-tpl_base_hei)/2}" rpy="0 ${-M_PI/36} 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
@@ -95,7 +95,7 @@
   <joint name="back_tpl_base_joint" type="fixed">
     <parent link="back_cart_link"/>
     <child link="back_tpl_base_link"/>
-    <origin xyz="${-(cart_lenght+tpl_base_len)/2} 0.0 ${(cart_height-tpl_base_hei)/2}" rpy="0 ${M_PI/36} 0"/>
+    <origin xyz="${-(cart_length+tpl_base_len)/2} 0.0 ${(cart_height-tpl_base_hei)/2}" rpy="0 ${M_PI/36} 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
@@ -105,7 +105,7 @@
     <plugin name="agribot_controller" filename="libgazebo_ros_agribot.so">
       <wheelSeparation> ${chassis_width+wheel_width} </wheelSeparation>
       <wheelRadius> ${wheel_radius} </wheelRadius>
-      <chasisLength>${param_dimension['robot_length']}</chasisLength>
+      <chasisLength>${param_dimension['dimensions/robot_axis_to_axis_length']}</chasisLength>
       <broadcastTF>false</broadcastTF> <!-- set this paremeter to false when localization is used-->
       <odometryTopic>/agribot/odometry</odometryTopic>
       <encoderTopic>/agribot/encoder/caterpillar</encoderTopic>
