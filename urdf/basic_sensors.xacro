@@ -21,7 +21,7 @@
         <xacro:imu_sensor>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <xacro:property name="parent"               value="chassis_link"/>
-            <xacro:property name="topic"                value="agribot/imu/raw"/>
+            <xacro:property name="topic"                value="/agribot/imu/raw/data"/>
             <xacro:property name="name"                 value="imu"/>
             <xacro:property name="hz"                   value="10.0"/>
 
@@ -62,7 +62,7 @@
             <origin xyz="0 0 0" rpy="0 0 0" />
             <xacro:property name="parent"               value="chassis_link"/>
             <xacro:property name="robot_namespace"      value="agribot"/>
-            <xacro:property name="topic"                value="magnetic_field"/>
+            <xacro:property name="topic"                value="imu/raw/mag"/>
             <xacro:property name="name"                 value="magnetometer"/>
             <xacro:property name="hz"                   value="10.0"/>
 
