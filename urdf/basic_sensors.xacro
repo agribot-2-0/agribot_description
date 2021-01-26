@@ -19,7 +19,7 @@
         <xacro:property name="inclination"   value="$(arg simulation_inclination)"/>
 
         <xacro:imu_sensor>
-            <origin xyz="0 0 0" rpy="0 0 ${M_PI/2}" />
+            <origin xyz="0 0 0" rpy="0 0 ${-M_PI/2}" />
             <xacro:property name="parent"               value="chassis_link"/>
             <xacro:property name="topic"                value="/agribot/imu/raw/data"/>
             <xacro:property name="name"                 value="imu"/>
