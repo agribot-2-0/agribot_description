@@ -59,7 +59,7 @@
         </xacro:inclinometer>
 
         <xacro:magnetometer>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0 0 0" rpy="0 0 ${-M_PI/2}" />
             <xacro:property name="parent"               value="chassis_link"/>
             <xacro:property name="robot_namespace"      value="agribot"/>
             <xacro:property name="topic"                value="imu/raw/mag"/>
