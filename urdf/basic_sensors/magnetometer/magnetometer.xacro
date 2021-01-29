@@ -14,7 +14,7 @@
                           inclination:=^
                           noise:=^
                           ">
-  
+
         <joint name="${name}_joint" type="fixed">
             <xacro:insert_block name="origin" />
             <parent link="${parent}"/>
@@ -48,4 +48,3 @@
         </gazebo>
     </xacro:macro>
 </robot>
-  
