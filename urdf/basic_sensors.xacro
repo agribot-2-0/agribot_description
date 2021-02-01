@@ -13,7 +13,6 @@
         <!-- Position on Earth -->
         <xacro:property name="reference_latitude"   value="$(arg simulation_latitude)"/>
         <xacro:property name="reference_longitude"  value="$(arg simulation_longitude)"/>
-        <xacro:property name="reference_heading"    value="${$(arg simulation_heading) - degrees(chassis_to_imu_yaw)}"/>
         <xacro:property name="reference_altitude"   value="$(arg simulation_altitude)"/>
 
         <!-- Magnetometer simulation plugin -->
@@ -39,6 +38,8 @@
             <xacro:property name="velocity_topic"       value="fix_velocity"/>
             <xacro:property name="name"                 value="gps"/>
             <xacro:property name="hz"                   value="10.0"/>
+
+            <xacro:property name="reference_heading"  value="${$(arg simulation_heading)}"/>
 
             <xacro:property name="noise"                value="$(arg simulation_gps_noise)"/>
             <xacro:property name="velocity_noise"       value="$(arg simulation_gps_velocity_noise)"/>
@@ -67,6 +68,8 @@
             <xacro:property name="topic"                value="imu/raw/mag"/>
             <xacro:property name="name"                 value="magnetometer"/>
             <xacro:property name="hz"                   value="10.0"/>
+
+            <xacro:property name="reference_heading"  value="${$(arg simulation_heading) - degrees(chassis_to_imu_yaw)}"/>
 
             <xacro:property name="magnitude"            value="$(arg simulation_magnetometer_magnitude)"/>
             <xacro:property name="noise"                value="$(arg simulation_magnetometer_noise)"/>
