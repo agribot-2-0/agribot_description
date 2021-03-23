@@ -30,7 +30,7 @@
     </xacro:benewake_ce30_c> -->
 
     <xacro:livox_horizon>
-      <origin xyz="2.25 0 1.0" rpy="0 0.2 0" />
+      <origin xyz="2.25 0 1.24" rpy="0 ${18.0*M_PI/180.0} 0" />
       <xacro:property name="parent"               value="base_footprint"/>
       <xacro:property name="topic"                value="/bumper/front/lidar"/>
       <xacro:property name="name"                 value="bumper_front_lidar"/>
