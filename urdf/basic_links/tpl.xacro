@@ -20,7 +20,7 @@
       <xacro:if value="${name == 'front_tpl'}">
         <origin xyz="${(tpl_base_len)/2} 0.0 0.0" rpy="${-M_PI/2} ${M_PI/5} 0"/>
       </xacro:if>
-      <limit lower="${-90*M_PI/180}" upper="${15*M_PI/180}"  effort="1000.0" velocity="1000.0"/>
+      <limit lower="${-90*M_PI/180}" upper="${90*M_PI/180}"  effort="1000.0" velocity="1000.0"/>
       <axis xyz="0 0 1"/>
     </joint>
 
