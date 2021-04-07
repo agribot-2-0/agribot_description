@@ -64,8 +64,8 @@ int main(int argc, char** argv)
   ros::Publisher joint_pub = n.advertise<sensor_msgs::JointState>("joint_states", 1);
   ros::Subscriber front_cart_sub = n.subscribe("/agribot/encoder/cart/front", 1000, encoderFrontCallback);
   ros::Subscriber back_cart_sub = n.subscribe("/agribot/encoder/cart/back", 1000, encoderBackCallback);
-  ros::Subscriber front_tpl_sub = n.subscribe("agribot/control/tool/front/valves", 1, tplFrontCallback);
-  ros::Subscriber back_tpl_sub = n.subscribe("agribot/control/tool/back/valves", 1, tplBackCallback);
+  ros::Subscriber front_tpl_sub = n.subscribe("agribot/encoder/tool/front", 1000, tplFrontCallback);
+  ros::Subscriber back_tpl_sub = n.subscribe("agribot/encoder/tool/back", 1000, tplBackCallback);
   ros::Subscriber catterpilar_wheels_sub =
       n.subscribe("agribot/encoder/caterpillar/rotations", 1000, caterpillarWheelsCallback);
   sensor_msgs::JointState joint_state;
@@ -93,17 +93,17 @@ int main(int argc, char** argv)
       joint_state.position[5] = caterpilarWheels.back_right;
 
       joint_state.name[6] = "front_tpl_lower_hitches_revolute_joint";
-      joint_state.effort[6] = dFrontTplAngle;
+      joint_state.position[6] = dFrontTplAngle;
       joint_state.name[7] = "front_tpl_upper_hitch_revolute_joint";
       joint_state.position[7] = 0;
       joint_state.name[8] = "front_tpl_upper_hitch_prismatic_joint";
-      joint_state.effort[8] = dFrontTplHeight;
+      joint_state.position[8] = dFrontTplHeight;
       joint_state.name[9] = "back_tpl_lower_hitches_revolute_joint";
-      joint_state.effort[9] = dBackTplAngle;
+      joint_state.position[9] = dBackTplAngle;
       joint_state.name[10] = "back_tpl_upper_hitch_revolute_joint";
       joint_state.position[10] = 0;
       joint_state.name[11] = "back_tpl_upper_hitch_prismatic_joint";
-      joint_state.effort[11] = dBackTplHeight;
+      joint_state.position[11] = dBackTplHeight;
 
       // send the joint state and transform
       joint_pub.publish(joint_state);
