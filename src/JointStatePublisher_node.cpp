@@ -40,14 +40,14 @@ void tplFrontCallback(const agribot_msgs::AgribotTool &front_tpl_config)
   // - prismatic joint from -0.45 to 0 m
   // To correspond to real values, the inversion of sign is
   // needed in below lines.
-  dFrontTplAngle = -front_tpl_config.tpl_angle;
-  dFrontTplHeight = -front_tpl_config.tpl_height;
+  dFrontTplAngle = front_tpl_config.tpl_angle;
+  dFrontTplHeight = front_tpl_config.tpl_height;
 }
 
 void tplBackCallback(const agribot_msgs::AgribotTool &back_tpl_config)
 {
-  dBackTplAngle = -back_tpl_config.tpl_angle;
-  dBackTplHeight = -back_tpl_config.tpl_height;
+  dBackTplAngle = back_tpl_config.tpl_angle;
+  dBackTplHeight = back_tpl_config.tpl_height;
 }
 
 void caterpillarWheelsCallback(const agribot_msgs::AgribotCaterpillarWheelsRotation msg)
