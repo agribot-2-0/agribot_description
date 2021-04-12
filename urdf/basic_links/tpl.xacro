@@ -1,6 +1,6 @@
 <robot name="tpl" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_base.xacro"/>
-  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_cyl.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_cylinder.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_rev_hit_base.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_rev_hit_effector.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_links/tpl/tpl_upper_hit_base.xacro"/>
@@ -15,14 +15,24 @@
       <parent link="${name}_base_link"/>
       <child link="${name}_cylinder_link"/>
       <xacro:if value="${name == 'back_tpl'}">
-        <origin xyz="${-(tpl_base_len)/2} 0.0 0.0" rpy="${M_PI/2} ${-M_PI/5} 0"/>
+        <origin xyz="${-(tpl_base_len)/2} 0.0 0.0" rpy="${M_PI/2} ${-M_PI*1.75+M_PI} ${M_PI}"/>
       </xacro:if>
       <xacro:if value="${name == 'front_tpl'}">
-        <origin xyz="${(tpl_base_len)/2} 0.0 0.0" rpy="${-M_PI/2} ${M_PI/5} 0"/>
+        <origin xyz="${(tpl_base_len)/2} 0.0 0.0" rpy="${M_PI/2} ${-M_PI*1.75} 0"/>
       </xacro:if>
-      <limit lower="-0.03" upper="0.9"  effort="1000.0" velocity="1000.0"/>
+      <limit lower="-0.03" upper="0.9"  effort="1.0" velocity="0.5"/>
       <axis xyz="0 0 1"/>
     </joint>
+
+    <transmission name="${name}_lower_hitches_revolute_joint_transmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${name}_lower_hitches_revolute_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${name}_lower_hitches_revolute_joint_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
 
     <xacro:agribot_tpl_cylinder name="${name}_cylinder_link" />
 
@@ -30,7 +40,7 @@
       <parent link="${name}_cylinder_link"/>
       <child link="${name}_revolute_hitch_base_right_link"/>
       <xacro:if value="${name == 'back_tpl'}">
-        <origin xyz="${-(tpl_rev_hit_base_len-tpl_cyl_radius)/2} 0.0 ${(tpl_cyl_width)/2}" rpy="0 0 0"/>
+        <origin xyz="${-(tpl_rev_hit_base_len-tpl_cyl_radius)/2} 0.0 ${(tpl_cyl_width)/2}" rpy="${M_PI} 0 0"/>
       </xacro:if>
       <xacro:if value="${name == 'front_tpl'}">
         <origin xyz="${(tpl_rev_hit_base_len-tpl_cyl_radius)/2} 0.0 ${-(tpl_cyl_width)/2}" rpy="0 0 0"/>
@@ -44,10 +54,10 @@
       <parent link="${name}_revolute_hitch_base_right_link"/>
       <child link="${name}_revolute_hitch_effector_right_link"/>
       <xacro:if value="${name == 'back_tpl'}">
-        <origin xyz="${-0.43*(tpl_rev_hit_base_len+tpl_rev_hit_effector_len)} 0.12 ${0.28*tpl_rev_hit_effector_len}" rpy="0 ${M_PI/6} ${-M_PI/6}"/>
+        <origin xyz="${-0.43*(tpl_rev_hit_base_len+tpl_rev_hit_effector_len)} 0.12 ${-0.28*tpl_rev_hit_effector_len}" rpy="0 ${-M_PI/6} ${-M_PI/6}"/>
       </xacro:if>
       <xacro:if value="${name == 'front_tpl'}">
-        <origin xyz="${0.43*(tpl_rev_hit_base_len+tpl_rev_hit_effector_len)} ${-0.28*tpl_rev_hit_effector_len} -0.12 " rpy="0 ${M_PI/6} ${-M_PI/6}"/>
+        <origin xyz="${0.43*(tpl_rev_hit_base_len+tpl_rev_hit_effector_len)} ${0.28*tpl_rev_hit_effector_len} -0.12 " rpy="0 ${M_PI/6} ${M_PI/6}"/>
       </xacro:if>
       <axis xyz="0 0 1"/>
     </joint>
@@ -58,7 +68,7 @@
       <parent link="${name}_cylinder_link"/>
       <child link="${name}_revolute_hitch_base_left_link"/>
       <xacro:if value="${name == 'back_tpl'}">
-        <origin xyz="${-(tpl_rev_hit_base_len-tpl_cyl_radius)/2} 0.0 ${-(tpl_cyl_width)/2}" rpy="0 0 0"/>
+        <origin xyz="${-(tpl_rev_hit_base_len-tpl_cyl_radius)/2} 0.0 ${-(tpl_cyl_width)/2}" rpy="${M_PI} 0 0"/>
       </xacro:if>
       <xacro:if value="${name == 'front_tpl'}">
         <origin xyz="${(tpl_rev_hit_base_len-tpl_cyl_radius)/2} 0.0 ${(tpl_cyl_width)/2}" rpy="0 0 0"/>
@@ -72,10 +82,10 @@
       <parent link="${name}_revolute_hitch_base_left_link"/>
       <child link="${name}_revolute_hitch_effector_left_link"/>
       <xacro:if value="${name == 'back_tpl'}">
-        <origin xyz="${-0.43*(tpl_rev_hit_base_len+tpl_rev_hit_effector_len)} 0.12 ${-0.28*tpl_rev_hit_effector_len}" rpy="0 ${-M_PI/6} ${-M_PI/6}"/>
+        <origin xyz="${-0.43*(tpl_rev_hit_base_len+tpl_rev_hit_effector_len)} 0.12 ${0.28*tpl_rev_hit_effector_len}" rpy="0 ${M_PI/6} ${-M_PI/6}"/>
       </xacro:if>
       <xacro:if value="${name == 'front_tpl'}">
-        <origin xyz="${0.43*(tpl_rev_hit_base_len+tpl_rev_hit_effector_len)} ${-0.28*tpl_rev_hit_effector_len} 0.12" rpy="0 ${-M_PI/6} ${-M_PI/6}"/>
+        <origin xyz="${0.43*(tpl_rev_hit_base_len+tpl_rev_hit_effector_len)} ${0.28*tpl_rev_hit_effector_len} 0.12" rpy="0 ${-M_PI/6} ${M_PI/6}"/>
       </xacro:if>
       <axis xyz="0 0 1"/>
     </joint>
@@ -105,7 +115,7 @@
       <xacro:if value="${name == 'front_tpl'}">
         <origin xyz="${tpl_upper_hit_base_len/2} 0.0 0.0" rpy="${-M_PI/2} ${M_PI/18+M_PI} 0"/>
       </xacro:if>
-      <limit lower="${-10*M_PI/180}" upper="${80*M_PI/180}"  effort="1000.0" velocity="1000.0"/>
+      <limit lower="${-10*M_PI/180}" upper="${80*M_PI/180}"  effort="1.0" velocity="0.5"/>
       <axis xyz="0 0 1"/>
     </joint>
 
@@ -123,9 +133,19 @@
     <joint name="${name}_upper_hitch_prismatic_joint" type="prismatic">
       <parent link="${name}_upper_hitch_prism_joint_base_link"/>
       <child link="${name}_upper_hitch_prism_joint_core_link"/>
-      <limit effort="1000.0" lower="0.0" upper="0.25" velocity="0.5"/>
-      <origin rpy="0 0 0" xyz="-0.05 0 0"/>
+      <limit effort="1.0" lower="0.0" upper="0.25" velocity="0.5"/>
+      <origin rpy="0 0 ${M_PI}" xyz="-0.05 0 0"/>
     </joint>
+
+    <transmission name="${name}_upper_hitch_prismatic_joint_transmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${name}_upper_hitch_prismatic_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${name}_upper_hitch_prismatic_joint_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
 
     <xacro:agribot_tpl_upper_hitch_prism_joint_core name="${name}_upper_hitch_prism_joint_core_link" />  </xacro:macro>
 

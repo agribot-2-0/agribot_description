@@ -40,14 +40,14 @@ void tplFrontCallback(const agribot_msgs::AgribotTool &front_tpl_config)
   // - prismatic joint from -0.45 to 0 m
   // To correspond to real values, the inversion of sign is
   // needed in below lines.
-  dFrontTplAngle = -front_tpl_config.tpl_angle;
-  dFrontTplHeight = -front_tpl_config.tpl_height;
+  dFrontTplAngle = front_tpl_config.tpl_angle;
+  dFrontTplHeight = front_tpl_config.tpl_height;
 }
 
 void tplBackCallback(const agribot_msgs::AgribotTool &back_tpl_config)
 {
-  dBackTplAngle = -back_tpl_config.tpl_angle;
-  dBackTplHeight = -back_tpl_config.tpl_height;
+  dBackTplAngle = back_tpl_config.tpl_angle;
+  dBackTplHeight = back_tpl_config.tpl_height;
 }
 
 void caterpillarWheelsCallback(const agribot_msgs::AgribotCaterpillarWheelsRotation msg)
@@ -64,8 +64,8 @@ int main(int argc, char** argv)
   ros::Publisher joint_pub = n.advertise<sensor_msgs::JointState>("joint_states", 1);
   ros::Subscriber front_cart_sub = n.subscribe("/agribot/encoder/cart/front", 1000, encoderFrontCallback);
   ros::Subscriber back_cart_sub = n.subscribe("/agribot/encoder/cart/back", 1000, encoderBackCallback);
-  ros::Subscriber front_tpl_sub = n.subscribe("agribot/control/tool/front", 1000, tplFrontCallback);
-  ros::Subscriber back_tpl_sub = n.subscribe("agribot/control/tool/back", 1000, tplBackCallback);
+  ros::Subscriber front_tpl_sub = n.subscribe("agribot/encoder/tool/front", 1000, tplFrontCallback);
+  ros::Subscriber back_tpl_sub = n.subscribe("agribot/encoder/tool/back", 1000, tplBackCallback);
   ros::Subscriber catterpilar_wheels_sub =
       n.subscribe("agribot/encoder/caterpillar/rotations", 1000, caterpillarWheelsCallback);
   sensor_msgs::JointState joint_state;

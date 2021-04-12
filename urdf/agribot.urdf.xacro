@@ -119,6 +119,12 @@
     <plugin name="weather_station" filename="libgazebo_weather.so">
     </plugin>
   </gazebo>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    </plugin>
+  </gazebo>
+
   <!-- Load basic sensors -->
   <xacro:basic_sensors/>
 
