@@ -1,0 +1,19 @@
+<robot name="dual_antenna_gps" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Basic sonar macro  -->
+  <xacro:macro name="dual_antenna_gps" params="*origin
+                                               parent:=^
+                                               name:=^
+                                               ">
+
+    <joint name="${name}_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}" />
+      <child link="${name}_link" />
+    </joint>
+    <link name="${name}_link" />
+
+    <!-- TODO(olek) - add gazebo plugins -->
+
+  </xacro:macro>
+</robot>

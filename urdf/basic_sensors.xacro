@@ -2,6 +2,7 @@
 
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/imu/imu_sensor.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/gps/gps.xacro"/>
+    <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/gps/dual_antenna_gps.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/inclinometer/inclinometer.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/magnetometer/magnetometer.xacro"/>
 
@@ -18,6 +19,18 @@
         <!-- Magnetometer simulation plugin -->
         <xacro:property name="declination"   value="$(arg simulation_declination)"/>
         <xacro:property name="inclination"   value="$(arg simulation_inclination)"/>
+
+        <xacro:dual_antenna_gps>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <xacro:property name="parent"               value="chassis_link"/>
+          <xacro:property name="name"                 value="bynav"/>
+        </xacro:dual_antenna_gps>
+
+        <xacro:dual_antenna_gps>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <xacro:property name="parent"               value="chassis_link"/>
+          <xacro:property name="name"                 value="hydrabox"/>
+        </xacro:dual_antenna_gps>
 
         <xacro:imu_sensor>
             <origin xyz="0 0 0" rpy="0 0 ${chassis_to_imu_yaw}" />
