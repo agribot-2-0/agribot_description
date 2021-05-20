@@ -67,7 +67,9 @@
                     <bodyName> ${name}_link </bodyName>
                     <frameId> ${name}_link </frameId>
                     <topicName> ${heading_topic} </topicName>
-            
+
+                    <referenceHeading> ${-reference_heading + 90} </referenceHeading>
+
                     <!-- Heading noise -->
                     <Drift> 0.0 0.0 0.0 </Drift>
                     <DriftFrequency> 0.0 0.0 0.0 </DriftFrequency>
@@ -78,4 +80,3 @@
         </gazebo>
     </xacro:macro>
 </robot>
-  
