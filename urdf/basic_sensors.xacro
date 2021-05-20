@@ -56,37 +56,6 @@
           <xacro:property name="heading_noise"        value="$(arg simulation_gps_heading_noise)"/>
         </xacro:dual_antenna_gps>
 
-        <xacro:imu_sensor>
-            <origin xyz="0 0 0" rpy="0 0 ${chassis_to_imu_yaw}" />
-            <xacro:property name="parent"               value="chassis_link"/>
-            <xacro:property name="topic"                value="/agribot/imu/raw/data"/>
-            <xacro:property name="name"                 value="imu"/>
-            <xacro:property name="hz"                   value="10.0"/>
-
-            <xacro:property name="accel_noise"          value="$(arg simulation_accelerometer_noise)"/>
-            <xacro:property name="gyro_noise"           value="$(arg simulation_gyroscope_noise)"/>
-        </xacro:imu_sensor>
-
-        <xacro:gps>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <xacro:property name="parent"               value="chassis_link"/>
-            <xacro:property name="robot_namespace"      value="agribot"/>
-            <xacro:property name="topic"                value="gnss"/>
-            <xacro:property name="velocity_topic"       value="fix_velocity"/>
-            <xacro:property name="name"                 value="gps"/>
-            <xacro:property name="hz"                   value="10.0"/>
-
-            <xacro:property name="reference_heading"  value="${$(arg simulation_heading)}"/>
-
-            <xacro:property name="noise"                value="$(arg simulation_gps_noise)"/>
-            <xacro:property name="velocity_noise"       value="$(arg simulation_gps_velocity_noise)"/>
-
-            <!-- Use heading -->
-            <xacro:property name="publish_heading"      value="$(arg simulation_gps_publish_heading)"/>
-            <xacro:property name="heading_topic"        value="heading"/>
-            <xacro:property name="heading_noise"        value="$(arg simulation_gps_heading_noise)"/>
-        </xacro:gps>
-
         <xacro:inclinometer>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <xacro:property name="parent"               value="chassis_link"/>
@@ -97,20 +66,6 @@
 
             <xacro:property name="noise"                value="$(arg simulation_inclinometer_noise)"/>
         </xacro:inclinometer>
-
-        <xacro:magnetometer>
-            <origin xyz="0 0 0" rpy="0 0 ${chassis_to_imu_yaw}" />
-            <xacro:property name="parent"               value="chassis_link"/>
-            <xacro:property name="robot_namespace"      value="agribot"/>
-            <xacro:property name="topic"                value="imu/raw/mag"/>
-            <xacro:property name="name"                 value="magnetometer"/>
-            <xacro:property name="hz"                   value="10.0"/>
-
-            <xacro:property name="reference_heading"  value="${$(arg simulation_heading) - degrees(chassis_to_imu_yaw)}"/>
-
-            <xacro:property name="magnitude"            value="$(arg simulation_magnetometer_magnitude)"/>
-            <xacro:property name="noise"                value="$(arg simulation_magnetometer_noise)"/>
-        </xacro:magnetometer>
 
     </xacro:macro>
 </robot>
