@@ -4,16 +4,24 @@
   <xacro:macro name="dual_antenna_gps" params="*origin
                                                parent:=^
                                                name:=^
+                                               robot_namespace:=^
+                                               topic:=^
+                                               velocity_topic:=^
+                                               hz:=^
+                                               reference_latitude:=^
+                                               reference_longitude:=^
+                                               reference_heading:=^
+                                               reference_altitude:=^
+                                               noise:=^
+                                               velocity_noise:=^
+                                               publish_heading:=^|false
+                                               heading_topic:=^|heading
+                                               heading_noise:=^|0.00
                                                ">
-
-    <joint name="${name}_joint" type="fixed">
+    <xacro:gps>
       <xacro:insert_block name="origin" />
-      <parent link="${parent}" />
-      <child link="${name}_link" />
-    </joint>
-    <link name="${name}_link" />
-
-    <!-- TODO(olek) - add gazebo plugins -->
+      <xacro:property name="publish_heading" value="true" />
+    </xacro:gps>
 
   </xacro:macro>
 </robot>
