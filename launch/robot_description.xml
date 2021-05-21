@@ -3,20 +3,14 @@
   <param name="robot_description" command="$(find xacro)/xacro '$(find agribot_description)/urdf/agribot.urdf.xacro'
     perception_sensors:=$(env AGRIBOT_PERCEPTION_SENSORS)
     perception_plugins:=$(env AGRIBOT_SIMULATION_PERCEPTION_PLUGINS)
-    simulation_latitude:=$(optenv AGRIBOT_SIMULATION_LATITUDE 0)
-    simulation_longitude:=$(optenv AGRIBOT_SIMULATION_LONGITUDE 0)
-    simulation_heading:=$(optenv AGRIBOT_SIMULATION_HEADING 0)
-    simulation_altitude:=$(optenv AGRIBOT_SIMULATION_ALTITUDE 0)
-    simulation_declination:=$(env AGRIBOT_SIMULATION_DECLINATION)
-    simulation_inclination:=$(env AGRIBOT_SIMULATION_INCLINATION)
-    simulation_magnetometer_magnitude:=$(env AGRIBOT_SIMULATION_MAGNETOMETER_MAGNITUDE)
-    simulation_accelerometer_noise:=$(env AGRIBOT_SIMULATION_ACCELEROMETER_NOISE)
-    simulation_gyroscope_noise:=$(env AGRIBOT_SIMULATION_GYROSCOPE_NOISE)
+    simulation_latitude:=$(env AGRIBOT_SIMULATION_LATITUDE)
+    simulation_longitude:=$(env AGRIBOT_SIMULATION_LONGITUDE)
+    simulation_heading:=$(env AGRIBOT_SIMULATION_HEADING)
+    simulation_altitude:=$(env AGRIBOT_SIMULATION_ALTITUDE)
     simulation_gps_noise:=$(env AGRIBOT_SIMULATION_GPS_NOISE)
     simulation_gps_velocity_noise:=$(env AGRIBOT_SIMULATION_GPS_VELOCITY_NOISE)
     simulation_gps_publish_heading:=$(env AGRIBOT_SIMULATION_GPS_PUBLISH_HEADING)
     simulation_gps_heading_noise:=$(env AGRIBOT_SIMULATION_GPS_HEADING_NOISE)
-    simulation_inclinometer_noise:=$(env AGRIBOT_SIMULATION_INCLINOMETER_NOISE)
-    simulation_magnetometer_noise:=$(env AGRIBOT_SIMULATION_MAGNETOMETER_NOISE)" />
+    simulation_inclinometer_noise:=$(env AGRIBOT_SIMULATION_INCLINOMETER_NOISE)" />
 
 </launch>

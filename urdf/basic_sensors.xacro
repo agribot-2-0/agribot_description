@@ -1,24 +1,16 @@
 <robot name="sensors" xmlns:xacro="http://ros.org/wiki/xacro">
 
-    <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/imu/imu_sensor.xacro"/>
-    <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/gps/gps.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/gps/dual_antenna_gps.xacro"/>
     <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/inclinometer/inclinometer.xacro"/>
-    <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/magnetometer/magnetometer.xacro"/>
 
     <xacro:macro name="basic_sensors">
-
-        <xacro:property name="chassis_to_imu_yaw" value="${M_PI/2}"/>
 
         <!-- NOTE: Simulation properties are passed in robot_description.xml file -->
         <!-- Position on Earth -->
         <xacro:property name="reference_latitude"   value="$(arg simulation_latitude)"/>
         <xacro:property name="reference_longitude"  value="$(arg simulation_longitude)"/>
         <xacro:property name="reference_altitude"   value="$(arg simulation_altitude)"/>
-
-        <!-- Magnetometer simulation plugin -->
-        <xacro:property name="declination"   value="$(arg simulation_declination)"/>
-        <xacro:property name="inclination"   value="$(arg simulation_inclination)"/>
+        <xacro:property name="reference_heading"  value="$(arg simulation_heading)"/>
 
         <xacro:dual_antenna_gps>
           <origin xyz="0 0 0" rpy="0 0 0" />
@@ -29,10 +21,8 @@
           <xacro:property name="velocity_topic"       value="gnss_velocity/bynav"/>
           <xacro:property name="hz"                   value="10.0"/>
 
-          <xacro:property name="reference_heading"  value="${$(arg simulation_heading)}"/>
-
           <xacro:property name="noise"                value="$(arg simulation_gps_noise)"/>
-          <xacro:property name="velocity_noise"       value="$(arg simulation_gps_velocity_noise)"/> -->
+          <xacro:property name="velocity_noise"       value="$(arg simulation_gps_velocity_noise)"/>
 
           <xacro:property name="heading_topic"        value="heading/bynav"/>
           <xacro:property name="heading_noise"        value="$(arg simulation_gps_heading_noise)"/>
@@ -46,8 +36,6 @@
           <xacro:property name="topic"                value="gnss/hydrabox"/>
           <xacro:property name="velocity_topic"       value="gnss_velocity/hydrabox"/>
           <xacro:property name="hz"                   value="10.0"/>
-
-          <xacro:property name="reference_heading"  value="${$(arg simulation_heading)}"/>
 
           <xacro:property name="noise"                value="$(arg simulation_gps_noise)"/>
           <xacro:property name="velocity_noise"       value="$(arg simulation_gps_velocity_noise)"/>
