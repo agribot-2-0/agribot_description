@@ -7,10 +7,12 @@
     simulation_longitude:=$(env AGRIBOT_SIMULATION_LONGITUDE)
     simulation_heading:=$(env AGRIBOT_SIMULATION_HEADING)
     simulation_altitude:=$(env AGRIBOT_SIMULATION_ALTITUDE)
-    simulation_gps_noise:=$(env AGRIBOT_SIMULATION_GPS_NOISE)
-    simulation_gps_velocity_noise:=$(env AGRIBOT_SIMULATION_GPS_VELOCITY_NOISE)
-    simulation_gps_publish_heading:=$(env AGRIBOT_SIMULATION_GPS_PUBLISH_HEADING)
-    simulation_gps_heading_noise:=$(env AGRIBOT_SIMULATION_GPS_HEADING_NOISE)
+    simulation_bynav_position_noise:=$(env AGRIBOT_SIMULATION_BYNAV_POSITION_NOISE)
+    simulation_bynav_velocity_noise:=$(env AGRIBOT_SIMULATION_BYNAV_VELOCITY_NOISE)
+    simulation_bynav_heading_noise:=$(env AGRIBOT_SIMULATION_BYNAV_HEADING_NOISE)
+    simulation_hydrabox_position_noise:=$(env AGRIBOT_SIMULATION_HYDRABOX_POSITION_NOISE)
+    simulation_hydrabox_velocity_noise:=$(env AGRIBOT_SIMULATION_HYDRABOX_VELOCITY_NOISE)
+    simulation_hydrabox_heading_noise:=$(env AGRIBOT_SIMULATION_HYDRABOX_HEADING_NOISE)
     simulation_inclinometer_noise:=$(env AGRIBOT_SIMULATION_INCLINOMETER_NOISE)" />
 
 </launch>

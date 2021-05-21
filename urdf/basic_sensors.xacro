@@ -21,11 +21,11 @@
           <xacro:property name="velocity_topic"       value="gnss_velocity/bynav"/>
           <xacro:property name="hz"                   value="10.0"/>
 
-          <xacro:property name="noise"                value="$(arg simulation_gps_noise)"/>
-          <xacro:property name="velocity_noise"       value="$(arg simulation_gps_velocity_noise)"/>
+          <xacro:property name="noise"                value="$(arg simulation_bynav_position_noise)"/>
+          <xacro:property name="velocity_noise"       value="$(arg simulation_bynav_velocity_noise)"/>
 
           <xacro:property name="heading_topic"        value="heading/bynav"/>
-          <xacro:property name="heading_noise"        value="$(arg simulation_gps_heading_noise)"/>
+          <xacro:property name="heading_noise"        value="$(arg simulation_bynav_heading_noise)"/>
         </xacro:dual_antenna_gps>
 
         <xacro:dual_antenna_gps>
@@ -37,11 +37,11 @@
           <xacro:property name="velocity_topic"       value="gnss_velocity/hydrabox"/>
           <xacro:property name="hz"                   value="10.0"/>
 
-          <xacro:property name="noise"                value="$(arg simulation_gps_noise)"/>
-          <xacro:property name="velocity_noise"       value="$(arg simulation_gps_velocity_noise)"/>
+          <xacro:property name="noise"                value="$(arg simulation_hydrabox_position_noise)"/>
+          <xacro:property name="velocity_noise"       value="$(arg simulation_hydrabox_velocity_noise)"/>
 
           <xacro:property name="heading_topic"        value="heading/hydrabox"/>
-          <xacro:property name="heading_noise"        value="$(arg simulation_gps_heading_noise)"/>
+          <xacro:property name="heading_noise"        value="$(arg simulation_hydrabox_heading_noise)"/>
         </xacro:dual_antenna_gps>
 
         <xacro:inclinometer>
