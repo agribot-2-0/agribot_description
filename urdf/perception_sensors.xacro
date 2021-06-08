@@ -1,6 +1,5 @@
 <robot name="perception_sensors" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find agribot_description)/urdf/common_properties.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/lidar/velodyne16.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/lidar/benewake_ce30_c.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/lidar/livox_horizon.xacro"/>
