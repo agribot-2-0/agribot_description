@@ -1,9 +1,7 @@
 <robot name="perception_sensors" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/lidar/velodyne16.xacro"/>
-  <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/lidar/benewake_ce30_c.xacro"/>
   <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/lidar/livox_horizon.xacro"/>
-  <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/lidar/robosense_bpearl.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/camera/zed2.xacro"/>
 
   <xacro:macro  name="perception_sensors"
               params="perception_plugins_arg:=^
