@@ -21,12 +21,11 @@
     </xacro:livox_horizon>
 
     <!-- ZED2 camera -->
-    <!-- TODO(olek) - add plugin and inertial/collision info-->
-    <joint name="zed2_camera_base_joint" type="fixed">
-      <origin xyz="2.2 0 1.2991" rpy="0 ${18.0*M_PI/180.0} 0" />
-      <parent link="base_footprint"/>
-      <child link="zed2_camera_base_link" />
-    </joint>
+    <xacro:zed2>
+      <origin xyz="2.25 0 1.24" rpy="0 ${18.0*M_PI/180.0} 0" />
+      <xacro:property name="parent"               value="base_footprint"/>
+      <xacro:property name="camera_name"          value="zed2"/>
+    </xacro:zed2>
 
   </xacro:macro>
 </robot>
