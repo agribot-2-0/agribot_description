@@ -2,7 +2,6 @@
 
   <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/gps/gps.xacro" />
 
-  <!-- Basic sonar macro  -->
   <xacro:macro name="dual_antenna_gps" params="*origin
                                                parent:=^
                                                name:=^
