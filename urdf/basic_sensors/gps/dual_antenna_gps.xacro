@@ -1,0 +1,28 @@
+<robot name="dual_antenna_gps" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/gps/gps.xacro" />
+
+  <xacro:macro name="dual_antenna_gps" params="*origin
+                                               parent:=^
+                                               name:=^
+                                               robot_namespace:=^
+                                               topic:=^
+                                               velocity_topic:=^
+                                               hz:=^
+                                               reference_latitude:=^
+                                               reference_longitude:=^
+                                               reference_heading:=^
+                                               reference_altitude:=^
+                                               noise:=^
+                                               velocity_noise:=^
+                                               publish_heading:=^|false
+                                               heading_topic:=^|heading
+                                               heading_noise:=^|0.00
+                                               ">
+    <xacro:gps>
+      <xacro:insert_block name="origin" />
+      <xacro:property name="publish_heading" value="true" />
+    </xacro:gps>
+
+  </xacro:macro>
+</robot>
