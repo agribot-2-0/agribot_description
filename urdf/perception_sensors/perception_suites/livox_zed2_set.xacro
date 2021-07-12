@@ -24,7 +24,8 @@
     </joint>
 
     <xacro:livox_horizon>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+    <!-- TODO(olek) - monitor if this pitch offset (-2.5deg) is necessary  -->
+    <origin xyz="0 0 0" rpy="0 ${-2.5*M_PI/180.0} 0" />
       <xacro:property name="parent" value="${suite_name}_link" />
       <xacro:property name="topic" value="${livox_topic}" />
       <xacro:property name="name" value="${livox_name}" />
