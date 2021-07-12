@@ -1,0 +1,41 @@
+<robot name="livox_zed2_set" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find agribot_description)/urdf/perception_sensors/lidar/livox_horizon.xacro" />
+  <xacro:include filename="$(find agribot_description)/urdf/perception_sensors/camera/zed2.xacro" />
+
+  <xacro:macro name="livox_zed2_set" params="*origin
+                          parent:=^
+                          suite_name:=^
+                          livox_name:=^
+                          livox_topic:=^
+                          livox_hz:=^
+                          livox_visualize:=^
+                          perception_plugins:=^
+                         ">
+
+    <!-- This link is "origin" of the livox_zed2_set and ia assumed to be  -->
+    <link name="${suite_name}_link" />
+
+    <joint name="livox_zed2_set" type="fixed">
+      <parent link="${parent}" />
+      <child link="${suite_name}_link" />
+      <xacro:insert_block name="origin" />
+    </joint>
+
+    <xacro:livox_horizon>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <xacro:property name="parent" value="${suite_name}_link" />
+      <xacro:property name="topic" value="${livox_topic}" />
+      <xacro:property name="name" value="${livox_name}" />
+      <xacro:property name="hz" value="${livox_hz}" />
+      <xacro:property name="visualize" value="${livox_visualize}" />
+    </xacro:livox_horizon>
+
+    <!-- ZED2 camera -->
+    <xacro:zed2>
+      <origin xyz="-0.05 0 0.0571" rpy="0 0 0" />
+      <xacro:property name="parent" value="${suite_name}_link" />
+      <xacro:property name="camera_name" value="zed2" />
+    </xacro:zed2>
+  </xacro:macro>
+</robot>

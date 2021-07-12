@@ -1,29 +1,20 @@
 <robot name="perception_sensors" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find agribot_description)/urdf/perception_sensors/lidar/livox_horizon.xacro"/>
-  <xacro:include filename="$(find agribot_description)/urdf/perception_sensors/camera/zed2.xacro"/>
+  <xacro:include filename="$(find agribot_description)/urdf/perception_sensors/perception_suites/livox_zed2_set.xacro" />
 
-  <xacro:macro  name="perception_sensors"
-              params="perception_plugins_arg:=^
+  <xacro:macro name="perception_sensors" params="perception_plugins:=^
                      ">
 
     <!-- Lidars -->
-    <xacro:livox_horizon>
-      <origin xyz="2.25 0 1.24" rpy="0 ${18.0*M_PI/180.0} 0" />
-      <xacro:property name="parent"               value="base_footprint"/>
-      <xacro:property name="topic"                value="/agribot/obstacle_detection/front/3d/lidar/point_cloud"/>
-      <xacro:property name="name"                 value="front_lidar"/>
-      <xacro:property name="hz"                   value="1.0"/>
-      <xacro:property name="visualize"            value="false"/>
-      <xacro:property name="perception_plugins"   value="${perception_plugins_arg}"/>
-    </xacro:livox_horizon>
-
-    <!-- ZED2 camera -->
-    <xacro:zed2>
-      <origin xyz="2.25 0 1.24" rpy="0 ${18.0*M_PI/180.0} 0" />
-      <xacro:property name="parent"               value="base_footprint"/>
-      <xacro:property name="camera_name"          value="zed2"/>
-    </xacro:zed2>
+    <xacro:livox_zed2_set>
+      <origin xyz="2.25 0 1.24" rpy="0 ${25.0*M_PI/180.0} 0" />
+      <xacro:property name="parent" value="base_footprint" />
+      <xacro:property name="suite_name" value="front_livox_zed2_set" />
+      <xacro:property name="livox_name" value="front_lidar" />
+      <xacro:property name="livox_topic" value="/agribot/obstacle_detection/front/3d/lidar/point_cloud" />
+      <xacro:property name="livox_hz" value="1.0" />
+      <xacro:property name="livox_visualize" value="false" />
+    </xacro:livox_zed2_set>
 
   </xacro:macro>
 </robot>

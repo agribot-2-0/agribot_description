@@ -133,7 +133,7 @@
 
   <!-- Load perception sensors -->
   <xacro:perception_sensors>
-    <xacro:property name="perception_plugins_arg" value="$(arg perception_plugins)"/>
+    <xacro:property name="perception_plugins" value="$(arg perception_plugins)"/>
   </xacro:perception_sensors>
 
 </robot>

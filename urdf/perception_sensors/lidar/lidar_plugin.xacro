@@ -1,0 +1,68 @@
+<robot name="lidar_plugin" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Lidar plugin macro  -->
+  <xacro:macro name="lidar_plugin" params="*origin
+                      name:=^
+                      topic:=^
+                      hz:=^
+                      visualize:=^
+                      horizontal_samples:=^
+                      vertical_samples:=^
+                      min_range:=^
+                      max_range:=^
+                      noise:=^
+                      min_horizontal_angle:=^
+                      max_horizontal_angle:=^
+                      min_vertical_angle:=^
+                      max_vertical_angle:=^
+                      resolution:=^
+                      collision_range:=0.3
+                      ">
+
+    <!-- [NOTE] Velodyne plugin is used to simulate lidar in Gazebo -->
+    <gazebo reference="${name}_link">
+      <sensor type="ray" name="${name}">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>${visualize}</visualize>
+        <update_rate>${hz}</update_rate>
+        <always_on>true</always_on>
+
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>${horizontal_samples}</samples>
+              <resolution>1</resolution>
+              <min_angle>${min_horizontal_angle}</min_angle>
+              <max_angle>${max_horizontal_angle}</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>${vertical_samples}</samples>
+              <resolution>1</resolution>
+              <min_angle>${min_vertical_angle}</min_angle>
+              <max_angle>${max_vertical_angle}</max_angle>
+            </vertical>
+          </scan>
+          <range>
+            <min>${min_range}</min>
+            <max>${max_range}</max>
+            <resolution>${resolution}</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.0</stddev>
+          </noise>
+        </ray>
+
+        <plugin name="gazebo_ros_laser_controller" filename="libgazebo_ros_velodyne_laser.so">
+          <topicName>${topic}</topicName>
+          <frameName>${name}_link</frameName>
+          <min_range>${min_range}</min_range>
+          <max_range>${max_range}</max_range>
+          <gaussianNoise>${noise}</gaussianNoise>
+        </plugin>
+      </sensor>
+    </gazebo>
+
+  </xacro:macro>
+</robot>
