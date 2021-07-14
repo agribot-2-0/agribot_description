@@ -1,0 +1,101 @@
+<robot name="zed2" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <material name="zed2_mat">
+    <color rgba="0.25 0.25 0.25 0.99" />
+  </material>
+
+  <xacro:macro name="zed2" params="*origin
+                       parent:=^
+                       camera_name:=^
+                      ">
+
+    <!-- Properties -->
+    <xacro:property name="M_PI" value="3.1415926535897931" />
+    <xacro:property name="baseline" value="0.12" />
+
+    <!-- Camera Center -->
+    <joint name="${camera_name}_camera_center_joint" type="fixed">
+      <parent link="${parent}" />
+      <child link="${camera_name}_camera_center" />
+      <xacro:insert_block name="origin" />
+    </joint>
+
+    <link name="${camera_name}_camera_center">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agribot_description/meshes/zed2.stl" />
+        </geometry>
+        <material name="zed2_mat" />
+      </visual>
+    </link>
+
+    <!-- Left Camera -->
+    <joint name="${camera_name}_left_camera_joint" type="fixed">
+      <parent link="${camera_name}_camera_center" />
+      <child link="${camera_name}_left_camera_frame" />
+      <origin xyz="0 ${baseline/2} 0" rpy="0 0 0" />
+    </joint>
+
+    <link name="${camera_name}_left_camera_frame" />
+
+    <joint name="${camera_name}_left_camera_optical_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="-${M_PI/2} 0.0 -${M_PI/2}" />
+      <parent link="${camera_name}_left_camera_frame" />
+      <child link="${camera_name}_left_camera_optical_frame" />
+    </joint>
+
+    <link name="${camera_name}_left_camera_optical_frame" />
+
+    <!-- Right Camera -->
+    <joint name="${camera_name}_right_camera_joint" type="fixed">
+      <parent link="${camera_name}_camera_center" />
+      <child link="${camera_name}_right_camera_frame" />
+      <origin xyz="0 -${baseline/2} 0" rpy="0 0 0" />
+    </joint>
+
+    <link name="${camera_name}_right_camera_frame" />
+
+    <joint name="${camera_name}_right_camera_optical_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="-${M_PI/2} 0.0 -${M_PI/2}" />
+      <parent link="${camera_name}_right_camera_frame" />
+      <child link="${camera_name}_right_camera_optical_frame" />
+    </joint>
+
+    <link name="${camera_name}_right_camera_optical_frame" />
+
+    <!-- ZED2 Sensors -->
+    <joint name="${camera_name}_mag_joint" type="fixed">
+      <parent link="${camera_name}_camera_center" />
+      <child link="${camera_name}_mag_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
+    <link name="${camera_name}_mag_link" />
+
+    <joint name="${camera_name}_baro_joint" type="fixed">
+      <parent link="${camera_name}_camera_center" />
+      <child link="${camera_name}_baro_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
+    <link name="${camera_name}_baro_link" />
+
+    <joint name="${camera_name}_temp_left_joint" type="fixed">
+      <parent link="${camera_name}_left_camera_frame" />
+      <child link="${camera_name}_temp_left_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
+    <link name="${camera_name}_temp_left_link" />
+
+    <joint name="${camera_name}_temp_right_joint" type="fixed">
+      <parent link="${camera_name}_right_camera_frame" />
+      <child link="${camera_name}_temp_right_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
+    <link name="${camera_name}_temp_right_link" />
+
+  </xacro:macro>
+</robot>

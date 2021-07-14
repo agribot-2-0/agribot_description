@@ -1,0 +1,49 @@
+<robot name="livox_zed2_set" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find agribot_description)/urdf/perception_sensors/lidar/livox_horizon.xacro" />
+  <xacro:include filename="$(find agribot_description)/urdf/perception_sensors/camera/zed2.xacro" />
+
+  <xacro:macro name="livox_zed2_set" params="*origin
+                          parent:=^
+                          suite_name:=^
+                          livox_name:=^
+                          livox_topic:=^
+                          livox_hz:=^
+                          livox_visualize:=^
+                          perception_plugins:=^
+                         ">
+
+    <!-- This link is "origin" of the livox_zed2_set and ia assumed to be at the
+      (x axis - front, y axis - center, z axis - bottom) of the lidar  -->
+    <link name="${suite_name}_link" />
+
+    <joint name="livox_zed2_set" type="fixed">
+      <parent link="${parent}" />
+      <child link="${suite_name}_link" />
+      <xacro:insert_block name="origin" />
+    </joint>
+
+    <xacro:livox_horizon>
+    <!-- TODO(olek) - monitor if this pitch offset (-2.5deg) is necessary  -->
+    <origin xyz="0 0 0" rpy="0 ${-2.5*M_PI/180.0} 0" />
+      <xacro:property name="parent" value="${suite_name}_link" />
+      <xacro:property name="topic" value="${livox_topic}" />
+      <xacro:property name="name" value="${livox_name}" />
+      <xacro:property name="hz" value="${livox_hz}" />
+      <xacro:property name="visualize" value="${livox_visualize}" />
+    </xacro:livox_horizon>
+
+
+    <!-- ZED2 camera -->
+    <xacro:property name="livox_height" value="0.0841" />
+    <xacro:property name="plate_height" value="0.0102" />
+    <xacro:property name="zed2_height" value="0.03" />
+    <xacro:property name="suite_base_to_zed2_center_z" value="${livox_height + plate_height + zed2_height/2}" />
+
+    <xacro:zed2>
+      <origin xyz="-0.018 0 ${suite_base_to_zed2_center_z}" rpy="0 0 0" />
+      <xacro:property name="parent" value="${suite_name}_link" />
+      <xacro:property name="camera_name" value="zed2" />
+    </xacro:zed2>
+  </xacro:macro>
+</robot>

@@ -1,0 +1,56 @@
+<robot name="livox_horizon" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+  <xacro:include filename="$(find agribot_description)/urdf/perception_sensors/lidar/lidar_plugin.xacro" />
+
+  <xacro:macro name="livox_horizon" params="*origin
+                            parent:=^
+                            name:=^
+                            topic:=^ 
+                            hz:=^
+                            visualize:=^
+                            perception_plugins:=^
+                            ">
+
+    <link name="${name}_base_link">
+      <!-- TODO(olek) - add inertial, visual and collision -->
+    </link>
+
+    <joint name="${name}_base_mount_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}" />
+      <child link="${name}_base_link" />
+    </joint>
+
+
+    <!-- Optical (scan) origin -->
+    <link name="${name}_link" />
+
+    <joint name="${name}_base_scan_joint" type="fixed">
+      <origin xyz="0 0 0.0501" rpy="0 0 0" />
+      <parent link="${name}_base_link" />
+      <child link="${name}_link" />
+    </joint>
+
+    <!-- Run lidar plugin, if perception_plugins_arg set to true -->
+    <xacro:if value="${perception_plugins}">
+
+      <xacro:lidar_plugin name="${name}" topic="${topic}" hz="${hz}">
+        <xacro:insert_block name="origin" />
+
+        <!-- Sensor specific arguments -->
+        <xacro:property name="vertical_samples" value="64" />
+        <xacro:property name="horizontal_samples" value="320" />
+        <xacro:property name="min_range" value="0.5" />
+        <xacro:property name="max_range" value="260.0" />
+        <xacro:property name="noise" value="0.01" />
+        <xacro:property name="min_horizontal_angle" value="-${40.85*M_PI/180.0}" />
+        <xacro:property name="max_horizontal_angle" value="${40.85*M_PI/180.0}" />
+        <xacro:property name="min_vertical_angle" value="-${12.55*M_PI/180.0}" />
+        <xacro:property name="max_vertical_angle" value="${12.55*M_PI/180.0}" />
+        <xacro:property name="resolution" value="0.001" />
+      </xacro:lidar_plugin>
+
+    </xacro:if>
+  </xacro:macro>
+</robot>

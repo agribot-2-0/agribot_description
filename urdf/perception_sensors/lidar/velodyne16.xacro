@@ -1,7 +1,7 @@
 <robot name="velodyne16" xmlns:xacro="http://ros.org/wiki/xacro">
 
     <xacro:property name="M_PI" value="3.1415926535897931" />
-    <xacro:include filename="$(find agribot_description)/urdf/basic_sensors/lidar/velodyne.xacro"/>
+    <xacro:include filename="$(find agribot_description)/urdf/perception_sensors/lidar/velodyne.xacro"/>
   
     <xacro:macro    name="velodyne16"
                     params="*origin
