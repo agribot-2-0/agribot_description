@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(agribot_description)
 
-## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+## Compilation options
+add_compile_options(-std=c++17 -Wall -Wextra -pedantic -Werror)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
