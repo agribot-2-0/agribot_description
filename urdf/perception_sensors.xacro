@@ -7,8 +7,8 @@
 
     <!-- Lidars -->
     <xacro:livox_zed2_set>
-      <origin xyz="2.25 0 1.24" rpy="0 ${25.0*M_PI/180.0} 0" />
-      <xacro:property name="parent" value="base_footprint" />
+      <origin xyz="1.47 0 0.98" rpy="0 ${25.0*M_PI/180.0} 0" />
+      <xacro:property name="parent" value="front_cart_link" />
       <xacro:property name="suite_name" value="front_livox_zed2_set" />
       <xacro:property name="livox_name" value="front_lidar" />
       <xacro:property name="livox_topic" value="/agribot/obstacle_detection/front/3d/lidar/point_cloud" />
