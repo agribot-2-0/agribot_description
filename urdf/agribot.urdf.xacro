@@ -121,6 +121,11 @@
   </gazebo>
 
   <gazebo>
+    <plugin name="video_streaming" filename="libgazebo_video_streaming.so">
+    </plugin>
+  </gazebo>
+
+  <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
     </plugin>
   </gazebo>
