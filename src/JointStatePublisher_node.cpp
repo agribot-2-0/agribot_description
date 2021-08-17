@@ -3,10 +3,10 @@
  */
 
 #include <agribot_msgs/AgribotCaterpillarWheelsRotation.h>
+#include <agribot_msgs/AgribotTool.h>
 #include <ros/ros.h>
 #include <sensor_msgs/JointState.h>
 #include <std_msgs/Float32.h>
-#include <agribot_msgs/AgribotTool.h>
 
 #include <string>
 
@@ -33,7 +33,7 @@ void encoderBackCallback(const std_msgs::Float32 back_cart_msg)
   bDataReceived = true;
 }
 
-void tplFrontCallback(const agribot_msgs::AgribotTool &front_tpl_config)
+void tplFrontCallback(const agribot_msgs::AgribotTool& front_tpl_config)
 {
   // Joints implemented in simulation have inverted limits:
   // - revolute joint from -60 to 15 deg
@@ -44,7 +44,7 @@ void tplFrontCallback(const agribot_msgs::AgribotTool &front_tpl_config)
   dFrontTplHeight = front_tpl_config.tpl_height;
 }
 
-void tplBackCallback(const agribot_msgs::AgribotTool &back_tpl_config)
+void tplBackCallback(const agribot_msgs::AgribotTool& back_tpl_config)
 {
   dBackTplAngle = back_tpl_config.tpl_angle;
   dBackTplHeight = back_tpl_config.tpl_height;
@@ -69,15 +69,15 @@ int main(int argc, char** argv)
   ros::Subscriber catterpilar_wheels_sub =
       n.subscribe("agribot/encoder/caterpillar/rotations", 1000, caterpillarWheelsCallback);
   sensor_msgs::JointState joint_state;
+  joint_state.name.resize(joints_cnt);
+  joint_state.position.resize(joints_cnt);
 
   while (ros::ok())
   {
     if (bDataReceived)
     {
       // update joint_state
-      joint_state.header.stamp = ros::Time::now();
-      joint_state.name.resize(joints_cnt);
-      joint_state.position.resize(joints_cnt);
+      joint_state.header.stamp = ros::Time::now() + ros::Duration(0.1);
       joint_state.name[0] = "front_cart_joint";
       joint_state.position[0] = dFrontCartAngle;
       joint_state.name[1] = "back_cart_joint";
