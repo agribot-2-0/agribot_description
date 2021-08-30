@@ -12,6 +12,7 @@
       <xacro:property name="suite_name" value="front_livox_zed2_set" />
       <xacro:property name="livox_name" value="front_lidar" />
       <xacro:property name="livox_topic" value="/agribot/obstacle_detection/front/3d/lidar/point_cloud" />
+      <xacro:property name="zed2_topic" value="/agribot/obstacle_detection/front/3d/stereo_camera" />
       <xacro:property name="livox_hz" value="1.0" />
       <xacro:property name="livox_visualize" value="false" />
     </xacro:livox_zed2_set>
