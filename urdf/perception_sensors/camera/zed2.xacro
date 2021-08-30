@@ -1,8 +1,5 @@
 <robot name="zed2" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <!-- <xacro:include filename="$(find agribot_description)/urdf/perception_sensors/camera/zed2_plugin.xacro" /> -->
-
-
   <material name="zed2_mat">
     <color rgba="0.25 0.25 0.25 0.99" />
   </material>
@@ -129,10 +126,10 @@
           <alwaysOn>true</alwaysOn>
           <updateRate>0</updateRate>
           <cameraName>${camera_name}_ir</cameraName>
-          <imageTopicName>/${topic}/color/image_raw</imageTopicName>
-          <cameraInfoTopicName>/${topic}/color/camera_info</cameraInfoTopicName>
-          <depthImageTopicName>/${topic}/image_raw</depthImageTopicName>
-          <depthImageInfoTopicName>${topic}/camera_info</depthImageInfoTopicName>
+          <imageTopicName>/${topic}/image_raw</imageTopicName>
+          <cameraInfoTopicName>/${topic}/camera_info</cameraInfoTopicName>
+          <depthImageTopicName>/${topic}/depth_image</depthImageTopicName>
+          <depthImageInfoTopicName>${topic}/depth_camera_info</depthImageInfoTopicName>
           <pointCloudTopicName>${topic}/point_cloud</pointCloudTopicName>
           <frameName>${camera_name}_center_camera_optical_frame</frameName>
           <pointCloudCutoff>0.3</pointCloudCutoff>
@@ -145,7 +142,7 @@
           <CxPrime>0</CxPrime>
           <Cx>0</Cx>
           <Cy>0</Cy>
-          <focalLength>0.00212</focalLength>
+          <focalLength>0</focalLength>
           <hackBaseline>0</hackBaseline>
         </plugin>
       </sensor>
