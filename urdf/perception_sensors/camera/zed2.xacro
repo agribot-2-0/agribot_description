@@ -7,7 +7,12 @@
   <xacro:macro name="zed2" params="*origin
                        parent:=^
                        camera_name:=^
-                       topic:=^
+                       point_cloud_topic:=^
+                       depth_image_topic:=^
+                       depth_image_camera_info_topic:=^
+                       image_topic:=^
+                       image_camera_info_topic:=^
+
                       ">
 
     <!-- Properties -->
@@ -65,7 +70,7 @@
 
     <link name="${camera_name}_right_camera_optical_frame" />
 
-     <joint name="${camera_name}_center_camera_optical_joint" type="fixed">
+    <joint name="${camera_name}_center_camera_optical_joint" type="fixed">
       <origin xyz="0 0 0" rpy="-${M_PI/2} 0.0 -${M_PI/2}" />
       <parent link="${camera_name}_camera_center" />
       <child link="${camera_name}_center_camera_optical_frame" />
@@ -108,7 +113,7 @@
 
     <gazebo reference="${camera_name}_camera_center">
       <sensor name="${camera_name}_camera" type="depth">
-        <update_rate>20</update_rate>
+        <update_rate>5</update_rate>
         <camera>
           <horizontal_fov>1.9198621772</horizontal_fov>
           <image>
@@ -117,33 +122,33 @@
             <format>R8G8B8</format>
           </image>
           <clip>
-            <near>0.02</near>
-            <far>300</far>
+            <near>0.3</near>
+            <far>20.0</far>
           </clip>
         </camera>
         <plugin name="${camera_name}_controller" filename="libgazebo_ros_openni_kinect.so">
           <baseline>0.12</baseline>
           <alwaysOn>true</alwaysOn>
           <updateRate>0</updateRate>
-          <cameraName>${camera_name}_ir</cameraName>
-          <imageTopicName>/${topic}/image_raw</imageTopicName>
-          <cameraInfoTopicName>/${topic}/camera_info</cameraInfoTopicName>
-          <depthImageTopicName>/${topic}/depth_image</depthImageTopicName>
-          <depthImageInfoTopicName>${topic}/depth_camera_info</depthImageInfoTopicName>
-          <pointCloudTopicName>${topic}/point_cloud</pointCloudTopicName>
+          <cameraName>${camera_name}</cameraName>
+          <imageTopicName>${image_topic}</imageTopicName>
+          <cameraInfoTopicName>${image_camera_info_topic}</cameraInfoTopicName>
+          <depthImageTopicName>${depth_image_topic}</depthImageTopicName>
+          <depthImageCameraInfoTopicName>${depth_image_camera_info_topic}</depthImageCameraInfoTopicName>
+          <pointCloudTopicName>${point_cloud_topic}</pointCloudTopicName>
           <frameName>${camera_name}_center_camera_optical_frame</frameName>
           <pointCloudCutoff>0.3</pointCloudCutoff>
           <pointCloudCutoffMax>20.0</pointCloudCutoffMax>
-          <distortionK1>0</distortionK1>
-          <distortionK2>0</distortionK2>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
           <distortionK3>0.0</distortionK3>
-          <distortionT1>0</distortionT1>
-          <distortionT2>0</distortionT2>
-          <CxPrime>0</CxPrime>
-          <Cx>0</Cx>
-          <Cy>0</Cy>
-          <focalLength>0</focalLength>
-          <hackBaseline>0</hackBaseline>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+          <CxPrime>0.0</CxPrime>
+          <Cx>0.0</Cx>
+          <Cy>0.0</Cy>
+          <focalLength>0.0</focalLength>
+          <hackBaseline>0.0</hackBaseline>
         </plugin>
       </sensor>
     </gazebo>
