@@ -7,7 +7,7 @@
 
     <!-- Lidars -->
     <xacro:livox_zed2_set>
-      <origin xyz="2.25 0 1.24" rpy="0 ${25.0*M_PI/180.0} 0" />
+      <origin xyz="1.15 0 2.05" rpy="0 ${28.9*M_PI/180.0} 0" />
       <xacro:property name="parent" value="base_footprint" />
       <xacro:property name="suite_name" value="front_livox_zed2_set" />
       <xacro:property name="livox_name" value="front_lidar" />

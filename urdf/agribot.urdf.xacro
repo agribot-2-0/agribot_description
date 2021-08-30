@@ -31,7 +31,7 @@
     <parent link="chassis_link"/>
     <child link="front_cart_link"/>
     <limit lower="${-45*M_PI/180}" upper="${45*M_PI/180}" effort="1000.0" velocity="1000.0"/>
-    <origin xyz="${(chassis_length/2)-cart_length/2} 0.0 ${(chassis_height+cart_height)/(-2)}" rpy="0 0 0"/>
+    <origin xyz="1.11 0.0 ${(chassis_height+cart_height)/(-2)}" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
@@ -59,7 +59,7 @@
     <parent link="chassis_link"/>
     <child link="back_cart_link"/>
     <limit lower="${-45*M_PI/180}" upper="${45*M_PI/180}"  effort="1000.0" velocity="1000.0"/>
-    <origin xyz="${-(chassis_length/2)+cart_length/2} 0.0 ${(chassis_height+cart_height)/(-2)}" rpy="0 0 0"/>
+    <origin xyz="-1.11 0.0 ${(chassis_height+cart_height)/(-2)}" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
@@ -117,6 +117,11 @@
 
   <gazebo>
     <plugin name="weather_station" filename="libgazebo_weather.so">
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="video_streaming" filename="libgazebo_video_streaming.so">
     </plugin>
   </gazebo>
 
