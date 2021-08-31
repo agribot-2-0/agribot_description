@@ -13,10 +13,10 @@
       <xacro:property name="livox_name" value="front_lidar" />
       <xacro:property name="livox_topic" value="/agribot/obstacle_detection/front/3d/lidar/point_cloud" />
       <xacro:property name="zed2_point_cloud_topic" value="/agribot/obstacle_detection/front/3d/stereo_camera/point_cloud" />
-      <xacro:property name="zed2_image_topic" />
-      <xacro:property name="zed2_image_camera_info_topic" />
-      <xacro:property name="zed2_depth_image_topic" />
-      <xacro:property name="zed2_depth_image_camera_info_topic" />
+      <xacro:property name="zed2_image_topic" value="/zed2_node/rgb/image_rect_color" />
+      <xacro:property name="zed2_image_camera_info_topic" value="/zed2_node/rgb/camera_info" />
+      <xacro:property name="zed2_depth_image_topic" value="/zed2_node/stereo/image_rect_color" />
+      <xacro:property name="zed2_depth_image_camera_info_topic" value="/zed2_node/stereo/camera_info" />
       <xacro:property name="livox_hz" value="1.0" />
       <xacro:property name="livox_visualize" value="false" />
     </xacro:livox_zed2_set>

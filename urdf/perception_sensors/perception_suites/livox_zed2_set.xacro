@@ -8,7 +8,11 @@
                           suite_name:=^
                           livox_name:=^
                           livox_topic:=^
-                          zed2_topic_namespace:=^
+                          zed2_image_topic:=^
+                          zed2_image_camera_info_topic:=^
+                          zed2_depth_image_topic:=^
+                          zed2_depth_image_camera_info_topic:=^
+                          zed2_point_cloud_topic:=^
                           livox_hz:=^
                           livox_visualize:=^
                           perception_plugins:=^
