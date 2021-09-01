@@ -122,8 +122,10 @@
             <format>R8G8B8</format>
           </image>
           <clip>
-            <near>0.3</near>
-            <far>20.0</far>
+          <!-- This parameter only sets the depth camera parameters.
+          Point cloud cutoff is set in below plugin parameters. This is set so the rgb image won't be cut off. -->
+            <near>0.02</near>
+            <far>300</far>
           </clip>
         </camera>
         <plugin name="${camera_name}_controller" filename="libgazebo_ros_openni_kinect.so">
@@ -148,7 +150,7 @@
           <Cx>0.0</Cx>
           <Cy>0.0</Cy>
           <focalLength>0.0</focalLength>
-          <hackBaseline>0.0</hackBaseline>
+          <hackBaseline>0.12</hackBaseline>
         </plugin>
       </sensor>
     </gazebo>
