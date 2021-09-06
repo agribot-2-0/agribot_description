@@ -7,6 +7,12 @@
   <xacro:macro name="zed2" params="*origin
                        parent:=^
                        camera_name:=^
+                       point_cloud_topic:=^
+                       depth_image_topic:=^
+                       depth_image_camera_info_topic:=^
+                       image_topic:=^
+                       image_camera_info_topic:=^
+
                       ">
 
     <!-- Properties -->
@@ -64,6 +70,14 @@
 
     <link name="${camera_name}_right_camera_optical_frame" />
 
+    <joint name="${camera_name}_center_camera_optical_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="-${M_PI/2} 0.0 -${M_PI/2}" />
+      <parent link="${camera_name}_camera_center" />
+      <child link="${camera_name}_center_camera_optical_frame" />
+    </joint>
+
+    <link name="${camera_name}_center_camera_optical_frame" />
+
     <!-- ZED2 Sensors -->
     <joint name="${camera_name}_mag_joint" type="fixed">
       <parent link="${camera_name}_camera_center" />
@@ -97,5 +111,50 @@
 
     <link name="${camera_name}_temp_right_link" />
 
+    <gazebo reference="${camera_name}_camera_center">
+      <sensor name="${camera_name}_camera" type="depth">
+        <update_rate>5</update_rate>
+        <camera>
+          <horizontal_fov>1.9198621772</horizontal_fov>
+          <image>
+            <width>1280</width>
+            <height>720</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+          <!-- "clip" parameter sets the RGB and depth camera cutoff range. Wide range (0.02 to 300.0)
+          is set to avoid object being clipped in RGB image. This however also makes depth image inconsistent
+          with ZED2 depth range constraints of 0.3 to 20.0. As we don't use depth image directly,
+          these constraints are only enforced on final pointcloud with pointCloudCutoff and pointCloudCutoffMax parameters of the plugin -->
+            <near>0.02</near>
+            <far>300</far>
+          </clip>
+        </camera>
+        <plugin name="${camera_name}_controller" filename="libgazebo_ros_openni_kinect.so">
+          <baseline>0.12</baseline>
+          <alwaysOn>true</alwaysOn>
+          <updateRate>0</updateRate>
+          <cameraName>${camera_name}</cameraName>
+          <imageTopicName>${image_topic}</imageTopicName>
+          <cameraInfoTopicName>${image_camera_info_topic}</cameraInfoTopicName>
+          <depthImageTopicName>${depth_image_topic}</depthImageTopicName>
+          <depthImageCameraInfoTopicName>${depth_image_camera_info_topic}</depthImageCameraInfoTopicName>
+          <pointCloudTopicName>${point_cloud_topic}</pointCloudTopicName>
+          <frameName>${camera_name}_center_camera_optical_frame</frameName>
+          <pointCloudCutoff>0.3</pointCloudCutoff>
+          <pointCloudCutoffMax>20.0</pointCloudCutoffMax>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+          <CxPrime>0.0</CxPrime>
+          <Cx>0.0</Cx>
+          <Cy>0.0</Cy>
+          <focalLength>0.0</focalLength>
+          <hackBaseline>0.12</hackBaseline>
+        </plugin>
+      </sensor>
+    </gazebo>
   </xacro:macro>
 </robot>

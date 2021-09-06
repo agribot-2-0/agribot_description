@@ -8,6 +8,11 @@
                           suite_name:=^
                           livox_name:=^
                           livox_topic:=^
+                          zed2_image_topic:=^
+                          zed2_image_camera_info_topic:=^
+                          zed2_depth_image_topic:=^
+                          zed2_depth_image_camera_info_topic:=^
+                          zed2_point_cloud_topic:=^
                           livox_hz:=^
                           livox_visualize:=^
                           perception_plugins:=^
@@ -44,6 +49,11 @@
       <origin xyz="-0.018 0 ${suite_base_to_zed2_center_z}" rpy="0 0 0" />
       <xacro:property name="parent" value="${suite_name}_link" />
       <xacro:property name="camera_name" value="zed2" />
+      <xacro:property name="point_cloud_topic" value="${zed2_point_cloud_topic}" />
+      <xacro:property name="depth_image_topic" value="${zed2_depth_image_topic}" />
+      <xacro:property name="depth_image_camera_info_topic" value="${zed2_depth_image_camera_info_topic}" />
+      <xacro:property name="image_topic" value="${zed2_image_topic}" />
+      <xacro:property name="image_camera_info_topic" value="${zed2_image_camera_info_topic}" />
     </xacro:zed2>
   </xacro:macro>
 </robot>
